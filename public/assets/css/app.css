@@ -1,0 +1,45 @@
+.btn-primary {
+	background: #009CFF;
+}
+
+.bg-theme {
+	background: #4299E1 !important;
+}
+
+table.table-post .action {
+	font-size: 0.8rem;
+	margin-top: 5px;
+	visibility: hidden;
+	white-space: nowrap;
+}
+
+table.table-post .action span {
+	color: #ccc;
+}
+
+table.table-post tr:hover .action {
+	visibility: visible;
+}
+
+#navbar-menu .dropdown-item.active {
+	color: #fff;
+	background: #0001;
+}
+
+tr.tr-read {
+	filter: grayscale(1);
+	opacity: 0.7;
+}
+
+.nav-lang-admin.nav-pills .nav-link.active {
+	background: #009CFF;
+	color: #fff;
+}
+
+span.tox-statusbar__branding {
+	display: none;
+}
+
+.tox-notifications-container {
+	display: none;
+}

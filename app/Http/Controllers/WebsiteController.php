@@ -1,0 +1,296 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\FileDownload;
+use App\Models\Jenis;
+use App\Models\Layanan;
+use App\Models\Pages;
+use App\Models\Program;
+use App\Models\Publication;
+use App\Models\Sarpras;
+use App\Models\Section4;
+use App\Models\Slideshow;
+use App\Models\Testimoni;
+use App\Models\Website;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class WebsiteController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $website = Website::find(1);
+
+        return view('admin.dashboard.konfigurasi.konfigurasi_situs', [
+            'website' => $website,
+            'link' => DB::table('link')->get()
+        ]);
+    }
+
+    public function website_kontak()
+    {
+        $website = Website::find(1);
+
+        return view('website.kontak.kontak_kami', [
+            'website' => $website,
+            'link' => DB::table('link')->get(),
+            'menus' => Pages::get()
+        ]);
+    }
+
+    public function website_sarpras()
+    {
+        $sarpras = Sarpras::get();
+
+        return view('website.sarpras.sarpras', [
+            'sarpras' => $sarpras,
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+            'menus' => Pages::get()
+        ]);
+    }
+
+    public function view_menu($n_m)
+    {
+        // return ;
+        $pages = Pages::where('nama_menu', $n_m)->get()->first();
+        $sarpras = Sarpras::get();
+
+        return view('website.menu.view_menu', [
+            'pages' => $pages,
+            'menus' => Pages::get(),
+            'sarpras' => $sarpras,
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
+
+    public function program_diklat()
+    {
+        return view('website.diklat.program_diklat', [
+            'programs' => Program::latest()->paginate(),
+            'menus' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
+
+    public function program_detail($kode_diklat)
+    {
+        // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
+        return view('website.diklat.program_detail', [
+            'programs_diklat' => Program::latest()->paginate(),
+            'programs' => Program::where('kode_diklat', $kode_diklat)->get()->first(),
+            'menus' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
+
+    public function kalender()
+    {
+        // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
+        return view('website.diklat.kalender_diklat', [
+            'programs_diklat' => Program::latest()->paginate(),
+            'menus' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
+
+    public function artikel()
+    {
+        // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
+        return view('website.publikasi.article', [
+            'publications' => Publication::latest()->paginate(),
+            'articles' => FileDownload::where('category_id', 3)->get(),
+            'menus' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
+
+    public function berita()
+    {
+        // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
+        return view('website.publikasi.berita', [
+            'publications' => Publication::latest()->paginate(),
+            'news' => Publication::where('category_id', 1)->get(),
+            'menus' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
+
+    public function infografis()
+    {
+        // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
+        return view('website.publikasi.infografis', [
+            'publications' => Publication::latest()->paginate(),
+            'infografis' => Publication::where('category_id', 2)->get(),
+            'menus' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
+
+    public function pengumuman()
+    {
+        // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
+        return view('website.publikasi.pengumuman', [
+            'publications' => Publication::latest()->paginate(),
+            'pengumuman' => FileDownload::where('category_id', 4)->get(),
+            'menus' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
+
+    public function menu_navbar()
+    {
+        $menus = Pages::latest();
+        $sarpras = Sarpras::get();
+
+        return view('website.header_footer', [
+            'sarpras' => $sarpras,
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+            'menus' => $menus,
+        ]);
+    }
+
+    public function website_beranda()
+    {
+
+        $website = Website::find(1);
+        // return Pages::get();
+        return view('website.beranda', [
+            'website' => $website,
+            'section' => Section4::latest()->first(),
+            'link' => DB::table('link')->get(),
+            'testimoni' => Testimoni::get(),
+            'slideshow' => Slideshow::all(),
+            'service' => Layanan::all(),
+            'menus' => Pages::get()
+        ]);
+    }
+
+    public function approve_jenis($id)
+    {
+
+        $jenis = Jenis::where('id', $id)
+            ->where('status', 'draft' || '')
+            ->update(['status' => 'published']);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Website  $website
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Website $website)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Website  $website
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view('admin.dashboard.konfigurasi.konfigurasi_situs', [
+            'website' => Website::find($id),
+            'link' => DB::table('link')->get()
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Website  $website
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'nama_website' => 'required',
+            'alamat' => 'required',
+            'no_telfon' => 'required',
+            'no_whatsapp' => 'required',
+            'email_pertama' => 'required',
+            'email_kedua' => 'required',
+            'maps' => 'required',
+            'facebook' => 'required',
+            'twitter' => 'required',
+            'instagram' => 'required',
+            'youtube' => 'required',
+            'url_youtube' => 'required',
+
+        ]);
+
+        $website = Website::find($id);
+
+        $website->nama_website = $request->nama_website;
+        $website->alamat = $request->alamat;
+        $website->no_telfon = $request->no_telfon;
+        $website->no_whatsapp = $request->no_whatsapp;
+        $website->email_pertama = $request->email_pertama;
+        $website->email_kedua = $request->email_kedua;
+        $website->maps = $request->maps;
+        $website->facebook = $request->facebook;
+        $website->twitter = $request->twitter;
+        $website->instagram = $request->instagram;
+        $website->youtube = $request->youtube;
+        $website->url_youtube = $request->url_youtube;
+        $website->save();
+
+        $request->session()->flash('success', 'Update berhasil !');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Website  $website
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Website $website)
+    {
+        //
+    }
+}
