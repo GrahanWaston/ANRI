@@ -114,9 +114,9 @@ class FaqController extends Controller
         $user->text = $request->text;
         $user->save();
 
-        $request->session()->flash('success', 'Update berhasil !');
+        // $request->session()->flash('success', 'Update berhasil !');
 
-        return redirect('/faq');
+        return redirect('/faq')->with('success', 'Update berhasil !');
     }
 
     /**
