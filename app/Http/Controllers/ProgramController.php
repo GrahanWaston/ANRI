@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Jenis;
 use App\Models\Jenjang;
+use App\Models\MenuStatis;
 use App\Models\Pages;
 use App\Models\Program;
+use App\Models\SubMenu;
 use App\Models\Website;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
@@ -40,6 +42,8 @@ class ProgramController extends Controller
         // return $events;
 
         return view('website.diklat.kalender_diklat', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'events' => $events,
             'menus' => Pages::get(),
             'website' => Website::find(1),

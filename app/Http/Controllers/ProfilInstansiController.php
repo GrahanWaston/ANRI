@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\HumanResource;
 use App\Models\Jabatan;
+use App\Models\MenuStatis;
 use App\Models\Pages;
 use App\Models\ProfilInstansi;
+use App\Models\SubMenu;
 use App\Models\Website;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,6 +30,8 @@ class ProfilInstansiController extends Controller
     {
         $website = Website::find(1);
         return view('website.profil.sejarah', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'sejarah' => ProfilInstansi::find(1),
             'website' => $website,
             'link' => DB::table('link')->get(),
@@ -39,6 +43,8 @@ class ProfilInstansiController extends Controller
     {
         $website = Website::find(1);
         return view('website.profil.visi_misi', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'visi_misi' => ProfilInstansi::find(2),
             'website' => $website,
             'link' => DB::table('link')->get(),
@@ -50,6 +56,8 @@ class ProfilInstansiController extends Controller
     {
         $website = Website::find(1);
         return view('website.profil.tugas_fungsi', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'tugas_fungsi' => ProfilInstansi::find(3),
             'website' => $website,
             'link' => DB::table('link')->get(),
@@ -61,6 +69,8 @@ class ProfilInstansiController extends Controller
     {
         $website = Website::find(1);
         return view('website.profil.struktur_organisasi', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'struktur_organisasi' => ProfilInstansi::find(4),
             'website' => $website,
             'link' => DB::table('link')->get(),
@@ -72,6 +82,8 @@ class ProfilInstansiController extends Controller
     {
         $website = Website::find(1);
         return view('website.profil.sumber_daya_manusia', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'sumber_daya_manusia' => ProfilInstansi::find(5),
             'website' => $website,
             'pejabat' => HumanResource::get(),
@@ -85,6 +97,8 @@ class ProfilInstansiController extends Controller
     {
         $website = Website::find(1);
         return view('website.profil.maklumat_layanan', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'maklumat_layanan' => ProfilInstansi::find(6),
             'website' => $website,
             'link' => DB::table('link')->get(),
@@ -147,8 +161,8 @@ class ProfilInstansiController extends Controller
         $validateData = $request->validate([
             'deskripsi' => 'required',
         ]);
-        
-        // dd($validateData);  
+
+        // dd($validateData);
         // return redirect($validateData);
 
         ProfilInstansi::where('id', $id)->update($validateData);

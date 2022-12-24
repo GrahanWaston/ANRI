@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\FileDownload;
 use App\Models\Jenis;
 use App\Models\Layanan;
+use App\Models\MenuStatis;
 use App\Models\Pages;
 use App\Models\Program;
 use App\Models\Publication;
 use App\Models\Sarpras;
 use App\Models\Section4;
 use App\Models\Slideshow;
+use App\Models\SubMenu;
 use App\Models\Testimoni;
 use App\Models\Website;
 use Illuminate\Http\Request;
@@ -38,6 +40,8 @@ class WebsiteController extends Controller
         $website = Website::find(1);
 
         return view('website.kontak.kontak_kami', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'website' => $website,
             'link' => DB::table('link')->get(),
             'menus' => Pages::get()
@@ -49,6 +53,8 @@ class WebsiteController extends Controller
         $sarpras = Sarpras::get();
 
         return view('website.sarpras.sarpras', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'sarpras' => $sarpras,
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
@@ -63,6 +69,8 @@ class WebsiteController extends Controller
         $sarpras = Sarpras::get();
 
         return view('website.menu.view_menu', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'pages' => $pages,
             'menus' => Pages::get(),
             'sarpras' => $sarpras,
@@ -74,6 +82,8 @@ class WebsiteController extends Controller
     public function program_diklat()
     {
         return view('website.diklat.program_diklat', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'programs' => Program::latest()->paginate(),
             'menus' => Pages::get(),
             'website' => Website::find(1),
@@ -85,6 +95,8 @@ class WebsiteController extends Controller
     {
         // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
         return view('website.diklat.program_detail', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'programs_diklat' => Program::latest()->paginate(),
             'programs' => Program::where('kode_diklat', $kode_diklat)->get()->first(),
             'menus' => Pages::get(),
@@ -97,6 +109,8 @@ class WebsiteController extends Controller
     {
         // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
         return view('website.diklat.kalender_diklat', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'programs_diklat' => Program::latest()->paginate(),
             'menus' => Pages::get(),
             'website' => Website::find(1),
@@ -108,6 +122,8 @@ class WebsiteController extends Controller
     {
         // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
         return view('website.publikasi.article', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'publications' => Publication::latest()->paginate(),
             'articles' => FileDownload::where('category_id', 3)->get(),
             'menus' => Pages::get(),
@@ -120,6 +136,8 @@ class WebsiteController extends Controller
     {
         // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
         return view('website.publikasi.berita', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'publications' => Publication::latest()->paginate(),
             'news' => Publication::where('category_id', 1)->get(),
             'menus' => Pages::get(),
@@ -132,6 +150,8 @@ class WebsiteController extends Controller
     {
         // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
         return view('website.publikasi.infografis', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'publications' => Publication::latest()->paginate(),
             'infografis' => Publication::where('category_id', 2)->get(),
             'menus' => Pages::get(),
@@ -144,6 +164,8 @@ class WebsiteController extends Controller
     {
         // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
         return view('website.publikasi.pengumuman', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'publications' => Publication::latest()->paginate(),
             'pengumuman' => FileDownload::where('category_id', 4)->get(),
             'menus' => Pages::get(),
@@ -158,6 +180,8 @@ class WebsiteController extends Controller
         $sarpras = Sarpras::get();
 
         return view('website.header_footer', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'sarpras' => $sarpras,
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
@@ -171,6 +195,8 @@ class WebsiteController extends Controller
         $website = Website::find(1);
         // return Pages::get();
         return view('website.beranda', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'website' => $website,
             'section' => Section4::latest()->first(),
             'link' => DB::table('link')->get(),
@@ -181,15 +207,15 @@ class WebsiteController extends Controller
         ]);
     }
 
-    public function approve_jenis($id)
-    {
+    // public function approve_jenis($id)
+    // {
 
-        $jenis = Jenis::where('id', $id)
-            ->where('status', 'draft' || '')
-            ->update(['status' => 'published']);
+    //     $jenis = Jenis::where('id', $id)
+    //         ->where('status', 'draft' || '')
+    //         ->update(['status' => 'published']);
 
-        return redirect()->back();
-    }
+    //     return redirect()->back();
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -278,9 +304,9 @@ class WebsiteController extends Controller
         $website->url_youtube = $request->url_youtube;
         $website->save();
 
-        $request->session()->flash('success', 'Update berhasil !');
+        // $request->session()->flash('success', 'Update berhasil !');
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Update berhasil !');
     }
 
     /**

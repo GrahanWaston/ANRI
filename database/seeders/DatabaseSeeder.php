@@ -6,9 +6,11 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Layanan;
+use App\Models\MenuStatis;
 use App\Models\ProfilInstansi;
 use App\Models\Section4;
 use App\Models\Slideshow;
+use App\Models\SubMenu;
 use App\Models\User;
 use App\Models\Website;
 use Illuminate\Database\Seeder;
@@ -29,6 +31,142 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
+        // ]);
+
+        MenuStatis::create([
+            'name' => 'Beranda'
+        ]);
+
+        MenuStatis::create([
+            'name' => 'Profil'
+        ]);
+
+        MenuStatis::create([
+            'name' => 'Diklat'
+        ]);
+
+        MenuStatis::create([
+            'name' => 'LMS Kring ANRI'
+        ]);
+
+        MenuStatis::create([
+            'name' => 'Pengaduan'
+        ]);
+
+        MenuStatis::create([
+            'name' => 'Publikasi'
+        ]);
+
+        MenuStatis::create([
+            'name' => 'Prasarana dan Sarana'
+        ]);
+
+        MenuStatis::create([
+            'name' => 'FAQ'
+        ]);
+
+        MenuStatis::create([
+            'name' => 'Kontak Kami'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Sejarah Pusdiklat',
+            'menu_id' => '2'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Visi dan Misi',
+            'menu_id' => '2'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Tugas dan Fungsi',
+            'menu_id' => '2'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Struktur Organisasi',
+            'menu_id' => '2'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Sumber Daya Manusia',
+            'menu_id' => '2'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Maklumat Layanan',
+            'menu_id' => '2'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Kalendar Diklat',
+            'menu_id' => '3'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Program Diklat',
+            'menu_id' => '3'
+        ]);
+
+        SubMenu::create([
+            'name' => 'WBS ANRI',
+            'menu_id' => '5'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Gratifikasi ANRI',
+            'menu_id' => '5'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Lapor',
+            'menu_id' => '5'
+        ]);
+
+        SubMenu::create([
+            'name' => 'La-Simak',
+            'menu_id' => '5'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Artikel',
+            'menu_id' => '6'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Berita',
+            'menu_id' => '6'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Infografis',
+            'menu_id' => '6'
+        ]);
+
+        SubMenu::create([
+            'name' => 'Pengumuman',
+            'menu_id' => '6'
+        ]);
+
+        SubMenu::create([
+            'name' => 'JDIH',
+            'menu_id' => '6'
+        ]);
+
+        SubMenu::create([
+            'name' => 'PPID',
+            'menu_id' => '6'
+        ]);
+
+        // SubMenu::create([
+        //     'name' => 'Program Diklat',
+        //     'menu_id' => '2'
+        // ]);
+
+        // SubMenu::create([
+        //     'name' => 'Program Diklat',
+        //     'menu_id' => '2'
         // ]);
 
         User::create([
@@ -120,7 +258,7 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Website ANRI',
             'url' => 'https://anri.go.id/',
         ]);
-        
+
         DB::table('link')->insert([
             'nama' => 'Jurnal Kearsipan ANRI',
             'url' => 'https://jurnalkearsipan.anri.go.id/index.php/ojs',
@@ -149,19 +287,19 @@ class DatabaseSeeder extends Seeder
         ProfilInstansi::create([
             'deskripsi' => 'Maklumat Layanan'
         ]);
-        
+
         Category::create([
             'category' => 'Berita'
         ]);
-        
+
         Category::create([
             'category' => 'Infografis'
         ]);
-        
+
         Category::create([
             'category' => 'Artikel'
         ]);
-        
+
         Category::create([
             'category' => 'Pengumuman'
         ]);

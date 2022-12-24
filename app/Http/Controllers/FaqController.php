@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faq;
+use App\Models\MenuStatis;
 use App\Models\Pages;
+use App\Models\SubMenu;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,6 +29,8 @@ class FaqController extends Controller
         $website = DB::table('websites')->find(1);
 
         return view('website.faq.faq', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
             'website' => $website,
             'link' => DB::table('link')->get(),
             'faq' => Faq::get(),
@@ -59,7 +63,7 @@ class FaqController extends Controller
             'text' => 'required',
         ]);
 
-        // dd('Registrasi Berhasil');  
+        // dd('Registrasi Berhasil');
 
         Faq::create($validateData);
 

@@ -96,9 +96,9 @@
                     </div>
                     <div class="col-auto">
                         <div class="d-flex flex-row justify-content-end">
-                            <a href="" class="btn btn-sm btn-primary mx-1">ID</a>
+                            {{-- <a href="" class="btn btn-sm btn-primary mx-1">ID</a>
                             <!-- <span class="mx-1">|</span> -->
-                            <a href="" class="btn btn-sm btn-outline-primary mx-1 ">EN</a>
+                            <a href="" class="btn btn-sm btn-outline-primary mx-1 ">EN</a> --}}
                         </div>
                     </div>
                 </div>
@@ -119,51 +119,58 @@
             </div> -->
         </div>
 
-        <button type="button" class="navbar-toggler me-3" data-bs-toggle="collapse"
-            data-bs-target="#navbarCollapse">
+        <button type="button" class="navbar-toggler me-3" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav me-auto p-3 p-lg-0">
-                <a href="/" class="nav-item nav-link">Beranda</a>
+                <a href="/" class="nav-item nav-link">{{ $menu[0]->name }}</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profil</a>
+                    <a href="#" class="nav-link dropdown-toggle"
+                        data-bs-toggle="dropdown">{{ $menu[1]->name }}</a>
                     <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                        <a href="/sejarah" class="dropdown-item">Sejarah Pusdiklat</a>
-                        <a href="/visi-misi" class="dropdown-item">Visi & Misi</a>
-                        <a href="/tugas-fungsi" class="dropdown-item">Tugas & Fungsi</a>
-                        <a href="/struktur-organisasi" class="dropdown-item">Struktur Organisasi</a>
-                        <a href="/sumber-daya-manusia" class="dropdown-item">Sumber Daya Manusia</a>
-                        <a href="/maklumat-layanan" class="dropdown-item">Maklumat Layanan</a>
+                        <a href="/sejarah" class="dropdown-item">{{ $submenu[0]->name }}</a>
+                        <a href="/visi-misi" class="dropdown-item">{{ $submenu[1]->name }}</a>
+                        <a href="/tugas-fungsi" class="dropdown-item">{{ $submenu[2]->name }}</a>
+                        <a href="/struktur-organisasi" class="dropdown-item">{{ $submenu[3]->name }}</a>
+                        <a href="/sumber-daya-manusia" class="dropdown-item">{{ $submenu[4]->name }}</a>
+                        <a href="/maklumat-layanan" class="dropdown-item">{{ $submenu[5]->name }}</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Diklat</a>
+                    <a href="#" class="nav-link dropdown-toggle"
+                        data-bs-toggle="dropdown">{{ $menu[2]->name }}</a>
                     <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                        <a href="/kalender-diklat" class="dropdown-item">Kalender Diklat</a>
-                        <a href="/program-diklat-anri" class="dropdown-item">Program Diklat</a>
+                        <a href="/kalender-diklat" class="dropdown-item">{{ $submenu[6]->name }}</a>
+                        <a href="/program-diklat-anri" class="dropdown-item">{{ $submenu[7]->name }}</a>
                     </div>
                 </div>
-                <a href="https://kelasdaring.anri.go.id/" target="blank" class="nav-item nav-link">LMS Kring ANRI</a>
+                <a href="https://kelasdaring.anri.go.id/" target="blank"
+                    class="nav-item nav-link">{{ $menu[3]->name }}</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pengaduan</a>
                     <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                        <a href="https://wbs.anri.go.id/" target="blank" class="dropdown-item">WBS Anri</a>
-                        <a href="https://wbs.anri.go.id/" target="blank" class="dropdown-item">Gratifikasi ANRI</a>
-                        <a href="https://www.lapor.go.id/" target="blank" class="dropdown-item">Lapor</a>
+                        <a href="https://wbs.anri.go.id/" target="blank"
+                            class="dropdown-item">{{ $submenu[8]->name }}</a>
+                        <a href="https://wbs.anri.go.id/" target="blank"
+                            class="dropdown-item">{{ $submenu[9]->name }}</a>
+                        <a href="https://www.lapor.go.id/" target="blank"
+                            class="dropdown-item">{{ $submenu[10]->name }}</a>
                         <a href="https://s28a7n9v56m.typeform.com/to/nZkAV64z" target="blank"
-                            class="dropdown-item">La-Simak</a>
+                            class="dropdown-item">{{ $submenu[11]->name }}</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Publikasi</a>
                     <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                        <a href="/artikel" class="dropdown-item">Artikel</a>
-                        <a href="/berita" class="dropdown-item">Berita</a>
-                        <a href="/infografis" class="dropdown-item">Infografis</a>
-                        <a href="/pengumuman" class="dropdown-item">Pengumuman</a>
-                        <a href="https://jdih.anri.go.id/" target="blank" class="dropdown-item">JDIH</a>
-                        <a href="https://eppid.anri.go.id/" target="blank" class="dropdown-item">PPID</a>
+                        <a href="/artikel" class="dropdown-item">{{ $submenu[12]->name }}</a>
+                        <a href="/berita" class="dropdown-item">{{ $submenu[13]->name }}</a>
+                        <a href="/infografis" class="dropdown-item">{{ $submenu[14]->name }}</a>
+                        <a href="/pengumuman" class="dropdown-item">{{ $submenu[15]->name }}n</a>
+                        <a href="https://jdih.anri.go.id/" target="blank"
+                            class="dropdown-item">{{ $submenu[16]->name }}</a>
+                        <a href="https://eppid.anri.go.id/" target="blank"
+                            class="dropdown-item">{{ $submenu[17]->name }}</a>
                     </div>
                 </div>
                 <a href="/prasarana-sarana" class="nav-item nav-link">Prasarana dan Sarana</a>
@@ -299,7 +306,7 @@
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }} "></script>
 
-    
+
 </body>
 
 </html>
