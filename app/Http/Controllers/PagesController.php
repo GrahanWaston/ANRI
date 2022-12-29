@@ -71,7 +71,10 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = Pages::findOrFail($id);
+        return view('admin.dashboard.pages.pages_update',  [
+            'page' => $page,
+        ]);
     }
 
     /**
@@ -83,7 +86,16 @@ class PagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'judul' => 'required',
+            'body' => 'required',
+            'status' => 'required',
+            'nama_menu' => 'required'
+        ]);
+
+        Pages::where('id', $id)->update($validateData);
+
+        return redirect('/pages')->with('success', 'Pages berhasil di update');
     }
 
     /**

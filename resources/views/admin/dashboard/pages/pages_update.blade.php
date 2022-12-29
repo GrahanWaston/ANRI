@@ -7,7 +7,7 @@
             <div class="row align-items-center">
                 <div class="col-auto">
                     <h2 class="page-title">
-                        Tambah Page
+                        Edit Pages
                     </h2>
                 </div>
             </div>
@@ -16,13 +16,14 @@
     <div class="page-body">
         <div class="container-xl">
             <div class="row">
-                <form action="/pages" method="POST">
+                <form action="/pages/{{ $page->id }}" method="POST">
+                    @method('PUT')
                     @csrf
                     <div class="col-md-8 mb-4 mb-md-0 tab-content">
                         <div class="tab-pane active" id="id">
                             <div class="mb-3">
                                 <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul"
-                                    placeholder="Masukkan Judul">
+                                    placeholder="Masukkan Judul" value="{{ $page->judul }}">
                                     @error('judul')
                                         <div class="invalid-feedback">
                                             Judul harus di isi terlebih dahulu!
@@ -35,7 +36,7 @@
                             </div>
                             <div class="card border-0 shadow-none mb-3">
                                 <div class="form-group">
-                                    <textarea class="tinymce-editor @error('body') is-invalid @enderror" id="editortiny" name="body"></textarea>
+                                    <textarea class="tinymce-editor @error('body') is-invalid @enderror" id="editortiny" name="body">{{ $page->body }}</textarea>
                                     @error('body')
                                         <div class="invalid-feedback">
                                             Body harus di isi terlebih dahulu!
@@ -78,7 +79,7 @@
                                 <div class="mb-3">
                                     <div class="form-label">URL</div>
                                     <input type="text" class="form-control @error('nama_menu') is-invalid @enderror" id="nama_menu" name="nama_menu"
-                                        placeholder="Masukan Nama Menu">
+                                        placeholder="Masukan URL" value="{{ $page->nama_menu }}">
                                         @error('nama_menu')
                                         <div class="invalid-feedback">
                                             URL harus di isi terlebih dahulu!

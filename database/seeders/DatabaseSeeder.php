@@ -46,7 +46,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         MenuStatis::create([
-            'name' => 'LMS Kring ANRI'
+            'name' => 'LMS Kring ANRI',
+            'url' => 'https://kelasdaring.anri.go.id/'
         ]);
 
         MenuStatis::create([
@@ -111,22 +112,26 @@ class DatabaseSeeder extends Seeder
 
         SubMenu::create([
             'name' => 'WBS ANRI',
-            'menu_id' => '5'
+            'menu_id' => '5',
+            'url' => 'https://wbs.anri.go.id/'
         ]);
 
         SubMenu::create([
             'name' => 'Gratifikasi ANRI',
-            'menu_id' => '5'
+            'menu_id' => '5',
+            'url' => 'https://wbs.anri.go.id/'
         ]);
 
         SubMenu::create([
             'name' => 'Lapor',
-            'menu_id' => '5'
+            'menu_id' => '5',
+            'url' => 'https://www.lapor.go.id/'
         ]);
 
         SubMenu::create([
             'name' => 'La-Simak',
-            'menu_id' => '5'
+            'menu_id' => '5',
+            'url' => 'https://s28a7n9v56m.typeform.com/to/nZkAV64z?typeform-source=sandbox.jmc.co.id'
         ]);
 
         SubMenu::create([
@@ -151,12 +156,14 @@ class DatabaseSeeder extends Seeder
 
         SubMenu::create([
             'name' => 'JDIH',
-            'menu_id' => '6'
+            'menu_id' => '6',
+            'url' => 'https://jdih.anri.go.id/'
         ]);
 
         SubMenu::create([
             'name' => 'PPID',
-            'menu_id' => '6'
+            'menu_id' => '6',
+            'url' => 'https://eppid.anri.go.id/'
         ]);
 
         // SubMenu::create([

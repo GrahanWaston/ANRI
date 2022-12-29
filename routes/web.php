@@ -179,8 +179,11 @@ Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
     // Manajemen Sub Menu
     Route::resource('/manajemen-sub-menu', SubMenuController::class);
 
-    // Manajemen 
-    // Route::resource('/manajemen-menu-navbar', MenuStatisController::class);
+    // Manajemen Menu Hyperlink
+    Route::get('/update-submenu/{SubMenu:id}/edit', [MenuStatisController::class, 'edit_submenu']);
+    Route::get('/update-menu/{MenuStatis:id}/edit', [MenuStatisController::class, 'edit_menu']);
+    Route::put('/update-submenu/{SubMenu:id}', [MenuStatisController::class, 'update_submenu']);
+    Route::put('/update-menu/{MenuStatis:id}', [MenuStatisController::class, 'update_menu']);
 });
 
 Route::group(['middleware' => ['auth', 'role:operator,admin', 'status']], function () {

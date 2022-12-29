@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('menu_statis', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

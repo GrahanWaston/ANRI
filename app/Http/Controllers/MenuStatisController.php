@@ -80,6 +80,53 @@ class MenuStatisController extends Controller
             'static_submenu' => SubMenu::oldest()->get()
         ]);
     }
+    
+    public function edit_submenu($id)
+    {
+        $submenu = SubMenu::findOrFail($id);
+        return view('admin.dashboard.menu.submenu_hyperlink_update',  [
+            'submenu' => $submenu,
+            'static_adds' => MenuStatis::latest()->get(),
+            // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
+            'static_submenu' => SubMenu::oldest()->get()
+        ]);
+    }
+    
+    public function edit_menu($id)
+    {
+        $menu = MenuStatis::findOrFail($id);
+        return view('admin.dashboard.menu.menu_hyperlink_update',  [
+            'menu' => $menu,
+            'static_adds' => MenuStatis::latest()->get(),
+            // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
+            'static_submenu' => SubMenu::oldest()->get()
+        ]);
+    }
+    
+    public function update_submenu(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            // 'judul' => 'required',
+            'name' => 'required',
+            'url' => 'required',
+        ]);
+
+        SubMenu::where('id', $id)->update($validateData);
+
+        return redirect('/manajemen-menu')->with('successs', 'Sub Menu berhasil di update');
+    }
+    
+    public function update_menu(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            'name' => 'required',
+            'url' => 'required',
+        ]);
+
+        MenuStatis::where('id', $id)->update($validateData);
+
+        return redirect('/manajemen-menu')->with('successs', 'Menu berhasil di update');
+    }
 
     /**
      * Update the specified resource in storage.

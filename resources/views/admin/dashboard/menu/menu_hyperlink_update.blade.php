@@ -7,7 +7,7 @@
             <div class="row align-items-center">
                 <div class="col-auto">
                     <h2 class="page-title">
-                        Tambah Page
+                        Edit Sub Menu
                     </h2>
                 </div>
             </div>
@@ -16,75 +16,36 @@
     <div class="page-body">
         <div class="container-xl">
             <div class="row">
-                <form action="/pages" method="POST">
+                <form action="/update-menu/{{ $menu->id }}" method="POST">
+                    @method('PUT')
                     @csrf
                     <div class="col-md-8 mb-4 mb-md-0 tab-content">
                         <div class="tab-pane active" id="id">
                             <div class="mb-3">
-                                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul"
-                                    placeholder="Masukkan Judul">
-                                    @error('judul')
-                                        <div class="invalid-feedback">
-                                            Judul harus di isi terlebih dahulu!
-                                        </div>
-                                    @enderror
+                                <input type="text" class="form-control @error('url') is-invalid @enderror" id="url"
+                                    name="url" placeholder="Masukkan url /" value="{{ $menu->url }}">
+                                @error('url')
+                                    <div class="invalid-feedback">
+                                        Url harus di isi terlebih dahulu!
+                                    </div>
+                                @enderror
                             </div>
-                            <div class="permalink mb-3">
-                                {{-- <span class="text-dark">Permalink : </span>
-                                <a href="#">https://www.bpddiy.co.id/pages</a> --}}
-                            </div>
-                            <div class="card border-0 shadow-none mb-3">
-                                <div class="form-group">
-                                    <textarea class="tinymce-editor @error('body') is-invalid @enderror" id="editortiny" name="body"></textarea>
-                                    @error('body')
-                                        <div class="invalid-feedback">
-                                            Body harus di isi terlebih dahulu!
-                                        </div>
-                                    @enderror
-                                </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                    id="name" name="name" placeholder="Masukkan nama" value="{{ $menu->name }}">
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        Nama harus di isi terlebih dahulu!
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-3">
                             <div class="card-header font-weight-bold">Publish</div>
-                            <div class="card-body">
-                                <div class="mb-2">
-                                    <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
-                                        <option disabled selected>Pilih status publish</option>
-                                        <option value="Published">Published</option>
-                                        <option value="Draft">Draft</option>
-                                    </select>
-                                    @error('status')
-                                        <div class="invalid-feedback">
-                                            Status harus di isi terlebih dahulu!
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
                             <div class="card-footer d-flex justify-content-end bg-light">
                                 <button class="btn btn-primary">Publish</button>
-                            </div>
-                        </div>
-                        <div class="card mb-3">
-                            <div class="card-header font-weight-bold">Page Attributes</div>
-                            <div class="card-body">
-                                {{-- <div class="mb-3">
-                                    <label for="" class="form-label">Parent</label>
-                                    <select name="" id="" class="form-control">
-                                        <option value="">(No Parent)</option>
-                                    </select>
-                                </div> --}}
-                                <div class="mb-3">
-                                    <div class="form-label">URL</div>
-                                    <input type="text" class="form-control @error('nama_menu') is-invalid @enderror" id="nama_menu" name="nama_menu"
-                                        placeholder="Masukan Nama Menu">
-                                        @error('nama_menu')
-                                        <div class="invalid-feedback">
-                                            URL harus di isi terlebih dahulu!
-                                        </div>
-                                    @enderror
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,8 +64,9 @@
 
     <script type="text/javascript">
         $(function() {
-            $('#navbar-menu > .navbar-nav > .nav-item > .nav-link > .nav-link-title:contains("Pages")').parents(
-                '.nav-item').addClass('active');
+            $('#navbar-menu > .navbar-nav > .nav-item > .nav-link > .nav-link-title:contains("Manajemen Menu")')
+                .parents(
+                    '.nav-item').addClass('active');
         });
     </script>
 
