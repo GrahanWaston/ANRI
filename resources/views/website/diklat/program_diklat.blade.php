@@ -42,31 +42,34 @@
                     <h6 class="text-primary fw-bold h5 mb-3">Program Diklat Kearsipan ANRI</h6>
                     <div class="row">
                         @foreach ($programs as $program)
-                            <div class="col-lg-6 col-md-6 mb-3 wow fadeInUp" data-wow-delay="0.1s"
-                                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
-                                <a href="/detail-program-diklat/{{ $program->kode_diklat }}" class="text-decoration-none">
-                                    <div class="service-item h-100 d-flex flex-column justify-content-between">
-                                        <div class="text-center p-4 pb-0">
-                                            <h6 class="mb-2 fw-normal badge bg-secondary">
-                                                {{ $program->kode_diklat }}
-                                            </h6>
-                                            <h6 class="mb-2 fw-normal badge bg-primary">
-                                                {{ $program->jenis->nama_jenis }}
-                                            </h6>
-                                            <p class="fs-7 fw-bold text-dark my-3">
-                                                {{ $program->nama_diklat }}
-                                            </p>
+                            @if ($program->status == 'published')
+                                <div class="col-lg-6 col-md-6 mb-3 wow fadeInUp" data-wow-delay="0.1s"
+                                    style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                                    <a href="/detail-program-diklat/{{ $program->kode_diklat }}"
+                                        class="text-decoration-none">
+                                        <div class="service-item h-100 d-flex flex-column justify-content-between">
+                                            <div class="text-center p-4 pb-0">
+                                                <h6 class="mb-2 fw-normal badge bg-secondary">
+                                                    {{ $program->kode_diklat }}
+                                                </h6>
+                                                <h6 class="mb-2 fw-normal badge bg-primary">
+                                                    {{ $program->jenis->nama_jenis }}
+                                                </h6>
+                                                <p class="fs-7 fw-bold text-dark my-3">
+                                                    {{ $program->nama_diklat }}
+                                                </p>
 
+                                            </div>
+                                            <div class="d-flex border-top">
+                                                <small class="flex-fill text-center text-secondary border-end py-2">
+                                                    <i class="fa fa-calendar text-primary me-2"></i>
+                                                    {{ $program->start_date }} - {{ $program->end_date }}
+                                                </small>
+                                            </div>
                                         </div>
-                                        <div class="d-flex border-top">
-                                            <small class="flex-fill text-center text-secondary border-end py-2">
-                                                <i class="fa fa-calendar text-primary me-2"></i>
-                                                {{ $program->start_date }} - {{ $program->end_date }}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+                            @endif
                         @endforeach
                         <div class="d-flex justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.1s">
                             <nav aria-label=" Page navigation example">

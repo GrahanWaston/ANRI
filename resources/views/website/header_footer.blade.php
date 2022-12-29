@@ -135,6 +135,12 @@
                         <a href="/struktur-organisasi" class="dropdown-item">{{ $submenu[3]->name }}</a>
                         <a href="/sumber-daya-manusia" class="dropdown-item">{{ $submenu[4]->name }}</a>
                         <a href="/maklumat-layanan" class="dropdown-item">{{ $submenu[5]->name }}</a>
+                        @foreach ($submenu->skip(18) as $submenus)
+                            @if ($submenus->menu_id == 2)
+                                <a href="/sub-menu/{{ $submenus->url }}"
+                                    class="dropdown-item">{{ $submenus->name }}</a>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div class="nav-item dropdown">
@@ -143,12 +149,19 @@
                     <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
                         <a href="/kalender-diklat" class="dropdown-item">{{ $submenu[6]->name }}</a>
                         <a href="/program-diklat-anri" class="dropdown-item">{{ $submenu[7]->name }}</a>
+                        @foreach ($submenu->skip(18) as $submenus)
+                            @if ($submenus->menu_id == 3)
+                                <a href="/sub-menu/{{ $submenus->url }}"
+                                    class="dropdown-item">{{ $submenus->name }}</a>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <a href="https://kelasdaring.anri.go.id/" target="blank"
                     class="nav-item nav-link">{{ $menu[3]->name }}</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pengaduan</a>
+                    <a href="#" class="nav-link dropdown-toggle"
+                        data-bs-toggle="dropdown">{{ $menu[4]->name }}</a>
                     <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
                         <a href="https://wbs.anri.go.id/" target="blank"
                             class="dropdown-item">{{ $submenu[8]->name }}</a>
@@ -158,10 +171,17 @@
                             class="dropdown-item">{{ $submenu[10]->name }}</a>
                         <a href="https://s28a7n9v56m.typeform.com/to/nZkAV64z" target="blank"
                             class="dropdown-item">{{ $submenu[11]->name }}</a>
+                        @foreach ($submenu->skip(18) as $submenus)
+                            @if ($submenus->menu_id == 5)
+                                <a href="/sub-menu/{{ $submenus->url }}"
+                                    class="dropdown-item">{{ $submenus->name }}</a>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Publikasi</a>
+                    <a href="#" class="nav-link dropdown-toggle"
+                        data-bs-toggle="dropdown">{{ $menu[5]->name }}</a>
                     <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
                         <a href="/artikel" class="dropdown-item">{{ $submenu[12]->name }}</a>
                         <a href="/berita" class="dropdown-item">{{ $submenu[13]->name }}</a>
@@ -171,14 +191,33 @@
                             class="dropdown-item">{{ $submenu[16]->name }}</a>
                         <a href="https://eppid.anri.go.id/" target="blank"
                             class="dropdown-item">{{ $submenu[17]->name }}</a>
+                        @foreach ($submenu->skip(18) as $submenus)
+                            @if ($submenus->menu_id == 6)
+                                <a href="/sub-menu/{{ $submenus->url }}"
+                                    class="dropdown-item">{{ $submenus->name }}</a>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
-                <a href="/prasarana-sarana" class="nav-item nav-link">Prasarana dan Sarana</a>
-                <a href="/faq-anri" class="nav-item nav-link">FAQ</a>
-                <a href="/kontak-kami" class="nav-item nav-link">Kontak Kami</a>
-                {{-- <a href="/faq-anri" class="nav-item nav-link">{{ $page->nama_menu }}</a> --}}
-                @foreach ($menus as $menu)
-                    <a href="/ANRI/{{ $menu->nama_menu }}" class="nav-item nav-link">{{ $menu->nama_menu }}</a>
+                <a href="/prasarana-sarana" class="nav-item nav-link">{{ $menu[6]->name }}</a>
+                <a href="/faq-anri" class="nav-item nav-link">{{ $menu[7]->name }}</a>
+                <a href="/kontak-kami" class="nav-item nav-link">{{ $menu[8]->name }}</a>
+                @foreach ($menu->skip(9) as $menus)
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle"
+                            data-bs-toggle="dropdown">{{ $menus->name }}</a>
+                        @foreach ($submenu as $submenus)
+                            @if ($submenus->menu_id == $menus->id)
+                                <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
+                                    <a href="/sub-menu/{{ $submenus->url }}"
+                                        class="dropdown-item">{{ $submenus->name }}</a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                @endforeach
+                @foreach ($mainmenu as $main)
+                    <a href="/ANRI/{{ $main->nama_menu }}" class="nav-item nav-link">{{ $main->judul }}</a>
                 @endforeach
             </div>
             <!-- <a href="#" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block">Get Started</a> -->

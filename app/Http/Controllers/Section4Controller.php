@@ -57,12 +57,12 @@ class Section4Controller extends Controller
         if ($request->hasFile('gambar')) {
             
             $attributes['image'] = $request->file('gambar')->store('images');
-            return $attributes;
+            // return $attributes;
         }
         
-        // Section4::create($attributes);
+        Section4::create($attributes);
         // // $request->session()->flash('success', 'Update berhasil !');
-        // return redirect('/konfigurasi-section')->with('success', ' berhasil di tambahkan');
+        return redirect('/konfigurasi-section')->with('success', ' berhasil di tambahkan');
     }
 
     /**

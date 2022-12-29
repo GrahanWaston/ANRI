@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MenuStatis;
+use App\Models\SubMenu;
 use Illuminate\Http\Request;
 
 class MenuStatisController extends Controller
@@ -14,7 +15,13 @@ class MenuStatisController extends Controller
      */
     public function index()
     {
-        //
+        // return SubMenu::with('menus')->latest()->get();
+        return view('admin.dashboard.menu.menu_index', [
+            // 'dynamic_adds' => MenuDinamis::latest()->get(),
+            'static_adds' => MenuStatis::latest()->get(),
+            // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
+            'static_submenu' => SubMenu::oldest()->get()
+        ]);
     }
 
     /**
@@ -24,7 +31,7 @@ class MenuStatisController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.dashboard.menu.menu_add');
     }
 
     /**
@@ -35,7 +42,15 @@ class MenuStatisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required',
+            'status' => 'required'
+        ]);
+
+        MenuStatis::create($validateData);
+        // return $validateData;
+
+        return redirect('/manajemen-menu')->with('success', 'Sub Menu berhasil di tambahkan');
     }
 
     /**
@@ -55,9 +70,15 @@ class MenuStatisController extends Controller
      * @param  \App\Models\MenuStatis  $menuStatis
      * @return \Illuminate\Http\Response
      */
-    public function edit(MenuStatis $menuStatis)
+    public function edit($id)
     {
-        //
+        $submenu = SubMenu::findOrFail($id);
+        return view('admin.dashboard.menu.submenu_dinamis_update',  [
+            'submenus' => $submenu,
+            'static_adds' => MenuStatis::latest()->get(),
+            // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
+            'static_submenu' => SubMenu::oldest()->get()
+        ]);
     }
 
     /**
@@ -67,9 +88,20 @@ class MenuStatisController extends Controller
      * @param  \App\Models\MenuStatis  $menuStatis
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MenuStatis $menuStatis)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            // 'judul' => 'required',
+            'body' => 'required',
+            'status' => 'required',
+            'name' => 'required',
+            'url' => 'required',
+            'menu_id' => 'required'
+        ]);
+
+        SubMenu::where('id', $id)->update($validateData);
+
+        return redirect('/manajemen-menu')->with('success', 'Sub Menu berhasil di update');
     }
 
     /**

@@ -33,6 +33,9 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
+                                    <input name="status" type="hidden" value="draft">
+                                </div>
+                                <div class="mb-3">
                                     <label for="" class="form-label">Jenis Diklat</label>
                                     <select name="jenis_id"
                                         class="form-select-secondary form-control @error('jenis_id') is-invalid @enderror"

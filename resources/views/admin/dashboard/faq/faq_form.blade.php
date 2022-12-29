@@ -26,8 +26,9 @@
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="id">
                                             <div class="mb-3">
-                                                <input type="text" class="form-control @error('judul') is-invalid @enderror" placeholder="Masukkan Judul"
-                                                    id="judul" name="judul">
+                                                <input type="text"
+                                                    class="form-control @error('judul') is-invalid @enderror"
+                                                    placeholder="Masukkan Judul" id="judul" name="judul">
                                                 @error('judul')
                                                     <div class="invalid-feedback">
                                                         Judul harus di isi terlebih dahulu!
@@ -41,6 +42,9 @@
                                                         Deskripsi harus di isi terlebih dahulu!
                                                     </div>
                                                 @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <input name="status" type="hidden" value="draft">
                                             </div>
                                         </div>
                                     </div>

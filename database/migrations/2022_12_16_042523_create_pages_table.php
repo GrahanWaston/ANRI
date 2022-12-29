@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('nama_menu')->unique();
-            $table->string('slug')->unique();
             $table->string('status');
             $table->text('body');
             $table->timestamps();

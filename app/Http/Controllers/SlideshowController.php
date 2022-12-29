@@ -44,6 +44,7 @@ class SlideshowController extends Controller
             'tautan' => 'required',
             'image_dekstop' => 'required|image|mimes:jpeg,png,jpg',
             'image_mobile' => 'required|image|mimes:jpeg,png,jpg',
+            'status' => 'required'
         ]);
 
         if ($request->hasFile('image_dekstop') && $request->hasFile('image_mobile')) {
@@ -98,6 +99,7 @@ class SlideshowController extends Controller
             'tautan' => 'required',
             'image_dekstop' => 'image|mimes:jpeg,png,jpg',
             'image_mobile' => 'image|mimes:jpeg,png,jpg',
+            'status' => 'required'
         ]);
 
         if ($request->hasFile('image_dekstop') && $request->hasFile('image_mobile')) {

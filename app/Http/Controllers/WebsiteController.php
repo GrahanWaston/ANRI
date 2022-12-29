@@ -42,6 +42,7 @@ class WebsiteController extends Controller
         return view('website.kontak.kontak_kami', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'website' => $website,
             'link' => DB::table('link')->get(),
             'menus' => Pages::get()
@@ -55,6 +56,7 @@ class WebsiteController extends Controller
         return view('website.sarpras.sarpras', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'sarpras' => $sarpras,
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
@@ -72,7 +74,25 @@ class WebsiteController extends Controller
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
             'pages' => $pages,
-            'menus' => Pages::get(),
+            'mainmenu' => Pages::get(),
+            'sarpras' => $sarpras,
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
+
+    public function view_submenu($url)
+    {
+        // return ;
+        // $pages = Pages::where('nama_menu', $n_m)->get()->first();
+        $submenu = SubMenu::where('url', $url)->get()->first();
+        $sarpras = Sarpras::get();
+
+        return view('website.menu.view_submenu', [
+            'menu' => MenuStatis::get(),
+            'submenus' => $submenu,
+            'submenu' => SubMenu::latest()->get(),
+            'mainmenu' => Pages::get(),
             'sarpras' => $sarpras,
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
@@ -85,6 +105,7 @@ class WebsiteController extends Controller
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
             'programs' => Program::latest()->paginate(),
+            'mainmenu' => Pages::get(),
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
@@ -97,6 +118,7 @@ class WebsiteController extends Controller
         return view('website.diklat.program_detail', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'programs_diklat' => Program::latest()->paginate(),
             'programs' => Program::where('kode_diklat', $kode_diklat)->get()->first(),
             'menus' => Pages::get(),
@@ -111,6 +133,7 @@ class WebsiteController extends Controller
         return view('website.diklat.kalender_diklat', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'programs_diklat' => Program::latest()->paginate(),
             'menus' => Pages::get(),
             'website' => Website::find(1),
@@ -124,6 +147,7 @@ class WebsiteController extends Controller
         return view('website.publikasi.article', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'publications' => Publication::latest()->paginate(),
             'articles' => FileDownload::where('category_id', 3)->get(),
             'menus' => Pages::get(),
@@ -138,6 +162,7 @@ class WebsiteController extends Controller
         return view('website.publikasi.berita', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'publications' => Publication::latest()->paginate(),
             'news' => Publication::where('category_id', 1)->get(),
             'menus' => Pages::get(),
@@ -151,6 +176,7 @@ class WebsiteController extends Controller
         // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
         return view('website.publikasi.infografis', [
             'menu' => MenuStatis::get(),
+            'mainmenu' => Pages::get(),
             'submenu' => SubMenu::get(),
             'publications' => Publication::latest()->paginate(),
             'infografis' => Publication::where('category_id', 2)->get(),
@@ -166,6 +192,7 @@ class WebsiteController extends Controller
         return view('website.publikasi.pengumuman', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'publications' => Publication::latest()->paginate(),
             'pengumuman' => FileDownload::where('category_id', 4)->get(),
             'menus' => Pages::get(),
@@ -182,6 +209,7 @@ class WebsiteController extends Controller
         return view('website.header_footer', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'sarpras' => $sarpras,
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
@@ -198,6 +226,7 @@ class WebsiteController extends Controller
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
             'website' => $website,
+            'mainmenu' => Pages::get(),
             'section' => Section4::latest()->first(),
             'link' => DB::table('link')->get(),
             'testimoni' => Testimoni::get(),

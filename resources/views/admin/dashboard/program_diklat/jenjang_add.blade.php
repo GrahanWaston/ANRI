@@ -38,6 +38,9 @@
                                 </div>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <input name="status" type="hidden" value="draft">
+                        </div>
                         <hr>
                         <div class="mb-3">
                             <label for="jenjang" class="form-label">Jenjang Diklat (Id)</label>

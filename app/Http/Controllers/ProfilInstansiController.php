@@ -31,6 +31,7 @@ class ProfilInstansiController extends Controller
         $website = Website::find(1);
         return view('website.profil.sejarah', [
             'menu' => MenuStatis::get(),
+            'mainmenu' => Pages::get(),
             'submenu' => SubMenu::get(),
             'sejarah' => ProfilInstansi::find(1),
             'website' => $website,
@@ -44,6 +45,7 @@ class ProfilInstansiController extends Controller
         $website = Website::find(1);
         return view('website.profil.visi_misi', [
             'menu' => MenuStatis::get(),
+            'mainmenu' => Pages::get(),
             'submenu' => SubMenu::get(),
             'visi_misi' => ProfilInstansi::find(2),
             'website' => $website,
@@ -58,6 +60,7 @@ class ProfilInstansiController extends Controller
         return view('website.profil.tugas_fungsi', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'tugas_fungsi' => ProfilInstansi::find(3),
             'website' => $website,
             'link' => DB::table('link')->get(),
@@ -70,6 +73,7 @@ class ProfilInstansiController extends Controller
         $website = Website::find(1);
         return view('website.profil.struktur_organisasi', [
             'menu' => MenuStatis::get(),
+            'mainmenu' => Pages::get(),
             'submenu' => SubMenu::get(),
             'struktur_organisasi' => ProfilInstansi::find(4),
             'website' => $website,
@@ -84,6 +88,7 @@ class ProfilInstansiController extends Controller
         return view('website.profil.sumber_daya_manusia', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'sumber_daya_manusia' => ProfilInstansi::find(5),
             'website' => $website,
             'pejabat' => HumanResource::get(),
@@ -99,6 +104,7 @@ class ProfilInstansiController extends Controller
         return view('website.profil.maklumat_layanan', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'maklumat_layanan' => ProfilInstansi::find(6),
             'website' => $website,
             'link' => DB::table('link')->get(),

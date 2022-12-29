@@ -20,7 +20,7 @@
         <div class="d-flex justify-content-center">
             <div class="card border-0  py-3">
                 <div class="card-body">
-                    <img src="./img/struktur-organisasi.jpeg" class="img-fluid" alt="">
+                    {!! $struktur_organisasi->deskripsi !!}
                 </div>
             </div>
         </div>

@@ -20,21 +20,23 @@
         <div class="container">
             <div class="accordion" id="accordionExample">
                 @foreach ($faq as $index => $faqs)
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapse{{ $index }}" aria-expanded="false"
-                                aria-controls="flush-collapseOne">
-                                {{ $faqs->judul }}
-                            </button>
-                        </h2>
-                        <div id="flush-collapse{{ $index }}" class="accordion-collapse collapse"
-                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                {!! $faqs->text !!}
+                    @if ($faqs->status == 'published')
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapse{{ $index }}" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    {{ $faqs->judul }}
+                                </button>
+                            </h2>
+                            <div id="flush-collapse{{ $index }}" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    {!! $faqs->text !!}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>

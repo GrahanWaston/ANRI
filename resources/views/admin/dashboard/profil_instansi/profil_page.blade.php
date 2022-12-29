@@ -83,7 +83,7 @@
                             <tr>
                                 <td>
                                     <div>
-                                        <a href="/profil-instansi/5/edit" class="m-1 h3"><i
+                                        <a href="/profil-instansi/6/edit" class="m-1 h3"><i
                                                 class="fas fa-file-signature"></i></a>
                                     </div>
                                 </td>

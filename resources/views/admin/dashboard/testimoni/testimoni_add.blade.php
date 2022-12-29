@@ -55,6 +55,9 @@
                                                     @enderror
                                                 </div>
                                             </div>
+                                            <div class="mb-3">
+                                                <input name="status" type="hidden" value="draft">
+                                            </div>
                                         </div>
                                         <div class="tab-pane" id="en">
                                             <div class="mb-3">

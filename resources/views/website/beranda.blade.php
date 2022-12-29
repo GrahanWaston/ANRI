@@ -6,17 +6,20 @@
         <div id="header-carousel" class="carousel slide " data-bs-ride="carousel">
             <div class="carousel-inner">
                 @foreach ($slideshow as $slideshows)
-                    <div class="carousel-item @if ($loop->first) active @endif">
-                        <img class="d-block w-100" src="{{ asset('storage/' . $slideshows->image_dekstop) }}" alt="Image">
-                        <div class="carousel-caption">
-                            <div class="p-3" style="max-width: 900px;">
-                                <h3 class="display-3 text-white mb-0 animated zoomIn">{{ $slideshows->judul }}</h3>
-                                <h5 class="w-75 mx-auto text-white fw-normal mb-4 animated zoomIn">
-                                    {{ $slideshows->deskripsi }}</h5>
+                    @if ($slideshows->status == 'published')
+                        <div class="carousel-item @if ($loop->first) active @endif">
+                            <img class="d-block w-100" src="{{ asset('storage/' . $slideshows->image_dekstop) }}"
+                                alt="Image">
+                            <div class="carousel-caption">
+                                <div class="p-3" style="max-width: 900px;">
+                                    <h3 class="display-3 text-white mb-0 animated zoomIn">{{ $slideshows->judul }}</h3>
+                                    <h5 class="w-75 mx-auto text-white fw-normal mb-4 animated zoomIn">
+                                        {{ $slideshows->deskripsi }}</h5>
                                     <a href="{{ $slideshows->tautan }}" class="btn btn-outline-light">Selengkapnya</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
@@ -273,16 +276,18 @@
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 @foreach ($testimoni as $testimonis)
-                    <div class="testimonial-item bg-light rounded p-4">
-                        <div class="d-flex align-items-center mb-4">
-                            <!-- <img class="flex-shrink-0 rounded-circle border p-1" src="img/testimonial-1.jpg" alt=""> -->
-                            <div class="">
-                                <h5 class="mb-1">{{ $testimonis->name }}</h5>
-                                <span>{{ $testimonis->jabatan }}</span>
+                    @if ($testimonis->status == 'published')
+                        <div class="testimonial-item bg-light rounded p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <!-- <img class="flex-shrink-0 rounded-circle border p-1" src="img/testimonial-1.jpg" alt=""> -->
+                                <div class="">
+                                    <h5 class="mb-1">{{ $testimonis->name }}</h5>
+                                    <span>{{ $testimonis->jabatan }}</span>
+                                </div>
                             </div>
+                            <p class="mb-0">{!! $testimonis->testimoni !!}</p>
                         </div>
-                        <p class="mb-0">{!! $testimonis->testimoni !!}</p>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>

@@ -10,6 +10,7 @@
                         Jenis Diklat
                     </h2>
                 </div>
+                
                 <div class="col-auto d-print-none">
 
                 </div>
@@ -31,6 +32,9 @@
                                     Nama jenis diklat harus di isi terlebih dahulu!
                                 </div>
                             @enderror
+                        </div>
+                        <div class="mb-3">
+                            <input name="status" type="hidden" value="draft">
                         </div>
                         <!-- <div class="mb-3">
                  <label for="" class="form-label">Type of Training (En)</label>

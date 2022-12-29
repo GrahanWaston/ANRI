@@ -44,6 +44,7 @@ class FileDownloadController extends Controller
             'category_id' => 'required',
             'year' => 'required',
             'file' => 'required|file|mimes:pdf',
+            'status' => 'required'
         ]);
 
         if ($request->hasFile('file')) {
@@ -130,7 +131,7 @@ class FileDownloadController extends Controller
             ->where('status', 'draft')
             ->update(['status' => 'published']);
 
-            return redirect('/publikasi-file')->with('success', 'Publikasi File berhasil di publish');
+        return redirect('/publikasi-file')->with('success', 'Publikasi File berhasil di publish');
     }
 
     public function unapprove_file($id)
@@ -140,6 +141,6 @@ class FileDownloadController extends Controller
             ->where('status', 'published')
             ->update(['status' => 'draft']);
 
-            return redirect('/publikasi-file')->with('success', 'Publikasi File berhasil menjadi draft');
+        return redirect('/publikasi-file')->with('success', 'Publikasi File berhasil menjadi draft');
     }
 }

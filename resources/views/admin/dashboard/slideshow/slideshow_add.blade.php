@@ -32,6 +32,9 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
+                                    <input name="status" type="hidden" value="draft">
+                                </div>
+                                <div class="mb-3">
                                     <label for="" class="form-label">Deskripsi</label>
                                     <input type="text" class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi">
                                     @error('deskripsi')

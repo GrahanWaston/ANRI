@@ -10,8 +10,8 @@ class MenuStatis extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function submenus()
+    public function submenu()
     {
-        return $this->belongsTo(SubMenu::class);
+        return $this->hasMany(SubMenu::class, 'menu_id');
     }
 }

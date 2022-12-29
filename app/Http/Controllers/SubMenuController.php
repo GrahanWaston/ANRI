@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MenuStatis;
 use App\Models\SubMenu;
+use App\Models\SubMenuDinamis;
 use Illuminate\Http\Request;
 
 class SubMenuController extends Controller
@@ -24,7 +26,12 @@ class SubMenuController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.dashboard.menu.submenu_dinamis_add', [
+            // 'dynamic_adds' => MenuDinamis::latest()->get(),
+            'static_adds' => MenuStatis::latest()->get(),
+            // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
+            'static_submenu' =>SubMenu::latest()->with('menus')->get()
+        ]);
     }
 
     /**
@@ -35,7 +42,21 @@ class SubMenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            // 'judul' => 'required',
+            'body' => 'required',
+            'status' => 'required',
+            'name' => 'required',
+            'url' => 'required',
+            'menu_id' => 'required'
+        ]);
+
+        // dd('Registrasi Berhasil');  
+        // return redirect($validateData);
+
+        SubMenu::create($validateData);
+
+        return redirect('/manajemen-menu')->with('success', 'Sub Menu berhasil di tambahkan');
     }
 
     /**
@@ -44,9 +65,9 @@ class SubMenuController extends Controller
      * @param  \App\Models\SubMenu  $subMenu
      * @return \Illuminate\Http\Response
      */
-    public function show(SubMenu $subMenu)
+    public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -55,9 +76,14 @@ class SubMenuController extends Controller
      * @param  \App\Models\SubMenu  $subMenu
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubMenu $subMenu)
+    public function edit($id)
     {
-        //
+        // return view('admin.dashboard.menu.submenu_dinamis_update', [
+        //     // 'dynamic_adds' => MenuDinamis::latest()->get(),
+        //     'static_adds' => MenuStatis::latest()->get(),
+        //     // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
+        //     'static_submenu' =>SubMenu::latest()->with('menus')->get()
+        // ]);
     }
 
     /**

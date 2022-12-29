@@ -41,6 +41,7 @@ class TestimoniController extends Controller
             'name' => 'required',
             'jabatan' => 'required',
             'testimoni' => 'required',
+            'status' => 'required'
             
         ]);
 
@@ -88,6 +89,7 @@ class TestimoniController extends Controller
             'name' => 'required',
             'jabatan' => 'required',
             'testimoni' => 'required',
+            'status' => 'required'
         ]);
 
         $testimoni = Testimoni::find($id);

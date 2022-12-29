@@ -33,7 +33,6 @@
                 </div>
                 <div class="col-auto">
                     <div class="row gx-1">
-
                         <div class="col-auto">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search..." id="search">

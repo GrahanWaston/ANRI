@@ -206,6 +206,16 @@
                             </span>
                         </a>
                     </li>
+                    <li class="nav-item ms-2 me-1">
+                        <a class="nav-link" href="/manajemen-menu">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="fa fa-th-large"></i>
+                            </span>
+                            <span class="nav-link-title">
+                                Manajemen Menu
+                            </span>
+                        </a>
+                    </li>
                 @endif
                 <li class="nav-item ms-2 me-1 bg-primary ms-2 me-1"><a href="#"
                         class="nav-link disabled text-light">Profil</a></li>

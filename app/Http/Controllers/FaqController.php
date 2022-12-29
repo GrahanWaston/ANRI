@@ -30,6 +30,7 @@ class FaqController extends Controller
 
         return view('website.faq.faq', [
             'menu' => MenuStatis::get(),
+            'mainmenu' => Pages::get(),
             'submenu' => SubMenu::get(),
             'website' => $website,
             'link' => DB::table('link')->get(),
@@ -59,6 +60,7 @@ class FaqController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
+            'status' => 'required',
             'judul' => 'required',
             'text' => 'required',
         ]);
@@ -104,6 +106,7 @@ class FaqController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+            'status' => 'required',
             'judul' => 'required',
             'text' => 'required',
         ]);

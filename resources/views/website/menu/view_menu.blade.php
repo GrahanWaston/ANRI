@@ -13,4 +13,14 @@
             </nav>
         </div>
     </div>
+    <!-- Page Header End -->
+    <section class="wrapper content py-5">
+        <div class="container py-5">
+            <div class="card border-0  py-3">
+                <div class="card-body">
+                    {!! $pages->body !!}
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection

@@ -12,10 +12,10 @@
                 </div>
                 <div class="col-auto d-print-none">
                     <!-- <div class="btn-list">
-                             <a href="?page=berita-form" class="btn btn-primary d-inline-block">
-                              <i class="fa fa-plus me-2"></i> Buat Berita Baru
-                             </a>
-                            </div> -->
+                                 <a href="?page=berita-form" class="btn btn-primary d-inline-block">
+                                  <i class="fa fa-plus me-2"></i> Buat Berita Baru
+                                 </a>
+                                </div> -->
                 </div>
             </div>
         </div>
@@ -50,6 +50,9 @@
                                 </div>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <input name="status" type="hidden" value="draft">
+                        </div>
                         <div class="permalink mb-3">
                             <span class="text-dark">Permalink : </span>
                             <a href="#">https://pusdiklat.anri.go.id/pages</a>
@@ -83,7 +86,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card mb-3">
+                        {{-- <div class="card mb-3">
                             <div class="card-header font-weight-bold">Publish</div>
                             <div class="card-body">
 
@@ -100,34 +103,16 @@
                                         </div>
                                     @enderror
                                 </div>
-                                {{-- <div class="input-icon mb-2">
-                                    <input class="form-control @error('category_id') is-invalid @enderror" placeholder="Select a date" id="datepicker-icon"
-                                        value="2020-06-20" />
-                                    <span class="input-icon-addon">
-                                        <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <rect x="4" y="5" width="16" height="16"
-                                                rx="2" />
-                                            <line x1="16" y1="3" x2="16" y2="7" />
-                                            <line x1="8" y1="3" x2="8" y2="7" />
-                                            <line x1="4" y1="11" x2="20" y2="11" />
-                                            <line x1="11" y1="15" x2="12" y2="15" />
-                                            <line x1="12" y1="15" x2="12" y2="18" />
-                                        </svg>
-                                    </span>
-                                </div> --}}
                             </div>
 
-                        </div>
+                        </div> --}}
                         <div class="card mb-3">
                             <div class="card-header font-weight-bold">Foto Utama</div>
                             <div class="card-body">
                                 <div class="mb-3">
                                     <div class="form-label">Upload Image</div>
-                                    <input type="file" class="form-control @error('image_main') is-invalid @enderror" id="image_main" name="image_main">
+                                    <input type="file" class="form-control @error('image_main') is-invalid @enderror"
+                                        id="image_main" name="image_main">
                                     @error('image_main')
                                         <div class="invalid-feedback">
                                             Foto utama harus di isi terlebih dahulu!
@@ -144,7 +129,8 @@
                             <div class="card-body">
                                 <div class="mb-3">
                                     <div class="form-label">Upload Image</div>
-                                    <input type="file" class="form-control @error('image_album') is-invalid @enderror" id="image_album" name="image_album" multiple>
+                                    <input type="file" class="form-control @error('image_album') is-invalid @enderror"
+                                        id="image_album" name="image_album" multiple>
                                     @error('image_album')
                                         <div class="invalid-feedback">
                                             Foto utama harus di isi terlebih dahulu!
@@ -170,7 +156,8 @@
             display: none;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>
 
 

@@ -1,5 +1,5 @@
 @extends('website.header_footer')
-
+{{-- @dd($maklumat_layanan); --}}
 @section('content')
     <!-- Page Header Start -->
 <div class="container-fluid header-faq py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
@@ -20,7 +20,7 @@
         <div class="d-flex justify-content-center">
             <div class="card border-0  py-3">
                 <div class="card-body">
-                    <img src="https://eppid.anri.go.id/pages/122763190-hvpwzd.png" class="rounded w-50 mx-auto d-block" alt="Responsive image">
+                    {!! $maklumat_layanan->deskripsi !!}
                 </div>
             </div>
         </div>

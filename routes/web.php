@@ -8,6 +8,8 @@ use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\JenisJenjangController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MenuDinamisController;
+use App\Http\Controllers\MenuStatisController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfilInstansiController;
 use App\Http\Controllers\ProgramController;
@@ -16,9 +18,11 @@ use App\Http\Controllers\SarprasController;
 use App\Http\Controllers\SDMController;
 use App\Http\Controllers\Section4Controller;
 use App\Http\Controllers\SlideshowController;
+use App\Http\Controllers\SubMenuController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteController;
+use App\Models\MenuDinamis;
 use App\Models\Testimoni;
 use Illuminate\Support\Facades\Route;
 
@@ -80,6 +84,7 @@ Route::get('/prasarana-sarana', [WebsiteController::class, 'website_sarpras']);
 
 // Menu
 Route::get('/ANRI/{Pages:nama_menu}', [WebsiteController::class, 'view_menu']);
+Route::get('/sub-menu/{SubMenu:url}', [WebsiteController::class, 'view_submenu']);
 
 // Calendar
 Route::get('/kalender-diklat', [ProgramController::class, 'getEvent'])->name('getevent');
@@ -167,6 +172,15 @@ Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
 
     // Pages
     Route::resource('/pages', PagesController::class);
+
+    // Manajemen Menu
+    Route::resource('/manajemen-menu', MenuStatisController::class);
+
+    // Manajemen Sub Menu
+    Route::resource('/manajemen-sub-menu', SubMenuController::class);
+
+    // Manajemen 
+    // Route::resource('/manajemen-menu-navbar', MenuStatisController::class);
 });
 
 Route::group(['middleware' => ['auth', 'role:operator,admin', 'status']], function () {

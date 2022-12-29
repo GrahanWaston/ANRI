@@ -54,16 +54,18 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($articles as $article)
-                                            <tr>
-                                                <td style="line-height: 1.3;">{{ $loop->iteration }}</td>
-                                                <td style="line-height: 1.3;">{{ $article->title }}</td>
-                                                <td style="line-height: 1.3;">{{ $article->year }}</td>
-                                                <td class="text-center" style="line-height: 1.3;">
-                                                    <a href="{{ asset('storage/' . $article->file) }}"
-                                                        class="btn btn-sm btn-primary"
-                                                        target="&quot;blank&quot;">Download</a>
-                                                </td>
-                                            </tr>
+                                            @if ($article->status == 'published')
+                                                <tr>
+                                                    <td style="line-height: 1.3;">{{ $loop->iteration }}</td>
+                                                    <td style="line-height: 1.3;">{{ $article->title }}</td>
+                                                    <td style="line-height: 1.3;">{{ $article->year }}</td>
+                                                    <td class="text-center" style="line-height: 1.3;">
+                                                        <a href="{{ asset('storage/' . $article->file) }}"
+                                                            class="btn btn-sm btn-primary"
+                                                            target="&quot;blank&quot;">Download</a>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>

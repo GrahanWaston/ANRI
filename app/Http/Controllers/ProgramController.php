@@ -33,17 +33,21 @@ class ProgramController extends Controller
         $bookings = Program::all();
         foreach ($bookings as $booking) {
             # code...
-            $events[] = [
-                'start' => $booking->start_date,
-                'end' => $booking->end_date,
-                'title' => $booking->kode_diklat,
-            ];
+            if ($booking->status == 'published') {
+                # code...
+                $events[] = [
+                    'start' => $booking->start_date,
+                    'end' => $booking->end_date,
+                    'title' => $booking->kode_diklat,
+                ];
+            }
         }
         // return $events;
 
         return view('website.diklat.kalender_diklat', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
             'events' => $events,
             'menus' => Pages::get(),
             'website' => Website::find(1),
@@ -84,6 +88,7 @@ class ProgramController extends Controller
             'durasi' => 'required',
             'deskripsi' => 'required',
             'file' => 'required|file|mimes:pdf,docx',
+            'status' => 'required'
         ]);
 
         if ($request->hasFile('file')) {

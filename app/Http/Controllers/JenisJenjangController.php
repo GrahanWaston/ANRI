@@ -58,6 +58,7 @@ class JenisJenjangController extends Controller
     {
         $validateData = $request->validate([
             'nama_jenis' => 'required',
+            'status' => 'required'
         ]);
 
         Jenis::create($validateData);
@@ -70,6 +71,7 @@ class JenisJenjangController extends Controller
         $validateData = $request->validate([
             'jenis_id' => 'required',
             'jenjang' => 'required',
+            'status' => 'required'
         ]);
 
         Jenjang::create($validateData);

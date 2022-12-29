@@ -54,16 +54,18 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($pengumuman as $pengumumans)
-                                            <tr>
-                                                <td style="line-height: 1.3;">{{ $loop->iteration }}</td>
-                                                <td style="line-height: 1.3;">{{ $pengumumans->title }}</td>
-                                                <td style="line-height: 1.3;">{{ $pengumumans->year }}</td>
-                                                <td class="text-center" style="line-height: 1.3;">
-                                                    <a href="{{ asset('storage/' . $pengumumans->file) }}"
-                                                        class="btn btn-sm btn-primary"
-                                                        target="&quot;blank&quot;">Download</a>
-                                                </td>
-                                            </tr>
+                                            @if ($pengumumans->status == 'published')
+                                                <tr>
+                                                    <td style="line-height: 1.3;">{{ $loop->iteration }}</td>
+                                                    <td style="line-height: 1.3;">{{ $pengumumans->title }}</td>
+                                                    <td style="line-height: 1.3;">{{ $pengumumans->year }}</td>
+                                                    <td class="text-center" style="line-height: 1.3;">
+                                                        <a href="{{ asset('storage/' . $pengumumans->file) }}"
+                                                            class="btn btn-sm btn-primary"
+                                                            target="&quot;blank&quot;">Download</a>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -73,29 +75,31 @@
                     <aside class="col-lg-4 order-sm-2">
                         <h5 class="pb-2">Pengumuman Lainnya</h5>
                         @foreach ($pengumuman as $pengumumans)
-                            <a href="program-diklat-detail.php" class="text-decoration-none py-5">
-                                <div class="service-item d-flex bg-white flex-column justify-content-between">
-                                    <div class="text-center p-4 pb-0">
-                                        {{-- <img class="card-img-top"
-                                            src="https://img.freepik.com/free-photo/male-speaker-giving-presentation-hall-university-workshop-audience-conference-hall_155003-27439.jpg?w=900&t=st=1668507149~exp=1668507749~hmac=21ae226c7556ed338f06fd2a6cc12062c9d56a0671a6d4b5510762967a67a046"
-                                            alt="Card image cap"> --}}
-                                        <p class="fs-7 fw-bold text-dark my-3">
-                                            {{ $pengumumans->title }}
-                                        </p>
+                            @if ($pengumumans->status == 'published')
+                                <a href="program-diklat-detail.php" class="text-decoration-none py-5">
+                                    <div class="service-item d-flex bg-white flex-column justify-content-between">
+                                        <div class="text-center p-4 pb-0">
+                                            {{-- <img class="card-img-top"
+                                        src="https://img.freepik.com/free-photo/male-speaker-giving-presentation-hall-university-workshop-audience-conference-hall_155003-27439.jpg?w=900&t=st=1668507149~exp=1668507749~hmac=21ae226c7556ed338f06fd2a6cc12062c9d56a0671a6d4b5510762967a67a046"
+                                        alt="Card image cap"> --}}
+                                            <p class="fs-7 fw-bold text-dark my-3">
+                                                {{ $pengumumans->title }}
+                                            </p>
+                                        </div>
+                                        <div class="d-flex border-top">
+                                            <small class="flex-fill text-center text-secondary border-end py-2">
+                                                <i class="fa fa-tag text-primary me-2"></i>
+                                                {{ $pengumumans->category->category }}
+                                            </small>
+                                            <small class="flex-fill text-center text-secondary border-end py-2">
+                                                <i class="fa fa-calendar text-primary me-2"></i>
+                                                {{ $pengumumans->created_at }}
+                                            </small>
+                                        </div>
                                     </div>
-                                    <div class="d-flex border-top">
-                                        <small class="flex-fill text-center text-secondary border-end py-2">
-                                            <i class="fa fa-tag text-primary me-2"></i>
-                                            {{ $pengumumans->category->category }}
-                                        </small>
-                                        <small class="flex-fill text-center text-secondary border-end py-2">
-                                            <i class="fa fa-calendar text-primary me-2"></i>
-                                            {{ $pengumumans->created_at }}
-                                        </small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr>
+                                </a>
+                                <hr>
+                            @endif
                         @endforeach
                     </aside>
                 </div>
