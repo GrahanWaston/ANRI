@@ -232,7 +232,8 @@ class WebsiteController extends Controller
             'testimoni' => Testimoni::get(),
             'slideshow' => Slideshow::all(),
             'service' => Layanan::all(),
-            'menus' => Pages::get()
+            'menus' => Pages::get(),
+            'program' => Program::get()
         ]);
     }
 

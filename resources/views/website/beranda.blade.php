@@ -85,47 +85,23 @@
                         <h2 class="section-title bg-white text-start text-primary pe-3">Agenda Diklat</h2>
                         <h6 class="mb-4">Agenda diklat terdekat yang akan dilaksanakan</h6>
                         <div class="row g-4">
-                            <div class="col-md-12">
-                                <div class="d-flex flex-row">
-                                    <div>
-                                        <span class="icon btn btn-circle btn-primary pe-none me-5"><span
-                                                class="number fs-18">01</span></span>
-                                    </div>
-                                    <div>
-                                        <h5 class="mb-1 fw-bold">Diklat Fungsional Pengangkatan Arsiparis Tingkat Ahli
-                                            Angkatan I 2022 (PNBP)</h5>
-                                        <p class="mb-0">05 November 2022</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="d-flex flex-row">
-                                    <div>
-                                        <span class="icon btn btn-circle btn-primary pe-none me-5"><span
-                                                class="number fs-18">02</span></span>
-                                    </div>
-                                    <div>
-                                        <h5 class="mb-1 fw-bold">Diklat Fungsional Pengangkatan Arsiparis Tingkat Ahli
-                                            Angkatan I 2022 (PNBP)</h5>
-                                        <p class="mb-0">05 November 2022</p>
+                            @foreach ($program as $programs)
+                                <div class="col-md-12">
+                                    <div class="d-flex flex-row">
+                                        <div>
+                                            <span class="icon btn btn-circle btn-primary pe-none me-5"><span
+                                                    class="number fs-18">01</span></span>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-1 fw-bold">{{ $programs->nama_diklat }}</h5>
+                                            <p class="mb-0">{{ $programs->created_at->format('Y-m-d') }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="d-flex flex-row">
-                                    <div>
-                                        <span class="icon btn btn-circle btn-primary pe-none me-5"><span
-                                                class="number fs-18">03</span></span>
-                                    </div>
-                                    <div>
-                                        <h5 class="mb-1 fw-bold">Diklat Fungsional Pengangkatan Arsiparis Tingkat Ahli
-                                            Angkatan I 2022 (PNBP)</h5>
-                                        <p class="mb-0">05 November 2022</p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                             <div class="col-md-12 mx-auto d-flex">
-                                <a href="#" class="btn btn-lg btn-primary rounded mx-auto">Lihat Kalender Diklat</a>
+                                <a href="/kalender-diklat" class="btn btn-lg btn-primary rounded mx-auto">Lihat Kalender
+                                    Diklat</a>
                             </div>
                         </div>
                     </div>
