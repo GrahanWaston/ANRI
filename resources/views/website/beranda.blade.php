@@ -258,7 +258,7 @@
                     <p>
                         Kegiatan Pusdiklat Kearsipan Arsip Nasional Republik Indonesia </p>
                     <br><br>
-                    <div class="overflow-hidden" style="border-radius: 1rem;">
+                    <div class="overflow-hidden" style="border-radius: 1rem; rounded">
                         {!! $website->url_youtube !!}
                     </div>
                 </div>

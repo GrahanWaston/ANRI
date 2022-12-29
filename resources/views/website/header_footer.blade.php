@@ -157,19 +157,19 @@
                         @endforeach
                     </div>
                 </div>
-                <a href="https://kelasdaring.anri.go.id/" target="blank"
+                <a href="{{ $menu[3]->url }}" target="blank"
                     class="nav-item nav-link">{{ $menu[3]->name }}</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle"
                         data-bs-toggle="dropdown">{{ $menu[4]->name }}</a>
                     <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                        <a href="https://wbs.anri.go.id/" target="blank"
+                        <a href="{{ $submenu[8]->url }}" target="blank"
                             class="dropdown-item">{{ $submenu[8]->name }}</a>
-                        <a href="https://wbs.anri.go.id/" target="blank"
+                        <a href="{{ $submenu[9]->url }}" target="blank"
                             class="dropdown-item">{{ $submenu[9]->name }}</a>
-                        <a href="https://www.lapor.go.id/" target="blank"
+                        <a href="{{ $submenu[10]->url }}" target="blank"
                             class="dropdown-item">{{ $submenu[10]->name }}</a>
-                        <a href="https://s28a7n9v56m.typeform.com/to/nZkAV64z" target="blank"
+                        <a href="{{ $submenu[11]->url }}" target="blank"
                             class="dropdown-item">{{ $submenu[11]->name }}</a>
                         @foreach ($submenu->skip(18) as $submenus)
                             @if ($submenus->menu_id == 5)
@@ -187,9 +187,9 @@
                         <a href="/berita" class="dropdown-item">{{ $submenu[13]->name }}</a>
                         <a href="/infografis" class="dropdown-item">{{ $submenu[14]->name }}</a>
                         <a href="/pengumuman" class="dropdown-item">{{ $submenu[15]->name }}n</a>
-                        <a href="https://jdih.anri.go.id/" target="blank"
+                        <a href="{{ $submenu[16]->url }}" target="blank"
                             class="dropdown-item">{{ $submenu[16]->name }}</a>
-                        <a href="https://eppid.anri.go.id/" target="blank"
+                        <a href="{{ $submenu[17]->url }}" target="blank"
                             class="dropdown-item">{{ $submenu[17]->name }}</a>
                         @foreach ($submenu->skip(18) as $submenus)
                             @if ($submenus->menu_id == 6)
