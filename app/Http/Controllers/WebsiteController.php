@@ -233,7 +233,8 @@ class WebsiteController extends Controller
             'slideshow' => Slideshow::all(),
             'service' => Layanan::all(),
             'menus' => Pages::get(),
-            'program' => Program::get()
+            'program' => Program::latest()->get(),
+            'berita' => Publication::latest()->get()
         ]);
     }
 

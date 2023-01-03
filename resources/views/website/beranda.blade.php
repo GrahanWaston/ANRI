@@ -85,7 +85,7 @@
                         <h2 class="section-title bg-white text-start text-primary pe-3">Agenda Diklat</h2>
                         <h6 class="mb-4">Agenda diklat terdekat yang akan dilaksanakan</h6>
                         <div class="row g-4">
-                            @foreach ($program as $programs)
+                            @foreach ($program->take(3) as $programs)
                                 <div class="col-md-12">
                                     <div class="d-flex flex-row">
                                         <div>
@@ -94,7 +94,7 @@
                                         </div>
                                         <div>
                                             <h5 class="mb-1 fw-bold">{{ $programs->nama_diklat }}</h5>
-                                            <p class="mb-0">{{ $programs->created_at->format('Y-m-d') }}</p>
+                                            <p class="mb-0">{{ $programs->created_at->translatedFormat('d F Y') }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -148,74 +148,34 @@
                 <h1 class="mb-5">Publikasi Pusdiklat Kearsipan ANRI</h1>
             </div>
             <div class="row g-4 justify-content-center">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s"
-                    style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
-                    <div class="service-item h-100 d-flex flex-column justify-content-between">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/gambar-1.jpeg" alt="">
-                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#"
-                                    class="flex-shrink-0 text-white btn btn-sm btn-primary px-3 rounded-pill">Baca
-                                    Selengkapnya</a>
+                @foreach ($berita->take(3) as $berita)
+                    @if ($berita->category_id == 1 && $berita->status == 'published')
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s"
+                            style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                            <div class="service-item h-100 d-flex flex-column justify-content-between">
+                                <div class="position-relative overflow-hidden">
+                                    <img class="img-fluid" src="{{ asset('storage/' . $berita->image_main) }}" alt="">
+                                    <div
+                                        class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                        <a href="#"
+                                            class="flex-shrink-0 text-white btn btn-sm btn-primary px-3 rounded-pill">Baca
+                                            Selengkapnya</a>
+                                    </div>
+                                </div>
+                                <div class="text-center p-4 pb-0">
+                                    <h5 class="mb-4">{{ $berita->title }}
+                                    </h5>
+                                </div>
+                                <div class="d-flex border-top">
+                                    <small class="flex-fill text-center border-end py-2"><i
+                                            class="fa fa-tag text-primary me-2"></i>{{ $berita->category->category }}</small>
+                                    <small class="flex-fill text-center border-end py-2"><i
+                                            class="fa fa-calendar text-primary me-2"></i>{{ $berita->created_at->translatedFormat('d F Y') }}</small>
+                                </div>
                             </div>
                         </div>
-                        <div class="text-center p-4 pb-0">
-                            <h5 class="mb-4">Kepala ANRI Tutup Rangkaian Acara Konferensi Bandung-Belgrade-Havana
-                            </h5>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-tag text-primary me-2"></i>Berita</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-calendar text-primary me-2"></i>20 Oktober 2022</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s"
-                    style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
-                    <div class="service-item h-100 d-flex flex-column justify-content-between">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/gambar-1.jpg" alt="">
-                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#"
-                                    class="text-white flex-shrink-0 btn btn-sm btn-primary px-3 rounded-pill">Baca
-                                    Selengkapnya</a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 pb-0">
-                            <h5 class="mb-4">Pengumuman Kedua tentang Hasil Pendataan Pegawai Non ASN di Lingkungan Arsip
-                                Nasional Republik Indonesia Tahun 2022</h5>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-tag text-primary me-2"></i>Pengumuman</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-calendar text-primary me-2"></i>20 Oktober 2022</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s"
-                    style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                    <div class="service-item h-100 d-flex flex-column justify-content-between">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/gambar-2.jpeg" alt="">
-                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#"
-                                    class="flex-shrink-0 btn text-white btn-sm btn-primary px-3 rounded-pill">Baca
-                                    Selengkapnya</a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 pb-0">
-                            <h5 class="mb-4">ANRI Selenggarakan Bimtek Pengelolaan Arsip Aset Nasional</h5>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-tag text-primary me-2"></i>Berita</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-calendar text-primary me-2"></i>20 Oktober 2022</small>
-                        </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
             </div>
             <div class="col-md-12 mx-auto my-5 d-flex">
                 <a href="informasi-publik.php" class="btn btn-lg btn-primary rounded mx-auto">Lihat Semua Publikasi</a>

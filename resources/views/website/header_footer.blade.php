@@ -60,20 +60,17 @@
             <div class="col-md-12 mt-3 d-lg-none">
                 <div class="row align-items-center justify-content-end">
                     <div class="col-8">
-                        <div class="d-flex form-inputs">
-                            <input class="form-control form-inputs-sm" type="text" placeholder="Pencarian">
-                            <i class="fa fa-search"></i>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="d-flex flex-row">
-                            <a href="" class="btn btn-sm btn-primary mx-1">ID</a>
-                            <!-- <span class="mx-1">|</span> -->
-                            <a href="" class="btn btn-sm btn-outline-primary mx-1">EN</a>
-                        </div>
+                        <form action="/hasil-pencarian">
+                            <div class="d-flex form-inputs">
+                                <input name="keywords" class="form-control form-inputs-sm" type="text"
+                                    placeholder="Pencarian">
+                                <i class="fa fa-search"></i>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+            </form>
             <div class="col-lg-8 col-md-8 d-none d-lg-block">
                 <div class="row align-items-center justify-content-end">
                     <div class="col-4">
@@ -89,10 +86,12 @@
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="d-flex justify-content-end form-inputs">
-                            <input class="form-control form-inputs-sm" type="text" placeholder="Pencarian">
-                            <i class="fa fa-search"></i>
-                        </div>
+                        <form action="/hasil-pencarian">
+                            <div class="d-flex justify-content-end form-inputs">
+                                <input name="keywords" class="form-control form-inputs-sm" type="text" placeholder="Pencarian">
+                                <i class="fa fa-search"></i>
+                            </div>
+                        </form>
                     </div>
                     <div class="col-auto">
                         <div class="d-flex flex-row justify-content-end">
@@ -157,8 +156,7 @@
                         @endforeach
                     </div>
                 </div>
-                <a href="{{ $menu[3]->url }}" target="blank"
-                    class="nav-item nav-link">{{ $menu[3]->name }}</a>
+                <a href="{{ $menu[3]->url }}" target="blank" class="nav-item nav-link">{{ $menu[3]->name }}</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle"
                         data-bs-toggle="dropdown">{{ $menu[4]->name }}</a>
