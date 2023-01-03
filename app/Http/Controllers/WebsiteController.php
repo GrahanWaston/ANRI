@@ -238,15 +238,38 @@ class WebsiteController extends Controller
         ]);
     }
 
-    // public function approve_jenis($id)
-    // {
+    public function search(Request $request)
+    {
+        $search = $request->get('keywords');
+        // $publikasi = Publication::where('title', 'like', '%' . $search . '%')->paginate(5)->withquerystring();
 
-    //     $jenis = Jenis::where('id', $id)
-    //         ->where('status', 'draft' || '')
-    //         ->update(['status' => 'published']);
+        $publikasi = Publication::query()
+            ->select(
+                'id',
+                'title',
+                // DB::raw('chancellor AS leader'),
+                // DB::raw('school as type')
+            )
+            ->where('title', 'LIKE', '%' . $search . '%');
+        $file = FileDownload::query()
+            ->select(
+                'id',
+                'title',
+                // DB::raw('ceo AS leader'),
+                // DB::raw('company as type')
+            )
+            ->where('title', 'LIKE', '%' . $search . '%');
+        $file->union($publikasi)->paginate();
 
-    //     return redirect()->back();
-    // }
+        return view('website.search', [
+            'publikasi' => $publikasi,
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.

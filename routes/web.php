@@ -89,6 +89,8 @@ Route::get('/sub-menu/{SubMenu:url}', [WebsiteController::class, 'view_submenu']
 // Calendar
 Route::get('/kalender-diklat', [ProgramController::class, 'getEvent'])->name('getevent');
 
+Route::get('/hasil-pencarian', [WebsiteController::class, 'search']);
+
 Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
     // dashboard
     Route::get('/dashboard', function () {
@@ -213,13 +215,6 @@ Route::group(['middleware' => ['auth', 'role:operator,admin', 'status']], functi
     Route::resource('/program-diklat', ProgramController::class);
     Route::resource('/jenis-jenjang', JenisJenjangController::class);
 
-    // Profil Instansi
-    // Route::resource('/profil-instansi', ProfilInstansiController::class);
-
-    // Profil Pejabat - SDM
-    // Route::resource('/profil-pejabat/SDM', HumanResourceController::class);
-    // Route::resource('/profil-pejabat/jabatan', JabatanController::class);
-
     // Publikasi File
     Route::resource('/publikasi', PublicationController::class);
     Route::resource('/publikasi-file', FileDownloadController::class);
@@ -240,7 +235,6 @@ Route::group(['middleware' => ['auth', 'role:operator,admin', 'status']], functi
     Route::resource('/testimoni', TestimoniController::class);
 
     // Konfigurasi Situs dan Section
-    // Route::resource('/konfigurasi-situs', WebsiteController::class);
     Route::resource('/konfigurasi-section', Section4Controller::class);
 
     // Rubah Password dari sidebar dan navbar
