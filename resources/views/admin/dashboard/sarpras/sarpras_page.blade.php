@@ -201,7 +201,7 @@
             $('#navbar-menu > .navbar-nav > .nav-item > .nav-link > .nav-link-title:contains("Prasarana & Sarana")').parents('.nav-item').addClass('active');
         });
     </script>
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(function() {
             $('.btn-delete').on('click', function() {
                 Swal.fire({
@@ -224,8 +224,8 @@
                 })
             });
         });
-    </script>
-    <script type="text/javascript">
+    </script> --}}
+    {{-- <script type="text/javascript">
         $(function() {
             $('.btn-draft').on('click', function() {
                 Swal.fire({
@@ -283,5 +283,5 @@
                 })
             });
         });
-    </script>
+    </script> --}}
 @endsection

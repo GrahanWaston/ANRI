@@ -166,7 +166,7 @@
                 '.nav-item').addClass('active');
         });
     </script>
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(function() {
             $('.btn-publish').on('click', function() {
                 Swal.fire({
@@ -191,7 +191,7 @@
                 })
             });
         });
-    </script>
+    </script> --}}
     <script src="assets/libs/litepicker/dist/litepicker.js"></script>
     <script src="assets/libs/litepicker/dist/litepicker.js"></script>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>

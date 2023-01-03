@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="input-icon mb-3">
                                     <label for="" class="form-label">Jadwal Mulai </label>
-                                    {{-- <div id="datepicker" class="input-append"> 
+                                    {{-- <div id="datepicker" class="input-append">
                                     <input data-format="yyyy-MM-dd" type="text">
                                 </div>  --}}
                                     <div class="input-group date" id="datepicker">
@@ -184,7 +184,7 @@
             }
         </style>
 
-        <link rel="stylesheet" type="text/css"
+        {{-- <link rel="stylesheet" type="text/css"
             href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css">
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>
         <script type="text/javascript">
@@ -212,7 +212,7 @@
                     })
                 });
             });
-        </script>
+        </script> --}}
 
 
         <script type="text/javascript">

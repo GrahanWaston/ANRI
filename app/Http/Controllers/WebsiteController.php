@@ -259,7 +259,17 @@ class WebsiteController extends Controller
                 // DB::raw('company as type')
             )
             ->where('title', 'LIKE', '%' . $search . '%');
-        $file->union($publikasi)->paginate();
+        $program = Program::query()
+            ->select(
+                'id',
+                'nama_diklat as title',
+                // DB::raw('ceo AS leader'),
+                // DB::raw('company as type')
+            )
+            ->where('nama_diklat', 'LIKE', '%' . $search . '%');
+        $file->union($publikasi)->union($program)->paginate();
+
+        dd($file);
 
         return view('website.search', [
             'publikasi' => $publikasi,

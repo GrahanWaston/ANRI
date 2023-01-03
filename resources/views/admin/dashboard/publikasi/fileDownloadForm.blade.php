@@ -95,7 +95,7 @@
             '.nav-item').addClass('active');
     });
 </script>
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(function() {
         $('.btn-publish').on('click', function() {
             Swal.fire({
@@ -120,7 +120,7 @@
             })
         });
     });
-</script>
+</script> --}}
 <script src="assets/libs/litepicker/dist/litepicker.js"></script>
 <!-- QUILL EDITOR -->
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">

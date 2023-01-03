@@ -67,7 +67,7 @@
         <link rel="stylesheet" type="text/css"
             href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css">
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>
-        <script type="text/javascript">
+        {{-- <script type="text/javascript">
             $(function() {
                 $('.btn-publish').on('click', function() {
                     Swal.fire({
@@ -92,7 +92,7 @@
                     })
                 });
             });
-        </script>
+        </script> --}}
 
 
         <script type="text/javascript">
