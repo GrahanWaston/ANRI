@@ -156,14 +156,9 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="nav-item dropdown">
-                    <a href="{{ $menu[3]->url }}" target="blank" class="nav-item nav-link">{{ $menu[3]->name }}</a>
-                    @foreach ($submenu->skip(18) as $submenus)
-                        @if ($submenus->menu_id == 4)
-                            <a href="/sub-menu/{{ $submenus->url }}" class="dropdown-item">{{ $submenus->name }}</a>
-                        @endif
-                    @endforeach
-                </div>
+
+                <a href="{{ $menu[3]->url }}" target="blank" class="nav-item nav-link">{{ $menu[3]->name }}</a>
+
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle"
                         data-bs-toggle="dropdown">{{ $menu[4]->name }}</a>
