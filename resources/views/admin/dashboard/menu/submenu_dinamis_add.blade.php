@@ -102,9 +102,10 @@
                                             <select name="menu_id"
                                                 class="form-control @error('menu_id') is-invalid @enderror">
                                                 <option disabled selected>Pilih menu parent</option>
-                                                @foreach ($static_adds as $static)
-                                                    <option value="{{ $static->id }}">{{ $static->name }}</option>
-                                                @endforeach
+                                                    <option value="{{ $static_adds[1]->id }}">{{ $static_adds[1]->name }}</option>
+                                                    <option value="{{ $static_adds[2]->id }}">{{ $static_adds[2]->name }}</option>
+                                                    <option value="{{ $static_adds[4]->id }}">{{ $static_adds[4]->name }}</option>
+                                                    <option value="{{ $static_adds[5]->id }}">{{ $static_adds[5]->name }}</option>
                                             </select>
                                             @error('menu_id')
                                                 <div class="invalid-feedback">

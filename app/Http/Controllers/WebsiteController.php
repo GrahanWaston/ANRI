@@ -257,6 +257,36 @@ class WebsiteController extends Controller
         ]);
     }
 
+    public function search_berita(Request $request)
+    {
+        $search = $request->get('keywords');
+        $publikasi = Publication::where('category_id', 1)->paginate(3)->where('title', 'like', '%' . $search . '%')->latest()->paginate(3, ['*'], 'publikasi')->withquerystring();
+
+        return view('website.publikasi.berita_search', [
+            'publikasi' => $publikasi,
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
+
+    public function search_infografis(Request $request)
+    {
+        $search = $request->get('keywords');
+        $publikasi = Publication::where('category_id', 1)->paginate(3)->where('title', 'like', '%' . $search . '%')->latest()->paginate(3, ['*'], 'publikasi')->withquerystring();
+
+        return view('website.publikasi.berita_search', [
+            'publikasi' => $publikasi,
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

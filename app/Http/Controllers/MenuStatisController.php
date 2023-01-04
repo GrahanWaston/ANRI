@@ -18,7 +18,7 @@ class MenuStatisController extends Controller
         // return SubMenu::with('menus')->latest()->get();
         return view('admin.dashboard.menu.menu_index', [
             // 'dynamic_adds' => MenuDinamis::latest()->get(),
-            'static_adds' => MenuStatis::latest()->get(),
+            'static_adds' => MenuStatis::oldest()->get(),
             // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
             'static_submenu' => SubMenu::oldest()->get()
         ]);
@@ -80,7 +80,7 @@ class MenuStatisController extends Controller
             'static_submenu' => SubMenu::oldest()->get()
         ]);
     }
-    
+
     public function edit_submenu($id)
     {
         $submenu = SubMenu::findOrFail($id);
@@ -91,7 +91,7 @@ class MenuStatisController extends Controller
             'static_submenu' => SubMenu::oldest()->get()
         ]);
     }
-    
+
     public function edit_menu($id)
     {
         $menu = MenuStatis::findOrFail($id);
@@ -102,7 +102,7 @@ class MenuStatisController extends Controller
             'static_submenu' => SubMenu::oldest()->get()
         ]);
     }
-    
+
     public function update_submenu(Request $request, $id)
     {
         $validateData = $request->validate([
@@ -115,7 +115,7 @@ class MenuStatisController extends Controller
 
         return redirect('/manajemen-menu')->with('successs', 'Sub Menu berhasil di update');
     }
-    
+
     public function update_menu(Request $request, $id)
     {
         $validateData = $request->validate([
@@ -157,8 +157,19 @@ class MenuStatisController extends Controller
      * @param  \App\Models\MenuStatis  $menuStatis
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MenuStatis $menuStatis)
+    public function destroy($id)
     {
-        //
+        $menu = MenuStatis::find($id);
+        $menu->delete();
+        // User::destroy($user->id);
+        return redirect('/manajemen-menu')->with('successss', 'Menu Navbar berhasil dihapus!');
+    }
+
+    public function destroy_submenu($id)
+    {
+        $menu = SubMenu::find($id);
+        $menu->delete();
+        // User::destroy($user->id);
+        return redirect('/manajemen-menu')->with('success', 'Sub Menu berhasil dihapus!');
     }
 }

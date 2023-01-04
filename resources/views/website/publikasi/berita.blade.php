@@ -20,10 +20,12 @@
     <div class="container py-5">
         <div class="d-flex justify-content-end">
             <div class="col-4">
-                <div class="d-flex form-inputs">
-                    <input class="form-control" type="text" placeholder="Masukkan Kata Kunci...">
-                    <i class="fa fa-search"></i>
-                </div>
+                <form action="/hasil-pencarian-berita-artikel">
+                    <div class="d-flex form-inputs">
+                        <input name="keywords" class="form-control" type="text" placeholder="Masukkan Kata Kunci...">
+                        <i class="fa fa-search"></i>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="row align-items-start py-5">

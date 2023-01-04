@@ -64,9 +64,6 @@ Route::get('/program-diklat-anri', [WebsiteController::class, 'program_diklat'])
 // Detail Program Diklat
 Route::get('/detail-program-diklat/{Program:kode_diklat}', [WebsiteController::class, 'program_detail']);
 
-// Kalender
-// Route::get('/kalender-diklat', [WebsiteController::class, 'kalender']);
-
 // Artikel
 Route::get('/artikel', [WebsiteController::class, 'artikel']);
 
@@ -89,7 +86,9 @@ Route::get('/sub-menu/{SubMenu:url}', [WebsiteController::class, 'view_submenu']
 // Calendar
 Route::get('/kalender-diklat', [ProgramController::class, 'getEvent'])->name('getevent');
 
+// Search
 Route::get('/hasil-pencarian', [WebsiteController::class, 'search']);
+Route::get('/hasil-pencarian-berita-artikel', [WebsiteController::class, 'search_berita']);
 
 Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
     // dashboard
@@ -180,6 +179,7 @@ Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
 
     // Manajemen Sub Menu
     Route::resource('/manajemen-sub-menu', SubMenuController::class);
+    Route::delete('/delete-submenu/{Submenu:id}', [MenuStatisController::class, 'destroy_submenu'])->name('delete-submenu');
 
     // Manajemen Menu Hyperlink
     Route::get('/update-submenu/{SubMenu:id}/edit', [MenuStatisController::class, 'edit_submenu']);

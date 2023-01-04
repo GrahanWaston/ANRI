@@ -88,7 +88,8 @@
                     <div class="col-4">
                         <form action="/hasil-pencarian">
                             <div class="d-flex justify-content-end form-inputs">
-                                <input name="keywords" class="form-control form-inputs-sm" type="text" placeholder="Pencarian">
+                                <input name="keywords" class="form-control form-inputs-sm" type="text"
+                                    placeholder="Pencarian">
                                 <i class="fa fa-search"></i>
                             </div>
                         </form>
@@ -156,7 +157,14 @@
                         @endforeach
                     </div>
                 </div>
-                <a href="{{ $menu[3]->url }}" target="blank" class="nav-item nav-link">{{ $menu[3]->name }}</a>
+                <div class="nav-item dropdown">
+                    <a href="{{ $menu[3]->url }}" target="blank" class="nav-item nav-link">{{ $menu[3]->name }}</a>
+                    @foreach ($submenu->skip(18) as $submenus)
+                        @if ($submenus->menu_id == 4)
+                            <a href="/sub-menu/{{ $submenus->url }}" class="dropdown-item">{{ $submenus->name }}</a>
+                        @endif
+                    @endforeach
+                </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle"
                         data-bs-toggle="dropdown">{{ $menu[4]->name }}</a>

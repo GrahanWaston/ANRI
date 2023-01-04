@@ -178,7 +178,7 @@
                 @endforeach
             </div>
             <div class="col-md-12 mx-auto my-5 d-flex">
-                <a href="informasi-publik.php" class="btn btn-lg btn-primary rounded mx-auto">Lihat Semua Publikasi</a>
+                <a href="/berita" class="btn btn-lg btn-primary rounded mx-auto">Lihat Semua Publikasi</a>
             </div>
         </div>
     </div>
