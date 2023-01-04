@@ -18,12 +18,68 @@
                         <a href="/manajemen-menu/create" class="btn btn-primary d-inline-block">
                             <i class="fa fa-plus me-2"></i> Tambah Menu Navbar
                         </a>
-                        <a href="/manajemen-sub-menu/create" class="btn btn-danger d-inline-block">
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
                             <i class="fa fa-plus me-2"></i> Tambah Sub Menu
-                        </a>
-                        <a href="/pages/create" class="btn btn-warning d-inline-block">
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Sub Menu Opsi</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body modal-lg">
+                                        <a href="/manajemen-sub-menu/create" class="btn btn-yellow">
+                                            <i class="fa fa-plus me-2"></i> Tambah Sub Menu Content
+                                        </a>
+                                        <a href="#" class="btn btn-green">
+                                            <i class="fa fa-plus me-2"></i> Tambah Sub Menu Hyperlink
+                                        </a>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Sub Menu Opsi</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body modal-lg">
+                                        <a href="/pages/create" class="btn btn-yellow">
+                                            <i class="fa fa-plus me-2"></i> Tambah Menu Content
+                                        </a>
+                                        <a href="#" class="btn btn-green">
+                                            <i class="fa fa-plus me-2"></i> Tambah Sub Menu Hyperlink
+                                        </a>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <a href="/pages/create" class="btn btn-warning d-inline-block">
                             <i class="fa fa-plus me-2"></i> Tambah Menu Content
-                        </a>
+                        </a> --}}
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop2">
+                            <i class="fa fa-plus me-2"></i> Tambah Menu
+                        </button>
                     </div>
                 </div>
             </div>
@@ -86,8 +142,8 @@
                                         <div class="action text-muted">
                                             <a href="/manajemen-menu/{{ $submenu->id }}/edit">Edit</a>
                                             <div class="vr mx-1"></div>
-                                            <form action="{{ route('delete-submenu', $submenu->id) }}"
-                                                method="POST" class="d-inline">
+                                            <form action="{{ route('delete-submenu', $submenu->id) }}" method="POST"
+                                                class="d-inline">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" class="btn btn-light m-1 h3 text-danger">
@@ -337,7 +393,7 @@
 
     <script type="text/javascript">
         $(function() {
-            $('#navbar-menu > .navbar-nav > .nav-item > .nav-link > .nav-link-title:contains("Manajemen Menu")')
+            $('#navbar-menu > .navbar-nav > .nav-item > .nav-link > .nav-link-title:contains("Menu Utama")')
                 .parents('.nav-item').addClass('active');
         });
     </script>

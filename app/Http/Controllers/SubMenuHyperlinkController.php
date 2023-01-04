@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MenuHyperlink;
 use App\Models\MenuStatis;
-use App\Models\SubMenu;
-use App\Models\SubMenuDinamis;
+use App\Models\SubMenuHyperlink;
 use Illuminate\Http\Request;
 
-class SubMenuController extends Controller
+class SubMenuHyperlinkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,11 @@ class SubMenuController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.dashboard.menu.submenu_hyperlink', [
+            // 'dynamic_adds' => MenuDinamis::latest()->get(),
+            'menus' => MenuStatis::oldest()->get(),
+            'submenus' => SubMenuHyperlink::oldest()->get()
+        ]);
     }
 
     /**
@@ -26,11 +30,10 @@ class SubMenuController extends Controller
      */
     public function create()
     {
-        return view('admin.dashboard.menu.submenu_dinamis_add', [
+        return view('admin.dashboard.menu.submenu_hyperlink_add', [
             // 'dynamic_adds' => MenuDinamis::latest()->get(),
-            'static_adds' => MenuStatis::oldest()->get(),
-            // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
-            'static_submenu' =>SubMenu::latest()->with('menus')->get()
+            'menus' => MenuStatis::oldest()->get(),
+            'submenus' => SubMenuHyperlink::oldest()->get()
         ]);
     }
 
@@ -43,9 +46,6 @@ class SubMenuController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            // 'judul' => 'required',
-            'body' => 'required',
-            'status' => 'required',
             'name' => 'required',
             'url' => 'required',
             'menu_id' => 'required'
@@ -54,46 +54,41 @@ class SubMenuController extends Controller
         // dd('Registrasi Berhasil');  
         // return redirect($validateData);
 
-        SubMenu::create($validateData);
+        SubMenuHyperlink::create($validateData);
 
-        return redirect('/manajemen-menu')->with('success', 'Sub Menu berhasil di tambahkan');
+        return redirect('/manajemen-submenu-hyperlink')->with('success', 'Sub Menu berhasil di tambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SubMenu  $subMenu
+     * @param  \App\Models\SubMenuHyperlink  $subMenuHyperlink
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(SubMenuHyperlink $subMenuHyperlink)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SubMenu  $subMenu
+     * @param  \App\Models\SubMenuHyperlink  $subMenuHyperlink
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(SubMenuHyperlink $subMenuHyperlink)
     {
-        // return view('admin.dashboard.menu.submenu_dinamis_update', [
-        //     // 'dynamic_adds' => MenuDinamis::latest()->get(),
-        //     'static_adds' => MenuStatis::latest()->get(),
-        //     // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
-        //     'static_submenu' =>SubMenu::latest()->with('menus')->get()
-        // ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SubMenu  $subMenu
+     * @param  \App\Models\SubMenuHyperlink  $subMenuHyperlink
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubMenu $subMenu)
+    public function update(Request $request, SubMenuHyperlink $subMenuHyperlink)
     {
         //
     }
@@ -101,10 +96,10 @@ class SubMenuController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SubMenu  $subMenu
+     * @param  \App\Models\SubMenuHyperlink  $subMenuHyperlink
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubMenu $subMenu)
+    public function destroy(SubMenuHyperlink $subMenuHyperlink)
     {
         //
     }

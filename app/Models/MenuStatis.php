@@ -14,4 +14,9 @@ class MenuStatis extends Model
     {
         return $this->hasMany(SubMenu::class, 'menu_id');
     }
+
+    public function hyperlink()
+    {
+        return $this->hasMany(SubMenuHyperlink::class, 'menu_id');
+    }
 }

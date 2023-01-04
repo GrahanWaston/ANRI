@@ -9,6 +9,7 @@ use App\Http\Controllers\JenisJenjangController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuDinamisController;
+use App\Http\Controllers\MenuHyperlinkController;
 use App\Http\Controllers\MenuStatisController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfilInstansiController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\SDMController;
 use App\Http\Controllers\Section4Controller;
 use App\Http\Controllers\SlideshowController;
 use App\Http\Controllers\SubMenuController;
+use App\Http\Controllers\SubMenuHyperlinkController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteController;
@@ -182,6 +184,12 @@ Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
     Route::delete('/delete-submenu/{Submenu:id}', [MenuStatisController::class, 'destroy_submenu'])->name('delete-submenu');
 
     // Manajemen Menu Hyperlink
+    Route::resource('/manajemen-menu-hyperlink', MenuHyperlinkController::class);
+
+    // Manajemen Sub Menu Hyperlink
+    Route::resource('/manajemen-submenu-hyperlink', SubMenuHyperlinkController::class);
+
+    // Edit Menu Hyperlink
     Route::get('/update-submenu/{SubMenu:id}/edit', [MenuStatisController::class, 'edit_submenu']);
     Route::get('/update-menu/{MenuStatis:id}/edit', [MenuStatisController::class, 'edit_menu']);
     Route::put('/update-submenu/{SubMenu:id}', [MenuStatisController::class, 'update_submenu']);

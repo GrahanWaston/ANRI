@@ -21,8 +21,8 @@
                     <div class="col-md-8 mb-4 mb-md-0 tab-content">
                         <div class="tab-pane active" id="id">
                             <div class="mb-3">
-                                <input type="text" class="form-control @error('url') is-invalid @enderror"
-                                    id="url" name="url" placeholder="Masukkan url /">
+                                <input type="text" class="form-control @error('url') is-invalid @enderror" id="url"
+                                    name="url" placeholder="Masukkan url /">
                                 @error('url')
                                     <div class="invalid-feedback">
                                         Url harus di isi terlebih dahulu!
@@ -102,10 +102,18 @@
                                             <select name="menu_id"
                                                 class="form-control @error('menu_id') is-invalid @enderror">
                                                 <option disabled selected>Pilih menu parent</option>
-                                                    <option value="{{ $static_adds[1]->id }}">{{ $static_adds[1]->name }}</option>
-                                                    <option value="{{ $static_adds[2]->id }}">{{ $static_adds[2]->name }}</option>
-                                                    <option value="{{ $static_adds[4]->id }}">{{ $static_adds[4]->name }}</option>
-                                                    <option value="{{ $static_adds[5]->id }}">{{ $static_adds[5]->name }}</option>
+                                                <option value="{{ $static_adds[1]->id }}">{{ $static_adds[1]->name }}
+                                                </option>
+                                                <option value="{{ $static_adds[2]->id }}">{{ $static_adds[2]->name }}
+                                                </option>
+                                                <option value="{{ $static_adds[4]->id }}">{{ $static_adds[4]->name }}
+                                                </option>
+                                                <option value="{{ $static_adds[5]->id }}">{{ $static_adds[5]->name }}
+                                                </option>
+                                                @foreach ($static_adds->skip(9) as $menu)
+                                                    <option value="{{ $menu->id }}">{{ $menu->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                             @error('menu_id')
                                                 <div class="invalid-feedback">
@@ -133,8 +141,9 @@
 
     <script type="text/javascript">
         $(function() {
-            $('#navbar-menu > .navbar-nav > .nav-item > .nav-link > .nav-link-title:contains("Manajemen Menu")').parents(
-                '.nav-item').addClass('active');
+            $('#navbar-menu > .navbar-nav > .nav-item > .nav-link > .nav-link-title:contains("Manajemen Menu")')
+                .parents(
+                    '.nav-item').addClass('active');
         });
     </script>
 

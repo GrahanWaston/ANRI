@@ -34,6 +34,11 @@ class MenuStatisController extends Controller
         return view('admin.dashboard.menu.menu_add');
     }
 
+    public function create_hyperlink()
+    {
+        return view('admin.dashboard.menu.menu_add');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

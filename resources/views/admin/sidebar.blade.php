@@ -206,16 +206,32 @@
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item ms-2 me-1">
-                        <a class="nav-link" href="/manajemen-menu">
+                    <li class="nav-item ms-2 me-1 dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <i class="fa fa-th-large"></i>
+                                <i class="fa fa-file-signature"></i>
                             </span>
                             <span class="nav-link-title">
                                 Manajemen Menu
                             </span>
                         </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item" href="/manajemen-menu">
+                                        Menu Utama
+                                    </a>
+                                    <a class=" dropdown-item" href="/manajemen-menu-hyperlink">
+                                        Menu Hyperlink
+                                    </a>
+                                    <a class=" dropdown-item" href="/manajemen-submenu-hyperlink">
+                                        SubMenu Hyperlink
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
+
                 @endif
                 <li class="nav-item ms-2 me-1 bg-primary ms-2 me-1"><a href="#"
                         class="nav-link disabled text-light">Profil</a></li>
