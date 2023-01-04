@@ -23,7 +23,7 @@ class ProgramController extends Controller
     public function index()
     {
         return view('admin.dashboard.program_diklat.program_diklat', [
-            'program' => Program::latest()->get()
+            'program' => Program::latest()->paginate(3),
         ]);
     }
 

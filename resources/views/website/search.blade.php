@@ -15,84 +15,258 @@
     </div>
     <!-- Page Header End -->
     <section class="wrapper py-5">
-        <div class="container py-5">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="h4 my-2">Diklat Fungsional Pengangkatan Arsiparis Tingkat Ahli Angkatan I 2021 (PNBP)</h2>
-                </div>
-                <div class="card-body">
-                    <h6 class="mb-2 fw-normal badge bg-secondary">
-                        DFK.01.01.2022
-                    </h6>
-                    <h6 class="mb-2 fw-normal badge bg-primary">
-                        PNBP Fungsional
-                    </h6>
-                    <div class="classic-view my-3">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-                                <tbody>
-                                    <tr>
-                                        <td>Tanggal</td>
-                                        <td>08/02/2021 s.d 26/03/2021</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tempat</td>
-                                        <td>Distance Learning ( Diklat Jarak Jauh )<br></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Biaya</td>
-                                        <td>Rp. 6790000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Durasi</td>
-                                        <td>280 Jam Pelajaran</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="vertical-align:middle ;">File Pendukung</td>
-                                        <td class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-0">Diklat Fungsional Pengangkatan Arsiparis.pdf</p>
-                                            <a href="#" class="btn btn-primary">Download</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+        <div class="container py-1">
+
+            <div class="row align-items-start py-5">
+                <div class="text-center">
+                    <h3 class="text-center">Publikasi Berita dan Infografis</h3>
+                    @if ($publikasi->count())
+                        <div class="row">
+                            @foreach ($publikasi as $publication)
+                                @if ($publication->status == 'published')
+                                    <div class="col-lg-4 col-md-6 mb-3 wow fadeInUp" data-wow-delay="0.1s"
+                                        style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                                        <a href="detail-berita.php" class="text-decoration-none">
+                                            <div class="service-item h-100 d-flex flex-column justify-content-between">
+                                                <div class="text-center p-4 pb-0">
+                                                    <img class="card-img-top"
+                                                        src="{{ asset('storage/' . $publication->image_main) }}"
+                                                        alt="Card image cap">
+                                                    <p class="fs-7 fw-bold text-dark my-3">
+                                                        {{ $publication->title }}
+                                                    </p>
+                                                </div>
+                                                <div class="d-flex border-top">
+                                                    <small class="flex-fill text-center text-secondary border-end py-2">
+                                                        <i class="fa fa-tag text-primary me-2"></i>
+                                                        {{ $publication->category->category }}
+                                                    </small>
+                                                    <small class="flex-fill text-center text-secondary border-end py-2">
+                                                        <i class="fa fa-calendar text-primary me-2"></i>
+                                                        {{ $publication->created_at }}
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
+                    @else
+                        <p class="text-center fs-4">No Post Found.</p>
+                    @endif
+                    <div class="d-flex justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.1s">
+                        {{ $publikasi->appends([
+                            'file' => $file->currentPage(),
+                            'program' => $program->currentPage(),
+                        ])->links() }}
                     </div>
-                    <hr>
-                    <h3 class="mb-3">Deskripsi</h3>
-                    <p class="text-justify mb-5">Diklat ini bertujuan untuk memberikan bekal bagi Sumber Daya Manusia (SDM)
-                        di bidang kearsipan. Di dalam kelas, peserta diklat akan mempelajari tentang teori kearsipan, serta
-                        pemahaman tentang penyelenggaraan kearsipan, termasuk pengelolaan arsip baik arsip dinamis maupun
-                        arsip statis, mulai dari tahap penciptaan, penggunaan, pemeliharaan, dan penyusutan, sampai pada
-                        tahap pengelolaan statis. Selain itu, peserta diklat mendapatkan pengetahuan metode penelitian dan
-                        teknik penulisan ilmiah yang dapat membantu dalam pembuatan penulisan karya tulis ilmiah dan
-                        pembuatan manual kearsipan, serta pemahaman tentang jabatan fungsional Arsiparis dan angka kredit.
-                        Kemudian, di instansi masing-masing, peserta diklat melakukan program aktualisasi yang dibuktikan
-                        dengan kegiatan magang untuk menerapkan pembelajaran di kelas. Pada sesi akhir diklat, peserta
-                        diwajibkan membuat laporan hasil magang dan dikirimkan paling lambat 7 (tujuh) hari kalender setelah
-                        kegiatan magang berakhir. Setelah mengikuti diklat ini, peserta diharapkan mampu mengaplikasikan
-                        pengetahuan, keterampilan, dan sikap sebagai Pejabat Fungsional Arsiparis Tingkat Ahli.</p>
-                    <h3 class="mb-3">Syarat Peserta</h3>
-                    <p class="text-justify mb-5">
-                        1. Usia pada saat pembukaan diklat maksimal 53 atau 56 tahun bagi peserta yang sudah melalui proses
-                        inpassing;<br>
-                        2. Pendaftaran hanya melalui E-Registrasi (pusdiklat.anri.go.id);<br>
-                        3. Dokumen (hasil scan) yang diunggah dalam format pdf (maksimal 2 MB/dokumen) dengan format “nama
-                        dokumen_nama pendaftar” (misalnya KTP_Widya Pratiwi):<br>
-                        a. Kartu Tanda Penduduk (KTP);<br>
-                        b. Ijazah minimal D-IV atau Sarjana Strata 1 (S1) selain kearsipan;<br>
-                        c. Surat Keputusan (SK) Pangkat Terakhir, paling rendah Penata Muda, Golongan/Ruang III/a;<br>
-                        d. Surat rekomendasi/persetujuan dan komitmen dari pimpinan instansi yang bersangkutan bahwa calon
-                        peserta akan diangkat menjadi Arsiparis setelah dinyatakan lulus diklat, dibuktikan dengan
-                        melampirkan surat rekomendasi dan komitmen dari atasan;<br>
-                        e. SK Pengangkatan Arsiparis Tingkat Ahli dari instansi atau surat rekomendasi pengangkatan dari
-                        Kepala Arsip Nasional Republik Indonesia, bagi calon peserta yang sudah diangkat atau sedang dalam
-                        proses pengangkatan Arsiparis melalui program inpassing;<br>
-                        f. Surat Keterangan Dokter dan Surat Pernyataan Tanggung Jawab mutlak ditandatangani di atas materai
-                        bagi peserta yang sedang mengandung/hamil.<br>
-                        4. Wajib mengikuti diklat sampai selesai.
                 </div>
             </div>
+            <div class="row align-items-start py-1">
+                <div class="text-center">
+                    <h3 class="text-center">File Pengumuman dan Artikel</h3>
+                    @if ($publikasi->count())
+                        <div class="row">
+                            @foreach ($file as $files)
+                                @if ($files->status == 'published')
+                                    <div class="col-lg-4 col-md-6 mb-3 wow fadeInUp" data-wow-delay="0.1s"
+                                        style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                                        <a href="detail-berita.php" class="text-decoration-none">
+                                            <div class="service-item h-100 d-flex flex-column justify-content-between">
+                                                <div class="text-center p-4 pb-0">
+                                                    <p class="fs-7 fw-bold text-dark my-3">
+                                                        {{ $files->title }}
+                                                    </p>
+                                                </div>
+                                                <div class="d-flex border-top">
+                                                    <small class="flex-fill text-center text-secondary border-end py-2">
+                                                        <i class="fa fa-tag text-primary me-2"></i>
+                                                        {{ $files->category->category }}
+                                                    </small>
+                                                    <small class="flex-fill text-center text-secondary border-end py-2">
+                                                        <i class="fa fa-calendar text-primary me-2"></i>
+                                                        {{ $files->created_at }}
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="text-center fs-4">No Post Found.</p>
+                    @endif
+                    <div class="d-flex justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.1s">
+                        {{ $file->appends([
+                            'publikasi' => $publikasi->currentPage(),
+                            'program' => $program->currentPage(),
+                        ])->links() }}
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-start py-1">
+                <div class="text-center">
+                    <h3 class="text-center">Program Diklat</h3>
+                    @if ($program->count())
+                        <div class="row">
+                            @foreach ($program as $programs)
+                                @if ($programs->status == 'published')
+                                    <div class="col-lg-4 col-md-6 mb-3 wow fadeInUp" data-wow-delay="0.1s"
+                                        style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                                        <a href="detail-berita.php" class="text-decoration-none">
+                                            <div class="service-item h-100 d-flex flex-column justify-content-between">
+                                                <div class="text-center p-4 pb-0">
+                                                    <p class="fs-7 fw-bold text-dark my-3">
+                                                        {{ $programs->nama_diklat }}
+                                                    </p>
+                                                </div>
+                                                <div class="d-flex border-top">
+                                                    <small class="flex-fill text-center text-secondary border-end py-2">
+                                                        <i class="fa fa-calendar text-primary me-2"></i>
+                                                        {{ $programs->created_at }}
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="text-center fs-4">No Post Found.</p>
+                    @endif
+                    <div class="d-flex justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.1s">
+                        {{ $program->appends([
+                            'publikasi' => $publikasi->currentPage(),
+                            'file' => $file->currentPage(),
+                        ])->links() }}
+                    </div>
+                </div>
+            </div>
+
         </div>
+        {{-- <div class="container py-1">
+            <div class="row align-items-start py-5">
+                <div class="text-center">
+                    <h3 class="text-center">Publikasi Berita dan Infografis</h3>
+                    <div class="row">
+                        @foreach ($publikasi as $publication)
+                            @if ($publication->status == 'published')
+                                <div class="col-lg-4 col-md-6 mb-3 wow fadeInUp" data-wow-delay="0.1s"
+                                    style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                                    <a href="detail-berita.php" class="text-decoration-none">
+                                        <div class="service-item h-100 d-flex flex-column justify-content-between">
+                                            <div class="text-center p-4 pb-0">
+                                                <img class="card-img-top"
+                                                    src="{{ asset('storage/' . $publication->image_main) }}"
+                                                    alt="Card image cap">
+                                                <p class="fs-7 fw-bold text-dark my-3">
+                                                    {{ $publication->title }}
+                                                </p>
+                                            </div>
+                                            <div class="d-flex border-top">
+                                                <small class="flex-fill text-center text-secondary border-end py-2">
+                                                    <i class="fa fa-tag text-primary me-2"></i>
+                                                    {{ $publication->category->category }}
+                                                </small>
+                                                <small class="flex-fill text-center text-secondary border-end py-2">
+                                                    <i class="fa fa-calendar text-primary me-2"></i>
+                                                    {{ $publication->created_at }}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="d-flex justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.1s">
+                        @if ($publikasi->count() > 0)
+                            {{ $publication->links }}
+                        @else
+                            <p>Tidak ada yang sesuai dengan kata kunci</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-start py-1">
+                <div class="text-center">
+                    <h3 class="text-center">File Pengumuman dan Artikel</h3>
+                    <div class="row">
+                        @foreach ($file as $files)
+                            @if ($files->status == 'published')
+                                <div class="col-lg-4 col-md-6 mb-3 wow fadeInUp" data-wow-delay="0.1s"
+                                    style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                                    <a href="detail-berita.php" class="text-decoration-none">
+                                        <div class="service-item h-100 d-flex flex-column justify-content-between">
+                                            <div class="text-center p-4 pb-0">
+                                                <p class="fs-7 fw-bold text-dark my-3">
+                                                    {{ $files->title }}
+                                                </p>
+                                            </div>
+                                            <div class="d-flex border-top">
+                                                <small class="flex-fill text-center text-secondary border-end py-2">
+                                                    <i class="fa fa-tag text-primary me-2"></i>
+                                                    {{ $files->category->category }}
+                                                </small>
+                                                <small class="flex-fill text-center text-secondary border-end py-2">
+                                                    <i class="fa fa-calendar text-primary me-2"></i>
+                                                    {{ $files->created_at }}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="d-flex justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.1s">
+                        @if ($file->count() > 0)
+                            {{ $file->links }}
+                        @else
+                            <p>Tidak ada yang sesuai dengan kata kunci</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-start py-1">
+                <div class="text-center">
+                    <h3 class="text-center">Program Diklat</h3>
+                    <div class="row">
+                        @foreach ($program as $programs)
+                            @if ($programs->status == 'published')
+                                <div class="col-lg-4 col-md-6 mb-3 wow fadeInUp" data-wow-delay="0.1s"
+                                    style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                                    <a href="detail-berita.php" class="text-decoration-none">
+                                        <div class="service-item h-100 d-flex flex-column justify-content-between">
+                                            <div class="text-center p-4 pb-0">
+                                                <p class="fs-7 fw-bold text-dark my-3">
+                                                    {{ $programs->nama_diklat }}
+                                                </p>
+                                            </div>
+                                            <div class="d-flex border-top">
+                                                <small class="flex-fill text-center text-secondary border-end py-2">
+                                                    <i class="fa fa-calendar text-primary me-2"></i>
+                                                    {{ $programs->created_at }}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="d-flex justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.1s">
+                        @if ($program->count() > 0)
+                            {{ $program->links }}
+                        @else
+                            <p>Tidak ada yang sesuai dengan kata kunci</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div> --}}
     </section>
 @endsection

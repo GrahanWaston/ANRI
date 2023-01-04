@@ -70,7 +70,9 @@
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
+                        {{-- {!! $articles->render() !!} --}}
                     </div>
                     <aside class="col-lg-4 order-sm-2">
                         <h5 class="pb-2">Artikel Lainnya</h5>

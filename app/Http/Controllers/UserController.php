@@ -21,7 +21,7 @@ class UserController extends Controller
             'user' => User::oldest()->get()
         ]);
     }
-    
+
 
     public function changePassword()
     {
@@ -80,7 +80,7 @@ class UserController extends Controller
             'status' => 'required'
         ]);
 
-        // dd('Registrasi Berhasil');  
+        // dd('Registrasi Berhasil');
 
         $validateData['password'] = bcrypt($validateData['password']);
 
@@ -139,9 +139,9 @@ class UserController extends Controller
         $user->status = $request->status;
         $user->save();
 
-        $request->session()->flash('success', 'Update berhasil !');
+        // $request->session()->flash();
 
-        return redirect('/manajemen-user');
+        return redirect('/manajemen-user')->with('success', 'Update berhasil !');
     }
 
     /**

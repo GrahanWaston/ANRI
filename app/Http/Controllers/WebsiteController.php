@@ -149,7 +149,7 @@ class WebsiteController extends Controller
             'submenu' => SubMenu::get(),
             'mainmenu' => Pages::get(),
             'publications' => Publication::latest()->paginate(),
-            'articles' => FileDownload::where('category_id', 3)->get(),
+            'articles' => FileDownload::where('category_id', 3)->paginate(5),
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
@@ -163,8 +163,8 @@ class WebsiteController extends Controller
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
             'mainmenu' => Pages::get(),
-            'publications' => Publication::latest()->paginate(),
-            'news' => Publication::where('category_id', 1)->get(),
+            'publications' => Publication::latest()->paginate(3),
+            'news' => Publication::where('category_id', 1)->paginate(3),
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
@@ -179,7 +179,7 @@ class WebsiteController extends Controller
             'mainmenu' => Pages::get(),
             'submenu' => SubMenu::get(),
             'publications' => Publication::latest()->paginate(),
-            'infografis' => Publication::where('category_id', 2)->get(),
+            'infografis' => Publication::where('category_id', 2)->paginate(3),
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
@@ -241,38 +241,14 @@ class WebsiteController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('keywords');
-        // $publikasi = Publication::where('title', 'like', '%' . $search . '%')->paginate(5)->withquerystring();
-
-        $publikasi = Publication::query()
-            ->select(
-                'id',
-                'title',
-                // DB::raw('chancellor AS leader'),
-                // DB::raw('school as type')
-            )
-            ->where('title', 'LIKE', '%' . $search . '%');
-        $file = FileDownload::query()
-            ->select(
-                'id',
-                'title',
-                // DB::raw('ceo AS leader'),
-                // DB::raw('company as type')
-            )
-            ->where('title', 'LIKE', '%' . $search . '%');
-        $program = Program::query()
-            ->select(
-                'id',
-                'nama_diklat as title',
-                // DB::raw('ceo AS leader'),
-                // DB::raw('company as type')
-            )
-            ->where('nama_diklat', 'LIKE', '%' . $search . '%');
-        $file->union($publikasi)->union($program)->paginate();
-
-        dd($file);
+        $publikasi = Publication::where('title', 'like', '%' . $search . '%')->latest()->paginate(3, ['*'], 'publikasi')->withquerystring();
+        $file = FileDownload::where('title', 'like', '%' . $search . '%')->paginate(3, ['*'], 'file')->withquerystring();
+        $program = Program::where('nama_diklat', 'like', '%' . $search . '%')->paginate(3, ['*'], 'program')->withquerystring();
 
         return view('website.search', [
             'publikasi' => $publikasi,
+            'file' => $file,
+            'program' => $program,
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
             'mainmenu' => Pages::get(),
