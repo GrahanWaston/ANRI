@@ -154,7 +154,8 @@
                             style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
                             <div class="service-item h-100 d-flex flex-column justify-content-between">
                                 <div class="position-relative overflow-hidden">
-                                    <img class="img-fluid" src="{{ asset('storage/' . $berita->image_main) }}" alt="">
+                                    <img class="img-fluid" src="{{ asset('storage/' . $berita->image_main) }}"
+                                        alt="">
                                     <div
                                         class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
                                         <a href="#"
@@ -228,4 +229,33 @@
             </div>
         </div>
     </div>
+    <script>
+        console.log('cicicuit');
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel({
+                autoplay: true,
+                smartSpeed: 1000,
+                margin: 25,
+                loop: true,
+                center: true,
+                dots: false,
+                nav: true,
+                navText: [
+                    '<i class="bi bi-chevron-left"></i>',
+                    '<i class="bi bi-chevron-right"></i>'
+                ],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2
+                    },
+                    992: {
+                        items: 3
+                    }
+                }
+            });
+        });
+    </script>
 @endsection

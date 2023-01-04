@@ -221,6 +221,7 @@ class WebsiteController extends Controller
     {
 
         $website = Website::find(1);
+        // return Testimoni::get();
         // return Pages::get();
         return view('website.beranda', [
             'menu' => MenuStatis::get(),
