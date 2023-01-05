@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Jenis;
 use App\Models\Jenjang;
+use App\Models\MenuHyperlink;
 use App\Models\MenuStatis;
 use App\Models\Pages;
 use App\Models\Program;
 use App\Models\SubMenu;
+use App\Models\SubMenuHyperlink;
 use App\Models\Website;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
@@ -52,6 +54,8 @@ class ProgramController extends Controller
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 

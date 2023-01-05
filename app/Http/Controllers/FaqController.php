@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faq;
+use App\Models\MenuHyperlink;
 use App\Models\MenuStatis;
 use App\Models\Pages;
 use App\Models\SubMenu;
+use App\Models\SubMenuHyperlink;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +38,9 @@ class FaqController extends Controller
             'link' => DB::table('link')->get(),
             'faq' => Faq::get(),
             'testimoni' => Testimoni::oldest(),
-            'menus' => Pages::get()
+            'menus' => Pages::get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 

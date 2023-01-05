@@ -78,9 +78,18 @@
                                             {{ $menu->name }}
                                         </a>
                                         <div class="action text-muted">
-                                            <a href="/update-menu/{{ $menu->id }}/edit">Edit</a>
+                                            <a href="/manajemen-menu-hyperlink/{{ $menu->id }}/edit">Edit</a>
                                             <div class="vr mx-1"></div>
-                                            <a href="#" class="text-danger btn-delete">Trash</a>
+                                            <a style="color:black" href="{{ route('manajemen-menu-hyperlink.destroy', $menu->id) }}"
+                                                onclick="event.preventDefault(); document.getElementById('delete-form-{{ $menu->id }}').submit();">
+                                                Trash
+                                            </a>
+                                            <form id="delete-form-{{ $menu->id }}"
+                                                action="{{ route('manajemen-menu-hyperlink.destroy', $menu->id) }}" method="POST"
+                                                style="display: none;">
+                                                @method('delete')
+                                                @csrf
+                                            </form>
                                         </div>
                                     </td>
                                     <td>{{ $menu->url }}</td>

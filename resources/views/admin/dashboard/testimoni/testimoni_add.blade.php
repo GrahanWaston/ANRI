@@ -59,65 +59,6 @@
                                                 <input name="status" type="hidden" value="draft">
                                             </div>
                                         </div>
-                                        <div class="tab-pane" id="en">
-                                            <div class="mb-3">
-                                                <input type="text" class="form-control" placeholder="Add Title">
-                                            </div>
-                                            <div class="card border-0 shadow-none mb-3">
-                                                <div id="editor-en" style="height:300px;"></div>
-                                            </div>
-                                            <div class="card border-0 shadow-none mb-3" data-template="accordion">
-                                                <div class="card-header font-weight-bold">Accordion</div>
-                                                <div class="card-body">
-                                                    <div class="mb-3">
-                                                        <label for="" class="form-label">Title</label>
-                                                        <input type="text" class="form-control" id="accordion-title">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="" class="form-label">Description</label>
-                                                        <textarea name="" id="accordion-description" cols="30" rows="5" class="form-control"></textarea>
-                                                    </div>
-                                                    <button class="btn btn-add-accordion btn-primary" type="button">
-                                                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
-                                                            width="24" height="24" viewBox="0 0 24 24"
-                                                            stroke-width="2" stroke="currentColor" fill="none"
-                                                            stroke-linecap="round" stroke-linejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <line x1="12" y1="5" x2="12"
-                                                                y2="19" />
-                                                            <line x1="5" y1="12" x2="19"
-                                                                y2="12" />
-                                                        </svg>
-                                                        Add Accordion
-                                                    </button>
-                                                </div>
-                                                <div class="table-responsive mb-0">
-                                                    <table class="table" id="table-accordion-list">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Title</th>
-                                                                <th>Description</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr data-id="1">
-                                                                <td class="title">Some Title</td>
-                                                                <td class="desc">Lorem ipsum dolor sit amet consectetur,
-                                                                    adipisicing elit. Nisi, repellendus.</td>
-                                                                <td class="text-nowrap" valign="top">
-                                                                    <a href="#" class="btn-edit-accordion">Edit</a>
-                                                                    <div class="vr mx-1"></div>
-                                                                    <a href="#"
-                                                                        class="text-danger btn-delete-accordion">Delete</a>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

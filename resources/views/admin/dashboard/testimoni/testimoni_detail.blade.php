@@ -50,13 +50,16 @@
                                             <div class="card border-0 shadow-none mb-3">
                                                 <label for="" class="form-label">Testimoni</label>
                                                 <div class="form-group">
-                                                    <textarea class="tinymce-editor  @error('jabatan') is-invalid @enderror" id="editortiny" name="testimoni">{{ $data_testimoni->testimoni }}</textarea>
+                                                    <textarea class="tinymce-editor  @error('testimoni') is-invalid @enderror" id="editortiny" name="testimoni">{{ $data_testimoni->testimoni }}</textarea>
                                                     @error('testimoni')
                                                         <div class="invalid-feedback">
                                                             Testimoni harus di isi terlebih dahulu!
                                                         </div>
                                                     @enderror
                                                 </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <input name="status" type="hidden" value="{{ $data_testimoni->status }}">
                                             </div>
                                         </div>
                                     </div>
@@ -77,36 +80,6 @@
             display: none;
         }
     </style>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('.btn-publish').on('click', function() {
-                Swal.fire({
-                    title: 'Tambah Testimoni?',
-                    text: "Apakah anda yakin?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            'Success!',
-                            'Testimoni Berhasil ditambah',
-                            'success',
-                        ).then((result) => {
-                            window.location = "?page=testimoni";
-                        })
-                    }
-                })
-            });
-        });
-    </script>
-
 
     <script type="text/javascript">
         $(function() {

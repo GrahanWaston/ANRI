@@ -224,6 +224,9 @@
                                     <a class=" dropdown-item" href="/manajemen-menu-hyperlink">
                                         Menu Hyperlink
                                     </a>
+                                    <a class=" dropdown-item" href="/manajemen-sub-menu">
+                                        SubMenu 
+                                    </a>
                                     <a class=" dropdown-item" href="/manajemen-submenu-hyperlink">
                                         SubMenu Hyperlink
                                     </a>

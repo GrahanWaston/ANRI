@@ -98,13 +98,22 @@
                                 <tr>
                                     <td><input type="checkbox"></td>
                                     <td>
-                                        <a href="/pages/{{ $pages->id }}/edit" class="font-weight-bold">{{ $pages->judul }}</a>
+                                        <a href="/pages/{{ $pages->id }}/edit"
+                                            class="font-weight-bold">{{ $pages->judul }}</a>
                                         <div class="action text-muted">
                                             <a href="/pages/{{ $pages->id }}/edit">Edit</a>
                                             <div class="vr mx-1"></div>
                                             <a href="#">Draft</a>
                                             <div class="vr mx-1"></div>
-                                            <a href="#" class="text-danger btn-delete">Trash</a>
+                                            {{-- <a href="#" class="text-danger btn-delete">Trash</a> --}}
+                                            <a style="color:black" href="{{ route('pages.destroy', $pages->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $pages->id }}').submit();">
+                                                Trash
+                                            </a>
+                                            <form id="delete-form-{{ $pages->id }}" action="{{ route('pages.destroy', $pages->id) }}"
+                                                method="POST" style="display: none;">
+                                                @method('delete')
+                                               @csrf
+                                           </form>
                                             <div class="vr mx-1"></div>
                                             <a href="#">View</a>
                                         </div>
@@ -113,7 +122,7 @@
                                         <div>{{ $pages->nama_menu }}</div>
                                     </td>
                                     <td>
-                                        
+
                                         <div>{{ $pages->created_at }}</div>
                                     </td>
                                 </tr>
@@ -276,8 +285,7 @@
                 '.nav-item').addClass('active');
         });
     </script>
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>
     <script type="text/javascript">
         $(function() {

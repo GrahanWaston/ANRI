@@ -76,9 +76,14 @@ class SubMenuHyperlinkController extends Controller
      * @param  \App\Models\SubMenuHyperlink  $subMenuHyperlink
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubMenuHyperlink $subMenuHyperlink)
+    public function edit($id)
     {
-        //
+        $submenus = SubMenuHyperlink::find($id);
+        return view('admin.dashboard.menu.submenu_hyperlink_update', [
+            // 'dynamic_adds' => MenuDinamis::latest()->get(),
+            'menus' => MenuStatis::oldest()->get(),
+            'submenus' => $submenus
+        ]);
     }
 
     /**
@@ -88,9 +93,17 @@ class SubMenuHyperlinkController extends Controller
      * @param  \App\Models\SubMenuHyperlink  $subMenuHyperlink
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubMenuHyperlink $subMenuHyperlink)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required',
+            'url' => 'required',
+            'menu_id'=> 'required'
+        ]);
+
+        SubMenuHyperlink::where('id', $id)->update($validateData);
+
+        return redirect('/manajemen-submenu-hyperlink')->with('success', 'SubMenu Hyperlink berhasil di update');
     }
 
     /**
@@ -99,8 +112,11 @@ class SubMenuHyperlinkController extends Controller
      * @param  \App\Models\SubMenuHyperlink  $subMenuHyperlink
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubMenuHyperlink $subMenuHyperlink)
+    public function destroy($id)
     {
-        //
+        $menu = SubMenuHyperlink::find($id);
+        $menu->delete();
+        // User::destroy($user->id);
+        return redirect('/manajemen-submenu-hyperlink')->with('success', 'Sub Menu berhasil dihapus!');
     }
 }

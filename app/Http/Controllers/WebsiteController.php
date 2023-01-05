@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FileDownload;
 use App\Models\Jenis;
 use App\Models\Layanan;
+use App\Models\MenuHyperlink;
 use App\Models\MenuStatis;
 use App\Models\Pages;
 use App\Models\Program;
@@ -13,6 +14,7 @@ use App\Models\Sarpras;
 use App\Models\Section4;
 use App\Models\Slideshow;
 use App\Models\SubMenu;
+use App\Models\SubMenuHyperlink;
 use App\Models\Testimoni;
 use App\Models\Website;
 use Illuminate\Http\Request;
@@ -44,8 +46,10 @@ class WebsiteController extends Controller
             'submenu' => SubMenu::get(),
             'mainmenu' => Pages::get(),
             'website' => $website,
-            'link' => DB::table('link')->get(),
-            'menus' => Pages::get()
+            'link' => DB::table('link',)->get(),
+            'menus' => Pages::get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -60,7 +64,9 @@ class WebsiteController extends Controller
             'sarpras' => $sarpras,
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
-            'menus' => Pages::get()
+            'menus' => Pages::get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -78,6 +84,8 @@ class WebsiteController extends Controller
             'sarpras' => $sarpras,
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -91,11 +99,13 @@ class WebsiteController extends Controller
         return view('website.menu.view_submenu', [
             'menu' => MenuStatis::get(),
             'submenus' => $submenu,
-            'submenu' => SubMenu::latest()->get(),
+            'submenu' => SubMenu::get(),
             'mainmenu' => Pages::get(),
             'sarpras' => $sarpras,
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -109,6 +119,8 @@ class WebsiteController extends Controller
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -124,6 +136,8 @@ class WebsiteController extends Controller
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -138,6 +152,8 @@ class WebsiteController extends Controller
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -153,6 +169,8 @@ class WebsiteController extends Controller
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -168,6 +186,8 @@ class WebsiteController extends Controller
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -183,6 +203,8 @@ class WebsiteController extends Controller
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -198,6 +220,8 @@ class WebsiteController extends Controller
             'menus' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -214,6 +238,8 @@ class WebsiteController extends Controller
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
             'menus' => $menus,
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -235,7 +261,9 @@ class WebsiteController extends Controller
             'service' => Layanan::all(),
             'menus' => Pages::get(),
             'program' => Program::latest()->get(),
-            'berita' => Publication::latest()->get()
+            'berita' => Publication::latest()->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -255,6 +283,8 @@ class WebsiteController extends Controller
             'mainmenu' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -270,6 +300,8 @@ class WebsiteController extends Controller
             'mainmenu' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -285,6 +317,8 @@ class WebsiteController extends Controller
             'mainmenu' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 

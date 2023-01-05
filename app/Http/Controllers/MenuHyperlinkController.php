@@ -71,9 +71,12 @@ class MenuHyperlinkController extends Controller
      * @param  \App\Models\MenuHyperlink  $menuHyperlink
      * @return \Illuminate\Http\Response
      */
-    public function edit(MenuHyperlink $menuHyperlink)
+    public function edit($id)
     {
-        //
+        $menus = MenuHyperlink::find($id);
+        return view('admin.dashboard.menu.menu_hyperlink_update', [
+            'menus' => $menus
+        ]);
     }
 
     /**
@@ -83,9 +86,16 @@ class MenuHyperlinkController extends Controller
      * @param  \App\Models\MenuHyperlink  $menuHyperlink
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MenuHyperlink $menuHyperlink)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required',
+            'url' => 'required',
+        ]);
+
+        MenuHyperlink::where('id', $id)->update($validateData);
+
+        return redirect('/manajemen-menu-hyperlink')->with('success', 'Menu Hyperlink berhasil di update');
     }
 
     /**
@@ -94,8 +104,11 @@ class MenuHyperlinkController extends Controller
      * @param  \App\Models\MenuHyperlink  $menuHyperlink
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MenuHyperlink $menuHyperlink)
+    public function destroy($id)
     {
-        //
+        $menu = MenuHyperlink::find($id);
+        $menu->delete();
+        // User::destroy($user->id);
+        return redirect('/manajemen-menu-hyperlink')->with('success', 'Menu berhasil dihapus!');
     }
 }

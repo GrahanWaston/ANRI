@@ -140,6 +140,11 @@
                                     class="dropdown-item">{{ $submenus->name }}</a>
                             @endif
                         @endforeach
+                        @foreach ($submenu_hyperlink as $hyperlink)
+                            @if ($hyperlink->menu_id == 2)
+                                <a href="{{ $hyperlink->url }}" class="dropdown-item">{{ $hyperlink->name }}</a>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div class="nav-item dropdown">
@@ -152,6 +157,11 @@
                             @if ($submenus->menu_id == 3)
                                 <a href="/sub-menu/{{ $submenus->url }}"
                                     class="dropdown-item">{{ $submenus->name }}</a>
+                            @endif
+                        @endforeach
+                        @foreach ($submenu_hyperlink as $hyperlink)
+                            @if ($hyperlink->menu_id == 3)
+                                <a href="{{ $hyperlink->url }}" class="dropdown-item">{{ $hyperlink->name }}</a>
                             @endif
                         @endforeach
                     </div>
@@ -177,6 +187,11 @@
                                     class="dropdown-item">{{ $submenus->name }}</a>
                             @endif
                         @endforeach
+                        @foreach ($submenu_hyperlink as $hyperlink)
+                            @if ($hyperlink->menu_id == 5)
+                                <a href="{{ $hyperlink->url }}" class="dropdown-item">{{ $hyperlink->name }}</a>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div class="nav-item dropdown">
@@ -197,6 +212,11 @@
                                     class="dropdown-item">{{ $submenus->name }}</a>
                             @endif
                         @endforeach
+                        @foreach ($submenu_hyperlink as $hyperlink)
+                            @if ($hyperlink->menu_id == 6)
+                                <a href="{{ $hyperlink->url }}" class="dropdown-item">{{ $hyperlink->name }}</a>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <a href="/prasarana-sarana" class="nav-item nav-link">{{ $menu[6]->name }}</a>
@@ -214,10 +234,20 @@
                                 </div>
                             @endif
                         @endforeach
+                        @foreach ($submenu_hyperlink as $hyperlink)
+                            @if ($hyperlink->menu_id == $menus->id)
+                                <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
+                                    <a href="{{ $hyperlink->url }}" class="dropdown-item">{{ $hyperlink->name }}</a>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
                 @endforeach
                 @foreach ($mainmenu as $main)
                     <a href="/ANRI/{{ $main->nama_menu }}" class="nav-item nav-link">{{ $main->judul }}</a>
+                @endforeach
+                @foreach ($menu_hyperlink as $menuhyperlink)
+                    <a href="{{ $menuhyperlink->url }}" class="nav-item nav-link">{{ $menuhyperlink->name }}</a>
                 @endforeach
             </div>
             <!-- <a href="#" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block">Get Started</a> -->

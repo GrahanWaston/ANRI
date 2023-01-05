@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\HumanResource;
 use App\Models\Jabatan;
+use App\Models\MenuHyperlink;
 use App\Models\MenuStatis;
 use App\Models\Pages;
 use App\Models\ProfilInstansi;
 use App\Models\SubMenu;
+use App\Models\SubMenuHyperlink;
 use App\Models\Website;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,6 +39,8 @@ class ProfilInstansiController extends Controller
             'website' => $website,
             'link' => DB::table('link')->get(),
             'menus' => Pages::get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -51,6 +55,8 @@ class ProfilInstansiController extends Controller
             'website' => $website,
             'link' => DB::table('link')->get(),
             'menus' => Pages::get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -65,6 +71,8 @@ class ProfilInstansiController extends Controller
             'website' => $website,
             'link' => DB::table('link')->get(),
             'menus' => Pages::get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -79,6 +87,8 @@ class ProfilInstansiController extends Controller
             'website' => $website,
             'link' => DB::table('link')->get(),
             'menus' => Pages::get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -95,6 +105,8 @@ class ProfilInstansiController extends Controller
             'jabatan' => Jabatan::get(),
             'link' => DB::table('link')->get(),
             'menus' => Pages::get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
 
@@ -109,6 +121,8 @@ class ProfilInstansiController extends Controller
             'website' => $website,
             'link' => DB::table('link')->get(),
             'menus' => Pages::get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
         ]);
     }
     /**

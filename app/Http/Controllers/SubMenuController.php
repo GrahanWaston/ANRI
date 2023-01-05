@@ -16,7 +16,12 @@ class SubMenuController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.dashboard.menu.submenu_index', [
+            // 'dynamic_adds' => MenuDinamis::latest()->get(),
+            'menus' => MenuStatis::oldest()->get(),
+            // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
+            'submenus' =>SubMenu::oldest()->with('menus')->get()
+        ]);
     }
 
     /**
@@ -56,7 +61,7 @@ class SubMenuController extends Controller
 
         SubMenu::create($validateData);
 
-        return redirect('/manajemen-menu')->with('success', 'Sub Menu berhasil di tambahkan');
+        return redirect('/manajemen-sub-menu')->with('success', 'Sub Menu berhasil di tambahkan');
     }
 
     /**
@@ -78,12 +83,13 @@ class SubMenuController extends Controller
      */
     public function edit($id)
     {
-        // return view('admin.dashboard.menu.submenu_dinamis_update', [
-        //     // 'dynamic_adds' => MenuDinamis::latest()->get(),
-        //     'static_adds' => MenuStatis::latest()->get(),
-        //     // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
-        //     'static_submenu' =>SubMenu::latest()->with('menus')->get()
-        // ]);
+        $submenus = SubMenu::find($id);
+        return view('admin.dashboard.menu.submenu_update', [
+            // 'dynamic_adds' => MenuDinamis::latest()->get(),
+            'menus' => MenuStatis::oldest()->get(),
+            // 'dynamic_submenu' =>SubMenuDinamis::latest()->get(),
+            'submenus' => $submenus
+        ]);
     }
 
     /**
@@ -93,9 +99,18 @@ class SubMenuController extends Controller
      * @param  \App\Models\SubMenu  $subMenu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubMenu $subMenu)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required',
+            'url' => 'required',
+            'menu_id' => 'required',
+            'body' => 'required'
+        ]);
+
+        SubMenu::where('id', $id)->update($validateData);
+
+        return redirect('/manajemen-sub-menu')->with('success', 'SubMenu berhasil di update');
     }
 
     /**
@@ -104,8 +119,11 @@ class SubMenuController extends Controller
      * @param  \App\Models\SubMenu  $subMenu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubMenu $subMenu)
+    public function destroy($id)
     {
-        //
+        $menu = SubMenu::find($id);
+        $menu->delete();
+        // User::destroy($user->id);
+        return redirect('/manajemen-sub-menu')->with('success', 'Sub Menu berhasil dihapus!');
     }
 }

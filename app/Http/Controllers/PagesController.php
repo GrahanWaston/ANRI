@@ -44,7 +44,7 @@ class PagesController extends Controller
             'nama_menu' => 'required'
         ]);
 
-        // dd('Registrasi Berhasil');  
+        // dd('Registrasi Berhasil');
         // return redirect($validateData);
 
         Pages::create($validateData);
@@ -106,6 +106,9 @@ class PagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $menu = Pages::find($id);
+        $menu->delete();
+        // User::destroy($user->id);
+        return redirect('/pages')->with('success', 'Pages berhasil dihapus!');
     }
 }

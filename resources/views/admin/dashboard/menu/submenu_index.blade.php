@@ -10,13 +10,13 @@
                         Manajemen Menu
                     </div>
                     <h2 class="page-title">
-                        Sub Menu Hyperlink
+                        Sub Menu 
                     </h2>
                 </div>
                 <div class="col-auto d-print-none">
                     <div class="btn-list">
-                        <a href="/manajemen-submenu-hyperlink/create" class="btn btn-primary d-inline-block">
-                            <i class="fa fa-plus me-2"></i> Tambah Sub Menu Hyperlink
+                        <a href="/manajemen-sub-menu/create" class="btn btn-primary d-inline-block">
+                            <i class="fa fa-plus me-2"></i> Tambah Sub Menu 
                         </a>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                                 Table Data
                             </div>
                             <h2 class="page-title">
-                                Sub Menu Hyperlink
+                               Sub Menu 
                             </h2>
                         </div>
                         <div class="col-auto">
@@ -71,7 +71,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($submenus as $submenu)
+                            @foreach ($submenus->skip(18) as $submenu)
                                 <tr>
                                     <td><input type="checkbox"></td>
                                     <td>
@@ -79,18 +79,16 @@
                                             {{ $submenu->name }}
                                         </a>
                                         <div class="action text-muted">
-                                            <a href="/manajemen-submenu-hyperlink/{{ $submenu->id }}/edit">Edit</a>
+                                            <a href="/manajemen-sub-menu/{{ $submenu->id }}/edit">Edit</a>
                                             <div class="vr mx-1"></div>
-                                            <a style="color:black" href="{{ route('manajemen-submenu-hyperlink.destroy', $submenu->id) }}"
-                                                onclick="event.preventDefault(); document.getElementById('delete-form-{{ $submenu->id }}').submit();">
+                                            <a style="color:black" href="{{ route('manajemen-sub-menu.destroy', $submenu->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $submenu->id }}').submit();">
                                                 Trash
                                             </a>
-                                            <form id="delete-form-{{ $submenu->id }}"
-                                                action="{{ route('manajemen-submenu-hyperlink.destroy', $submenu->id) }}" method="POST"
-                                                style="display: none;">
+                                            <form id="delete-form-{{ $submenu->id }}" action="{{ route('manajemen-sub-menu.destroy', $submenu->id) }}"
+                                                method="POST" style="display: none;">
                                                 @method('delete')
-                                                @csrf
-                                            </form>
+                                               @csrf
+                                           </form>
                                         </div>
                                     </td>
                                     <td>{{ $submenu->url }}</td>
@@ -110,7 +108,8 @@
                 .parents('.nav-item').addClass('active');
         });
     </script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>
     <script type="text/javascript">
         $(function() {
