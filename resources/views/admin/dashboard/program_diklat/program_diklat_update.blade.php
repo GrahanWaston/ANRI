@@ -26,7 +26,8 @@
                                 <div class="mb-3">
                                     <label for="kode_diklat" class="form-label">Kode Diklat</label>
                                     <input type="text" class="form-control @error('kode_diklat') is-invalid @enderror"
-                                        id="kode_diklat" name="kode_diklat" value="{{ $data_program->kode_diklat }}">
+                                        id="kode_diklat" name="kode_diklat"
+                                        value="{{ old('kode_diklat') ?? $data_program->kode_diklat }}">
                                     @error('kode_diklat')
                                         <div class="invalid-feedback">
                                             Kode diklat harus di isi terlebih dahulu!
@@ -70,7 +71,8 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Nama Diklat</label>
                                     <input type="text" class="form-control @error('nama_diklat') is-invalid @enderror"
-                                        id="nama_diklat" name="nama_diklat" value="{{ $data_program->nama_diklat }}">
+                                        id="nama_diklat" name="nama_diklat"
+                                        value="{{ old('nama_diklat') ?? $data_program->nama_diklat }}">
                                     @error('nama_diklat')
                                         <div class="invalid-feedback">
                                             Nama diklat harus di isi terlebih dahulu!
@@ -80,8 +82,9 @@
                                 <div class="input-icon mb-3">
                                     <label for="" class="form-label">Jadwal Mulai </label>
                                     <div class="input-group date " id="datepicker">
-                                        <input type="text" class="form-control @error('start_date') is-invalid @enderror" id="start_date" name="start_date"
-                                            value="{{ $data_program->start_date }}">
+                                        <input type="text" class="form-control @error('start_date') is-invalid @enderror"
+                                            id="start_date" name="start_date"
+                                            value="{{ old('start_date') ?? $data_program->start_date }}">
                                         <span class="input-group-append">
                                             <span class="input-group-text bg-light d-block">
                                                 <i class="fa fa-calendar"></i>
@@ -101,7 +104,7 @@
                                 </div>  --}}
                                     <div class="input-group date" id="enddatepicker">
                                         <input type="text" class="form-control @error('end_date') is-invalid @enderror"
-                                            id="end_date" name="end_date" value="{{ $data_program->end_date }}">
+                                            id="end_date" name="end_date" value="{{ old('end_date') ?? $data_program->end_date }}">
                                         <span class="input-group-append">
                                             <span class="input-group-text bg-light d-block">
                                                 <i class="fa fa-calendar"></i>
@@ -117,7 +120,7 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Tempat Diklat</label>
                                     <input type="text" class="form-control @error('tempat_diklat') is-invalid @enderror"
-                                        id="tempat_diklat" name="tempat_diklat" value="{{ $data_program->tempat_diklat }}">
+                                        id="tempat_diklat" name="tempat_diklat" value="{{ old('tempat_diklat') ?? $data_program->tempat_diklat }}">
                                     @error('tempat_diklat')
                                         <div class="invalid-feedback">
                                             Tempat Diklat harus di isi terlebih dahulu!
@@ -127,7 +130,7 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Biaya</label>
                                     <input type="text" class="form-control @error('biaya') is-invalid @enderror"
-                                        id="biaya" name="biaya" value="{{ $data_program->biaya }}">
+                                        id="biaya" name="biaya" value="{{ old('biaya') ?? $data_program->biaya }}">
                                     @error('biaya')
                                         <div class="invalid-feedback">
                                             Biaya harus di isi terlebih dahulu!
@@ -137,7 +140,7 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Durasi</label>
                                     <input type="text" class="form-control @error('durasi') is-invalid @enderror"
-                                        id="durasi" name="durasi" value="{{ $data_program->durasi }}">
+                                        id="durasi" name="durasi" value="{{ old('durasi') ?? $data_program->durasi }}">
                                     @error('durasi')
                                         <div class="invalid-feedback">
                                             Durasi harus di isi terlebih dahulu!
@@ -160,7 +163,7 @@
                                 <label for="" class="form-label">Deskripsi</label>
                                 <div class="card border-0 shadow-none mb-3">
                                     <div class="form-group">
-                                        <textarea class="tinymce-editor @error('deskripsi') is-invalid @enderror" id="editortiny" name="deskripsi">{{ $data_program->deskripsi }}</textarea>
+                                        <textarea class="tinymce-editor @error('deskripsi') is-invalid @enderror" id="editortiny" name="deskripsi">{{ old('deskripsi') ?? $data_program->deskripsi }}</textarea>
                                         @error('deskripsi')
                                             <div class="invalid-feedback">
                                                 Deskripsi harus di isi terlebih dahulu!

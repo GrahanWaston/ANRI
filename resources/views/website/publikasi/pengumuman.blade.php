@@ -15,28 +15,28 @@
         </div>
     </div>
     <!-- Page Header End -->
-
-
     <div class="container py-5">
-        <div class="row my-4 justify-content-center">
-            <div class="col-3"></div>
-            <div class="col-3 px-3">
-            </div>
-            <div class="col-3 px-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Tahun</option>
-                    <option value="1">2022</option>
-                    <option value="2">2021</option>
-                    <option value="3">2020</option>
-                </select>
-            </div>
-            <div class="col-3 px-3">
-                <div class="d-flex form-inputs">
-                    <input class="form-control" type="text" placeholder="Masukkan Kata Kunci...">
-                    <i class="fa fa-search"></i>
+        <form action="/hasil-pencarian-pengumuman">
+            <div class="row my-4 justify-content-center">
+                <div class="col-3"></div>
+                <div class="col-3 px-3">
+                </div>
+                <div class="col-3 px-3">
+                    <select class="form-select" aria-label="Default select example" name="tahun">
+                        <option selected disabled>Tahun</option>
+                        @foreach ($pengumuman as $article)
+                            <option value="{{ $article->year }}">{{ $article->year }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-3 px-3">
+                    <div class="d-flex form-inputs">
+                        <input class="form-control" name="keywords" type="text" placeholder="Masukkan Kata Kunci...">
+                        <i class="fa fa-search"></i>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
         <div class="row align-items-start py-5">
             <div class="mx-auto">
                 <div class="row">
@@ -74,9 +74,9 @@
                     </div>
                     <aside class="col-lg-4 order-sm-2">
                         <h5 class="pb-2">Pengumuman Lainnya</h5>
-                        @foreach ($pengumuman as $pengumumans)
+                        @foreach ($pengumuman->take(3) as $pengumumans)
                             @if ($pengumumans->status == 'published')
-                                <a href="program-diklat-detail.php" class="text-decoration-none py-5">
+                                <a href="{{ asset('storage/' . $pengumumans->file) }}" class="text-decoration-none py-5">
                                     <div class="service-item d-flex bg-white flex-column justify-content-between">
                                         <div class="text-center p-4 pb-0">
                                             {{-- <img class="card-img-top"
@@ -93,7 +93,7 @@
                                             </small>
                                             <small class="flex-fill text-center text-secondary border-end py-2">
                                                 <i class="fa fa-calendar text-primary me-2"></i>
-                                                {{ $pengumumans->created_at }}
+                                                {{ $pengumumans->created_at->translatedFormat('d F Y') }}
                                             </small>
                                         </div>
                                     </div>

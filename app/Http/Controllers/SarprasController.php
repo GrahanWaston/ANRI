@@ -91,7 +91,6 @@ class SarprasController extends Controller
     {
         $validateData = $request->validate([
             'deskripsi' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
         if ($request->hasFile('image')) {

@@ -26,7 +26,7 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Nama</label>
                                     <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                        id="name" name="nama" value="{{ $data_service->nama }}">
+                                        id="name" name="nama" value="{{ old('nama') ?? $data_service->nama }}">
                                     @error('nama')
                                         <div class="invalid-feedback">
                                             Nama harus di isi terlebih dahulu!
@@ -36,7 +36,7 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Alamat Situs Layanan</label>
                                     <input type="text" class="form-control @error('url') is-invalid @enderror"
-                                        id="url" name="url" value="{{ $data_service->url }}">
+                                        id="url" name="url" value="{{ old('url') ?? $data_service->url }}">
                                     @error('url')
                                         <div class="invalid-feedback">
                                             Alamat situs harus di isi terlebih dahulu!
@@ -45,7 +45,7 @@
                                 </div>
                                 <label for="deskripsi" class="form-label">Deskripsi</label>
                                 <div class="card border-0 shadow-none mb-3">
-                                    <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" cols="30" rows="10">{{ $data_service->deskripsi }}</textarea>
+                                    <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" cols="30" rows="10">{{ old('deskripsi') ?? $data_service->deskripsi }}</textarea>
                                     @error('deskripsi')
                                         <div class="invalid-feedback">
                                             Deksripsi harus di isi terlebih dahulu!

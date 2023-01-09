@@ -71,9 +71,11 @@ Route::get('/artikel', [WebsiteController::class, 'artikel']);
 
 // Berita
 Route::get('/berita', [WebsiteController::class, 'berita']);
+Route::get('/berita-detail/{Publication:slug}', [WebsiteController::class, 'berita_detail']);
 
 // Infografis
 Route::get('/infografis', [WebsiteController::class, 'infografis']);
+Route::get('/informasi-detail/{Publication:slug}', [WebsiteController::class, 'infografis_detail']);
 
 // Pengumuman
 Route::get('/pengumuman', [WebsiteController::class, 'pengumuman']);
@@ -91,6 +93,9 @@ Route::get('/kalender-diklat', [ProgramController::class, 'getEvent'])->name('ge
 // Search
 Route::get('/hasil-pencarian', [WebsiteController::class, 'search']);
 Route::get('/hasil-pencarian-berita-artikel', [WebsiteController::class, 'search_berita']);
+Route::get('/hasil-pencarian-infografis-artikel', [WebsiteController::class, 'search_infografis']);
+Route::get('/hasil-pencarian-artikel', [WebsiteController::class, 'search_artikel']);
+Route::get('/hasil-pencarian-pengumuman', [WebsiteController::class, 'search_pengumuman']);
 
 Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
     // dashboard

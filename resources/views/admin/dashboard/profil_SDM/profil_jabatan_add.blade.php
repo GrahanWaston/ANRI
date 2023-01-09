@@ -23,7 +23,7 @@
                     <div class="col-md-8 mb-4 mb-md-0">
                         <div class="mb-3">
                             <input type="text" class="form-control @error('jabatan') is-invalid @enderror" placeholder="Masukkan Jabatan" id="jabatan"
-                                name="jabatan">
+                                name="jabatan" value="{{ old('jabatan') }}">
                             @error('jabatan')
                                 <div class="invalid-feedback">
                                     Jabatan harus di isi terlebih dahulu!

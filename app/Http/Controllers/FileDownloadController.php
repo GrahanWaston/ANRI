@@ -95,7 +95,6 @@ class FileDownloadController extends Controller
             'title' => 'required',
             'category_id' => 'required',
             'year' => 'required',
-            'file' => 'required|file|mimes:pdf',
         ]);
 
         if ($request->hasFile('file')) {

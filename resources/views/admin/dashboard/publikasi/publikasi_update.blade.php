@@ -33,7 +33,7 @@
                     <div class="col-md-8 mb-4 mb-md-0">
                         <div class="mb-3">
                             <input type="text" class="form-control @error('title') is-invalid @enderror" placeholder="Add Title" id="title" name="title"
-                                value="{{ $data_publication->title }}">
+                            value="{{ old('title') ?? $data_publication->title }}">
                                 @error('title')
                                         <div class="invalid-feedback">
                                             Foto utama harus di isi terlebih dahulu!

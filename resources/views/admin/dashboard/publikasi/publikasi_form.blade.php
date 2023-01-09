@@ -28,7 +28,7 @@
                     <div class="col-md-8 mb-4 mb-md-0">
                         <div class="mb-3">
                             <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                placeholder="Add Title" id="title" name="title">
+                                placeholder="Add Title" id="title" name="title" value="{{ old('title') }}">
                             @error('title')
                                 <div class="invalid-feedback">
                                     Judul harus di isi terlebih dahulu!
@@ -59,7 +59,7 @@
                         </div>
                         <div class="card border-0 shadow-none mb-3">
                             <div class="form-group">
-                                <textarea class="tinymce-editor @error('body') is-invalid @enderror" id="editortiny" name="body"></textarea>
+                                <textarea class="tinymce-editor @error('body') is-invalid @enderror" id="editortiny" name="body">{{ old('body') }}</textarea>
                                 @error('body')
                                     <div class="invalid-feedback">
                                         Body harus di isi terlebih dahulu!

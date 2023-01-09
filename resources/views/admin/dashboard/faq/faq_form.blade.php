@@ -28,7 +28,7 @@
                                             <div class="mb-3">
                                                 <input type="text"
                                                     class="form-control @error('judul') is-invalid @enderror"
-                                                    placeholder="Masukkan Judul" id="judul" name="judul">
+                                                    placeholder="Masukkan Judul" id="judul" name="judul" value="{{ old('judul') }}">
                                                 @error('judul')
                                                     <div class="invalid-feedback">
                                                         Judul harus di isi terlebih dahulu!
@@ -36,7 +36,7 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <textarea class="tinymce-editor @error('text') is-invalid @enderror" id="editortiny" name="text"></textarea>
+                                                <textarea class="tinymce-editor @error('text') is-invalid @enderror" id="editortiny" name="text">{{ old('judul') }}</textarea>
                                                 @error('text')
                                                     <div class="invalid-feedback">
                                                         Deskripsi harus di isi terlebih dahulu!

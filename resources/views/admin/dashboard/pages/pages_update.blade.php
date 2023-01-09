@@ -23,7 +23,7 @@
                         <div class="tab-pane active" id="id">
                             <div class="mb-3">
                                 <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul"
-                                    placeholder="Masukkan Judul" value="{{ $page->judul }}">
+                                    placeholder="Masukkan Judul" value="{{ old('judul') ?? $page->judul }}">
                                     @error('judul')
                                         <div class="invalid-feedback">
                                             Judul harus di isi terlebih dahulu!
@@ -36,7 +36,7 @@
                             </div>
                             <div class="card border-0 shadow-none mb-3">
                                 <div class="form-group">
-                                    <textarea class="tinymce-editor @error('body') is-invalid @enderror" id="editortiny" name="body">{{ $page->body }}</textarea>
+                                    <textarea class="tinymce-editor @error('body') is-invalid @enderror" id="editortiny" name="body">{{ old('body') ?? $page->body }}</textarea>
                                     @error('body')
                                         <div class="invalid-feedback">
                                             Body harus di isi terlebih dahulu!

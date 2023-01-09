@@ -97,25 +97,12 @@ class SlideshowController extends Controller
             'judul' => 'required',
             'deskripsi' => 'required',
             'tautan' => 'required',
-            'image_dekstop' => 'image|mimes:jpeg,png,jpg',
-            'image_mobile' => 'image|mimes:jpeg,png,jpg',
-            'status' => 'required'
         ]);
 
-        if ($request->hasFile('image_dekstop') && $request->hasFile('image_mobile')) {
-            // if ($request->oldImageDekstop && $request->oldImageMobile) {
-               
-            //     Storage::delete($request->oldImageDektsop);
-            //     Storage::delete($request->oldImageMobile);
-            // }
+        if ($request->hasFile('image_dekstop')) {
             $validateData['image_dekstop'] = $request->file('image_dekstop')->store('img');
-            $validateData['image_mobile'] = $request->file('image_mobile')->store('img');
-            // return $validateData;
         }
         
-        // dd($validateData);  
-        // return redirect($validateData);
-
         Slideshow::where('id', $id)->update($validateData);
 
         return redirect('/slideshow')->with('success', 'Slideshow berhasil di update');

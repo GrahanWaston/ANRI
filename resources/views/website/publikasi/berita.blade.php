@@ -35,7 +35,7 @@
                         @if ($berita->status == 'published')
                             <div class="col-lg-4 col-md-6 mb-3 wow fadeInUp" data-wow-delay="0.1s"
                                 style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
-                                <a href="detail-berita.php" class="text-decoration-none">
+                                <a href="/berita-detail/{{ $berita->slug }}" class="text-decoration-none">
                                     <div class="service-item h-100 d-flex flex-column justify-content-between">
                                         <div class="text-center p-4 pb-0">
                                             <img class="card-img-top" src="{{ asset('storage/' . $berita->image_main) }}"
@@ -51,7 +51,7 @@
                                             </small>
                                             <small class="flex-fill text-center text-secondary border-end py-2">
                                                 <i class="fa fa-calendar text-primary me-2"></i>
-                                                {{ $berita->created_at }}
+                                                {{ $berita->created_at->translatedFormat('d F Y') }}
                                             </small>
                                         </div>
                                     </div>

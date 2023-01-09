@@ -45,14 +45,13 @@ class HumanResourceController extends Controller
         $validateData = $request->validate([
             'nama' => 'required',
             'jabatan_id' => 'required',
+            'keterangan' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
         if ($request->hasFile('image')) {
             $validateData['image'] = $request->file('image')->store('img');
         }
-        // dd('Registrasi Berhasil');  
-        // return redirect($validateData);
 
         HumanResource::create($validateData);
 
@@ -96,16 +95,13 @@ class HumanResourceController extends Controller
         $validateData = $request->validate([
             'nama' => 'required',
             'jabatan_id' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'keterangan' => 'required',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
         if ($request->hasFile('image')) {
             $validateData['image'] = $request->file('image')->store('img');
-            // return $validateData;
         }
-
-        // dd($validateData);  
-        // return redirect($validateData);
 
         HumanResource::where('id', $id)->update($validateData);
 

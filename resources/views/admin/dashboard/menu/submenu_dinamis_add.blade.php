@@ -22,7 +22,7 @@
                         <div class="tab-pane active" id="id">
                             <div class="mb-3">
                                 <input type="text" class="form-control @error('url') is-invalid @enderror" id="url"
-                                    name="url" placeholder="Masukkan url /">
+                                    name="url" placeholder="Masukkan url /" value="{{ old('url') }}">
                                 @error('url')
                                     <div class="invalid-feedback">
                                         Url harus di isi terlebih dahulu!
@@ -31,7 +31,7 @@
                             </div>
                             <div class="mb-3">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                    id="name" name="name" placeholder="Masukkan nama">
+                                    id="name" name="name" placeholder="Masukkan nama" value="{{ old('name') }}">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         Nama harus di isi terlebih dahulu!
@@ -44,7 +44,7 @@
                             </div>
                             <div class="card border-0 shadow-none mb-3">
                                 <div class="form-group">
-                                    <textarea class="tinymce-editor @error('body') is-invalid @enderror" id="editortiny" name="body"></textarea>
+                                    <textarea class="tinymce-editor @error('body') is-invalid @enderror" id="editortiny" name="body">{{ old('body') }}</textarea>
                                     @error('body')
                                         <div class="invalid-feedback">
                                             Body harus di isi terlebih dahulu!

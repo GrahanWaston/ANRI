@@ -90,7 +90,7 @@
                                     <div class="d-flex flex-row">
                                         <div>
                                             <span class="icon btn btn-circle btn-primary pe-none me-5"><span
-                                                    class="number fs-18">01</span></span>
+                                                    class="number fs-18">{{$loop->iteration}}</span></span>
                                         </div>
                                         <div>
                                             <h5 class="mb-1 fw-bold">{{ $programs->nama_diklat }}</h5>
@@ -158,7 +158,7 @@
                                         alt="">
                                     <div
                                         class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                        <a href="#"
+                                        <a href="/berita-detail/{{ $berita->slug }}"
                                             class="flex-shrink-0 text-white btn btn-sm btn-primary px-3 rounded-pill">Baca
                                             Selengkapnya</a>
                                     </div>

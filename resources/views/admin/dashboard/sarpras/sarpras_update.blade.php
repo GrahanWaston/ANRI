@@ -25,7 +25,7 @@
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="deskripsi" class="form-label">Deskripsi</label>
-                                    <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" cols="30" rows="5">{{ $data_sarpras->deskripsi }}</textarea>
+                                    <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" cols="30" rows="5">{{ old('deskripsi') ?? $data_sarpras->deksripsi }}</textarea>
                                     @error('deskripsi')
                                         <div class="invalid-feedback">
                                             Deksripsi harus di isi terlebih dahulu!

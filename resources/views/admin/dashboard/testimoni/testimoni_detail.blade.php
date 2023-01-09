@@ -29,7 +29,7 @@
                                                 <label for="" class="form-label">Nama</label>
                                                 <input type="text" id="name" name="name"
                                                     class="form-control @error('name') is-invalid @enderror"
-                                                    value="{{ $data_testimoni->name }}">
+                                                    value="{{ old('name') ?? $data_testimoni->name }}">
                                                 @error('name')
                                                     <div class="invalid-feedback">
                                                         Nama harus di isi terlebih dahulu!
@@ -40,7 +40,7 @@
                                                 <label for="" class="form-label">Jabatan</label>
                                                 <input type="text" id="jabatan" name="jabatan"
                                                     class="form-control @error('jabatan') is-invalid @enderror"
-                                                    value="{{ $data_testimoni->jabatan }}">
+                                                    value="{{ old('jabatan') ?? $data_testimoni->jabatan }}">
                                                 @error('jabatan')
                                                     <div class="invalid-feedback">
                                                         Jabatan harus di isi terlebih dahulu!
@@ -50,7 +50,7 @@
                                             <div class="card border-0 shadow-none mb-3">
                                                 <label for="" class="form-label">Testimoni</label>
                                                 <div class="form-group">
-                                                    <textarea class="tinymce-editor  @error('testimoni') is-invalid @enderror" id="editortiny" name="testimoni">{{ $data_testimoni->testimoni }}</textarea>
+                                                    <textarea class="tinymce-editor  @error('testimoni') is-invalid @enderror" id="editortiny" name="testimoni">{{ old('testimoni') ?? $data_testimoni->testimoni }}</textarea>
                                                     @error('testimoni')
                                                         <div class="invalid-feedback">
                                                             Testimoni harus di isi terlebih dahulu!

@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="" class="form-label">Judul</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ $data_file->title }}">
+                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') ?? $data_file->title }}">
                                 @error('title')
                                         <div class="invalid-feedback">
                                             Judul harus di isi terlebih dahulu!
@@ -49,7 +49,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="year" class="form-label">Tahun</label>
-                                <input type="text" id="year" name="year" class="form-control @error('year') is-invalid @enderror" value="{{ $data_file->year }}">
+                                <input type="text" id="year" name="year" class="form-control @error('year') is-invalid @enderror" value="{{ old('year') ?? $data_file->year }}">
                                 @error('year')
                                         <div class="invalid-feedback">
                                             Tahun harus di isi terlebih dahulu!

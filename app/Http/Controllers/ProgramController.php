@@ -150,7 +150,7 @@ class ProgramController extends Controller
             'biaya' => 'required',
             'durasi' => 'required',
             'deskripsi' => 'required',
-            'file' => 'required|file|mimes:pdf,docx',
+            // 'file' => 'required|file|mimes:pdf,docx',
         ]);
 
         if ($request->hasFile('file')) {

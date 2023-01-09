@@ -30,10 +30,20 @@
                                     <div class="mb-3">
                                         <label for="" class="form-label">Nama</label>
                                         <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                            id="nama" name="nama">
+                                            id="nama" name="nama" value="{{ old('nama') }}">
                                         @error('nama')
                                             <div class="invalid-feedback">
                                                 Nama harus di isi terlebih dahulu!
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Keterangan</label>
+                                        <input type="text" class="form-control @error('keterangan') is-invalid @enderror"
+                                            id="keterangan" name="keterangan" value="{{ old('keterangana') }}">
+                                        @error('keterangan')
+                                            <div class="invalid-feedback">
+                                                Keterangan harus di isi terlebih dahulu!
                                             </div>
                                         @enderror
                                     </div>

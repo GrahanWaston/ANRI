@@ -185,11 +185,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Denok Vina Wardhani',
-            'username' => "Devina",
-            'role' => "operator",
+            'name' => 'Administrator',
+            'username' => "admin",
+            'role' => "admin",
             'status' => "1",
-            'password' => bcrypt('12345678')
+            'password' => bcrypt('password')
         ]);
 
         Slideshow::create([
@@ -197,7 +197,8 @@ class DatabaseSeeder extends Seeder
             'deskripsi' => 'Program diklat yang disediakan oleh Arsip Nasional RI',
             'tautan' => 'https://anri.go.id',
             'image_dekstop' => 'img/YpbjWRRclhqsCk9PcQsfYs48apxd60WijRxi2uka.jpg',
-            "image_mobile" => 'img/pXt6qmzM88VN0lOUa74s7XDckjkR7OMOQZWfRc9Y.jpg'
+            "image_mobile" => 'img/pXt6qmzM88VN0lOUa74s7XDckjkR7OMOQZWfRc9Y.jpg',
+            'status' => 'draft'
         ]);
 
         Slideshow::create([
@@ -205,7 +206,8 @@ class DatabaseSeeder extends Seeder
             'deskripsi' => 'Melaksanakan pendidikan dan pelatihan agar tercipta sumber daya manusia yang berkualitas',
             'tautan' => 'https://pusdiklat.anri.go.id/eregistrasi/pages/nmdiklat/',
             'image_dekstop' => 'img/Ad5Ngt6tJN6JdD4Fu7x4qQlHXTSlxcZTrMPqllik.jpg',
-            "image_mobile" => 'img/n8vQmrv3qwdKHgPzrXwHBfKP0qaiTxAJTgylRmwJ.jpg'
+            "image_mobile" => 'img/n8vQmrv3qwdKHgPzrXwHBfKP0qaiTxAJTgylRmwJ.jpg',
+            'status' => 'draft'
         ]);
 
         Layanan::create([
@@ -253,7 +255,7 @@ class DatabaseSeeder extends Seeder
             </ol>
             <p>&nbsp;</p>',
             'tautan' => 'anri.go.id',
-            'image' => 'img/D1aNJJLyS1nxKnSpjih4285egrF0dZGvtb35RQvM.jpg'
+            'image' => 'img/D1aNJJLyS1nxKnSpjih4285egrF0dZGvtb35RQvM.jpg',
         ]);
 
         DB::table('link')->insert([

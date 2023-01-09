@@ -26,8 +26,8 @@
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <label for="nama" class="form-label">Nama</label>
-                                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama"
-                                            value="{{ $data_pejabat->nama }}">
+                                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" 
+                                            value="{{ old('nama') ?? $data_pejabat->nama }}">
                                         @error('nama')
                                             <div class="invalid-feedback">
                                                 Nama harus di isi terlebih dahulu!
@@ -52,9 +52,19 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3">
+                                        <label for="" class="form-label">Keterangan</label>
+                                        <input type="text" class="form-control @error('keterangan') is-invalid @enderror"
+                                            id="keterangan" name="keterangan" value="{{ old('keterangan') ?? $data_pejabat->keterangan }}">
+                                        @error('keterangan')
+                                            <div class="invalid-feedback">
+                                                Keterangan harus di isi terlebih dahulu!
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
                                         <div class="form-label">Upload Foto</div>
                                         <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                            accept=".jpg, .jpeg, .png," id="image" name="image">
+                                            accept=".jpg, .jpeg, .png," id="image" name="image" value="{{ old('image') ?? $data_pejabat->image }}">
                                         @error('image')
                                             <div class="invalid-feedback">
                                                 Foto harus di isi terlebih dahulu!

@@ -25,7 +25,7 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Judul</label>
                                     <input type="text" class="form-control @error('judul') is-invalid @enderror"
-                                        id="judul" name="judul" value="{{ $data_slideshow->judul }}">
+                                        id="judul" name="judul" value="{{ old('judul') ?? $data_slideshow->judul }}">
                                     @error('judul')
                                         <div class="invalid-feedback">
                                             Judul harus di isi terlebih dahulu!
@@ -35,7 +35,7 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Deskripsi</label>
                                     <input type="text" class="form-control @error('deskripsi') is-invalid @enderror"
-                                        id="deskripsi" name="deskripsi" value="{{ $data_slideshow->deskripsi }}">
+                                        id="deskripsi" name="deskripsi" value="{{ old('deskripsi') ?? $data_slideshow->deskripsi }}">
                                     @error('deskripsi')
                                         <div class="invalid-feedback">
                                             Deskripsi harus di isi terlebih dahulu!
@@ -45,7 +45,7 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Tautan</label>
                                     <input type="text" class="form-control @error('tautan') is-invalid @enderror"
-                                        id="tautan" name="tautan" value="{{ $data_slideshow->tautan }}">
+                                        id="tautan" name="tautan" value="{{ old('tautan') ?? $data_slideshow->tautan }}">
                                     @error('tautan')
                                         <div class="invalid-feedback">
                                             Tautan harus di isi terlebih dahulu!

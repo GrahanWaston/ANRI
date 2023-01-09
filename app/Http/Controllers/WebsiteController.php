@@ -141,6 +141,40 @@ class WebsiteController extends Controller
         ]);
     }
 
+    public function berita_detail($slug)
+    {
+        return view('website.publikasi.detail_berita', [
+            'publikasi' => Publication::where('slug', $slug)->get()->first(),
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
+            'news' => Publication::where('category_id', 1)->get(),
+            'info' => Publication::where('category_id', 2)->get(),
+            'menus' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
+        ]);
+    }
+
+    public function infografis_detail($slug)
+    {
+        return view('website.publikasi.detail_infografis', [
+            'publikasi' => Publication::where('slug', $slug)->get()->first(),
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
+            // 'news' => Publication::where('category_id', 1)->get(),
+            'info' => Publication::where('category_id', 2)->get(),
+            'menus' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
+        ]);
+    }
+
     public function kalender()
     {
         // return $program = Program::where('kode_diklat', $kode_diklat)->get()->first();
@@ -247,8 +281,6 @@ class WebsiteController extends Controller
     {
 
         $website = Website::find(1);
-        // return Testimoni::get();
-        // return Pages::get();
         return view('website.beranda', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
@@ -291,7 +323,7 @@ class WebsiteController extends Controller
     public function search_berita(Request $request)
     {
         $search = $request->get('keywords');
-        $publikasi = Publication::where('category_id', 1)->paginate(3)->where('title', 'like', '%' . $search . '%')->latest()->paginate(3, ['*'], 'publikasi')->withquerystring();
+        $publikasi = Publication::where('category_id', 1 )->Where('title', 'like', '%' . $search . '%')->paginate(3, ['*'], 'publikasi')->withquerystring();
 
         return view('website.publikasi.berita_search', [
             'publikasi' => $publikasi,
@@ -308,12 +340,56 @@ class WebsiteController extends Controller
     public function search_infografis(Request $request)
     {
         $search = $request->get('keywords');
-        $publikasi = Publication::where('category_id', 1)->paginate(3)->where('title', 'like', '%' . $search . '%')->latest()->paginate(3, ['*'], 'publikasi')->withquerystring();
+        $publikasi = Publication::where('category_id', 2 )->Where('title', 'like', '%' . $search . '%')->paginate(3, ['*'], 'publikasi')->withquerystring();
 
-        return view('website.publikasi.berita_search', [
+        return view('website.publikasi.infografis_search', [
             'publikasi' => $publikasi,
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
+        ]);
+    }
+
+    public function search_artikel(Request $request)
+    {
+        $search = $request->get('keywords');
+        $year = $request->get('tahun');
+        $publikasi = FileDownload::where('category_id', 3 )
+                                  ->Where('title', 'like', '%' . $search . '%')
+                                  ->Where('year', 'like', '%' . $year . '%' )
+                                  ->paginate(3, ['*'], 'publikasi')->withquerystring();
+
+        return view('website.publikasi.article_search', [
+            'publikasi' => $publikasi,
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
+            'articles' => FileDownload::where('category_id', 3)->paginate(5),
+            'mainmenu' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
+        ]);
+    }
+
+    public function search_pengumuman(Request $request)
+    {
+        $search = $request->get('keywords');
+        $year = $request->get('tahun');
+        $publikasi = FileDownload::where('category_id', 4 )
+                                  ->Where('title', 'like', '%' . $search . '%')
+                                  ->Where('year', 'like', '%' . $year . '%' )
+                                  ->paginate(3, ['*'], 'publikasi')->withquerystring();
+
+        return view('website.publikasi.pengumuman_search', [
+            'publikasi' => $publikasi,
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
+            'pengumuman' => FileDownload::where('category_id', 4)->get(),
             'mainmenu' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),

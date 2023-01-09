@@ -25,7 +25,7 @@
                         <div class="mb-3">
                             <input type="text" class="form-control @error('jabatan') is-invalid @enderror"
                                 placeholder="Masukkan Jabatan" id="jabatan" name="jabatan"
-                                value="{{ $data_jabatan->jabatan }}">
+                                value="{{ old('jabatan') ?? $page->jabatan }}">
                             @error('jabatan')
                                 <div class="invalid-feedback">
                                     Jabatan harus di isi terlebih dahulu!

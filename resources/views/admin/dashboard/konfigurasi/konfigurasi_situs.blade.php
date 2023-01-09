@@ -44,7 +44,7 @@
                                 <div class="mb-3">
                                     <div class="form-label">Nama Website</div>
                                     <input type="text" class="form-control @error('nama_website') is-invalid @enderror"
-                                        id="nama_website" name="nama_website" value="{{ $website->nama_website }}">
+                                        id="nama_website" name="nama_website" value="{{ old('nama_website') ?? $website->nama_website }}">
                                     @error('nama_website')
                                         <div class="invalid-feedback">
                                             Nama Website harus di isi terlebih dahulu!
@@ -54,7 +54,7 @@
                                 <div class="mb-3">
                                     <div class="form-label">Alamat</div>
                                     <textarea name="alamat" id="alamat" cols="30" rows="5"
-                                        class="form-control @error('alamat') is-invalid @enderror">{{ $website->alamat }}</textarea>
+                                        class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat') ?? $website->alamat }}</textarea>
                                     @error('alamat')
                                         <div class="invalid-feedback">
                                             Alamat harus di isi terlebih dahulu!
@@ -64,7 +64,7 @@
                                 <div class="mb-3">
                                     <div class="form-label">No Telepon</div>
                                     <input type="text" class="form-control @error('no_telfon') is-invalid @enderror"
-                                        id="no_telfon" name="no_telfon" value="{{ $website->no_telfon }}">
+                                        id="no_telfon" name="no_telfon" value="{{ old('no_telfon') ?? $website->no_telfon }}">
                                     @error('no_telfon')
                                         <div class="invalid-feedback">
                                             Nomor Telepon harus di isi terlebih dahulu!
@@ -74,7 +74,7 @@
                                 <div class="mb-3">
                                     <div class="form-label">No Whatsapp</div>
                                     <input type="text" class="form-control @error('no_whatsapp') is-invalid @enderror"
-                                        id="no_whatsapp" name="no_whatsapp" value="{{ $website->no_whatsapp }}">
+                                        id="no_whatsapp" name="no_whatsapp" value="{{ old('no_whatsapp') ?? $website->no_whatsapp }}">
                                     @error('no_whatsapp')
                                         <div class="invalid-feedback">
                                             Nomor Whatsapp harus di isi terlebih dahulu!
@@ -84,7 +84,7 @@
                                 <div class="mb-3">
                                     <div class="form-label">E-mail 1</div>
                                     <input type="e-mail" class="form-control @error('email_pertama') is-invalid @enderror"
-                                        id="email_pertama" name="email_pertama" value="{{ $website->email_pertama }}">
+                                        id="email_pertama" name="email_pertama" value="{{ old('email_pertama') ?? $website->email_pertama }}">
                                     @error('email_pertama')
                                         <div class="invalid-feedback">
                                             Email pertama harus di isi terlebih dahulu!
@@ -94,7 +94,7 @@
                                 <div class="mb-3">
                                     <div class="form-label">E-mail 2</div>
                                     <input type="e-mail" class="form-control @error('email_kedua') is-invalid @enderror"
-                                        id="email_kedua" name="email_kedua" value="{{ $website->email_kedua }}">
+                                        id="email_kedua" name="email_kedua" value="{{ old('email_kedua') ?? $website->email_kedua }}">
                                     @error('email_kedua')
                                         <div class="invalid-feedback">
                                             Email kedua harus di isi terlebih dahulu!

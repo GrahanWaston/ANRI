@@ -27,7 +27,7 @@
                                     <label for="" class="form-label">Deskripsi</label>
                                     <div class="card border-0 shadow-none mb-3">
                                         <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="editortiny" cols="30"
-                                            rows="10">{{ $data_profil->deskripsi }}</textarea>
+                                            rows="10">{{ old('deskripsi') ?? $data_profil->deskripsi }}</textarea>
                                         @error('deskripsi')
                                             <div class="invalid-feedback">
                                                 Deskripsi harus di isi terlebih dahulu!

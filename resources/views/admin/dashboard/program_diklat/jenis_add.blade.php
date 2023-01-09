@@ -26,7 +26,7 @@
                         <div class="mb-3">
                             <label for="nama_jenis" class="form-label">Jenis Diklat (Id)</label>
                             <input type="text" id="nama_jenis" name="nama_jenis" class="form-control @error('nama_jenis') is-invalid @enderror"
-                                placeholder="Masukkan Jenis">
+                                placeholder="Masukkan Jenis" value="{{ old('nama_jenis') }}">
                             @error('nama_jenis')
                                 <div class="invalid-feedback">
                                     Nama jenis diklat harus di isi terlebih dahulu!

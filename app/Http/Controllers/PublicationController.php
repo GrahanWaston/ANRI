@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Publication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PublicationController extends Controller
 {
@@ -49,12 +50,12 @@ class PublicationController extends Controller
             'image_album' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
+        $validateData['slug'] = Str::slug($validateData['title']);
+
         if ($request->hasFile('image_main') && $request->hasFile('image_album')) {
             $validateData['image_main'] = $request->file('image_main')->store('img');
             $validateData['image_album'] = $request->file('image_album')->store('img');
         }
-        // dd('Registrasi Berhasil');
-        // return redirect($validateData);
 
         Publication::create($validateData);
 
@@ -100,13 +101,15 @@ class PublicationController extends Controller
             'category_id' => 'required',
             'body' => 'required',
             // 'status' => 'required',
-            'image_main' => 'required|image|mimes:jpeg,png,jpg',
-            'image_album' => 'required|image|mimes:jpeg,png,jpg',
+            // 'image_main' => 'required|image|mimes:jpeg,png,jpg',
+            // 'image_album' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
-        if ($request->hasFile('image_main') && $request->hasFile('image_album')) {
+        $validateData['slug'] = Str::slug($validateData['title']);
+
+        if ($request->hasFile('image_main') || $request->hasFile('image_album')) {
             $validateData['image_main'] = $request->file('image_main')->store('img');
-            $validateData['image_album'] = $request->file('image_album')->store('img');
+            // $validateData['image_album'] = $request->file('image_album')->store('img');
         }
 
         Publication::where('id', $id)->update($validateData);

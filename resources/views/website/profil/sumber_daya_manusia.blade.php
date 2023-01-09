@@ -41,7 +41,7 @@
                                                         <img class="img-fluid object-fit-cover"
                                                             src="{{ asset('storage/' . $pejabats->image) }}" alt="">
                                                         <h6 class="mb-1">{{ $pejabats->nama }}</h6>
-                                                        <small class="text-secondary">Pusat Akreditasi Kearsipan</small>
+                                                        <small class="text-secondary">{{ $pejabats->keterangan }}</small>
                                                     </div>
                                                 </div>
                                             </div>

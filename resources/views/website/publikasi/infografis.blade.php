@@ -20,7 +20,7 @@
     <div class="container py-5">
         <div class="d-flex justify-content-end">
             <div class="col-4">
-                <form action="/hasil-pencarian-berita-artikel">
+                <form action="/hasil-pencarian-infografis-artikel">
                     <div class="d-flex form-inputs">
                         <input name="keywords" class="form-control" type="text" placeholder="Masukkan Kata Kunci...">
                         <i class="fa fa-search"></i>
@@ -35,7 +35,7 @@
                         style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
                         @foreach ($infografis as $infografi)
                             @if ($infografi->status == 'published')
-                                <a href="detail-infografis.php" class="text-decoration-none">
+                                <a href="/informasi-detail/{{ $infografi->slug }}" class="text-decoration-none">
                                     <div class="service-item h-100 d-flex flex-column justify-content-between">
                                         <div class="text-center p-4 pb-0">
                                             <img class="card-img-top" src="{{ asset('storage/' . $infografi->image_main) }}"
@@ -51,7 +51,7 @@
                                             </small>
                                             <small class="flex-fill text-center text-secondary border-end py-2">
                                                 <i class="fa fa-calendar text-primary me-2"></i>
-                                                {{ $infografi->created_at }}
+                                                {{ $infografi->created_at->translatedFormat('d F Y') }}
                                             </small>
                                         </div>
                                     </div>

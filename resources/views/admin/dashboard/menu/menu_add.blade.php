@@ -25,7 +25,7 @@
                     <div class="col-md-8 mb-4 mb-md-0">
                         <div class="mb-3">
                             <label for="name" class="form-label">Nama Menu</label>
-                            <input type="text" id="name" name="name"
+                            <input type="text" id="name" name="name" value="{{ old('name') }}"
                                 class="form-control @error('name') is-invalid @enderror" placeholder="Masukkan Nama Menu">
                             @error('name')
                                 <div class="invalid-feedback">
