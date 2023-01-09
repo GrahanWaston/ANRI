@@ -79,34 +79,6 @@
                                             <a href="/update-jenis/{{ $type->id }}/edit"
                                                 class="btn btn-light m-1 h3 text-primary" title="Edit"><i
                                                     class="fas fa-file-signature"></i></a>
-                                            @if (auth()->user()->role == 'admin')
-                                                @if ($type->status == 'draft' || $type->status == '')
-                                                    {{-- <a href=""
-                                                        class="btn btn-light m-1 h3 text-success" ><i
-                                                            class="fas fa-clipboard-check"></i></a> --}}
-                                                    <form action="/approve-jenis/{{ $type->id }}" method="POST"
-                                                        class="d-inline">
-                                                        @method('PUT')
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-light m-1 h3 text-success"
-                                                            title="Publish">
-                                                            <i class="fas fa-file-signature"></i>
-                                                        </button>
-                                                    </form>
-                                                @else
-                                                    <form action="/unapprove-jenis/{{ $type->id }}" method="POST"
-                                                        class="d-inline">
-                                                        @method('PUT')
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-light m-1 h3 text-danger"
-                                                            title="Draft">
-                                                            <i class="far fa-file-excel"></i>
-                                                        </button>
-                                                    </form>
-                                                    {{-- <a href="#" class="btn btn-light m-1 h3 text-danger"
-                                                        title="Draft"><i class="far fa-file-excel"></i></a> --}}
-                                                @endif
-                                            @endif
                                             <form action="/delete-jenis/{{ $type->id }}" method="POST"
                                                 class="d-inline">
                                                 @method('delete')
@@ -126,70 +98,6 @@
                     </table>
                 </div>
             </div>
-            {{-- <div class="row justify-content-between align-items-center mt-3">
-                <div class="col-auto mb-3 mb-md-0">
-                    <div class="row gx-1">
-                        <div class="col">
-                            <select name="" id="" class="form-control">
-                                <option>Bulk Action</option>
-                                <option>Set As Draft</option>
-                                <option>Set As Publish</option>
-                                <option>Move to Trash</option>
-                            </select>
-                        </div>
-                        <div class="col-auto">
-                            <button class="btn btn-white">Apply</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="row gx-2 align-items-center">
-                        <div class="col-auto">10 Items</div>
-                        <div class="col-auto">
-                            <button class="btn btn-icon btn-white" disabled>
-                                <!-- Download SVG icon from http://tabler-icons.io/i/chevrons-left -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <polyline points="11 7 6 12 11 17" />
-                                    <polyline points="17 7 12 12 17 17" />
-                                </svg>
-                            </button>
-                            <button class="btn btn-icon btn-white" disabled>
-                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <polyline points="15 6 9 12 15 18" />
-                                </svg>
-                            </button>
-                            <button class="btn btn-white">1</button>
-                            <span>of 3</span>
-                            <button class="btn btn-icon btn-white">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <polyline points="9 6 15 12 9 18" />
-                                </svg>
-                            </button>
-                            <button class="btn btn-icon btn-white">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/chevrons-right -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <polyline points="7 7 12 12 7 17" />
-                                    <polyline points="13 7 18 12 13 17" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
     <hr>
@@ -271,29 +179,6 @@
                                             <a href="/update-jenjang/{{ $jenjangs->id }}/edit"
                                                 class="btn btn-light m-1 h3 text-primary" title="Edit"><i
                                                     class="fas fa-file-signature"></i></a>
-                                            @if (auth()->user()->role == 'admin')
-                                                @if ($jenjangs->status == 'draft' || $jenjangs->status == '')
-                                                    <form action="/approve-jenjang/{{ $jenjangs->id }}" method="POST"
-                                                        class="d-inline">
-                                                        @method('PUT')
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-light m-1 h3 text-success"
-                                                            title="Publish">
-                                                            <i class="fas fa-file-signature"></i>
-                                                        </button>
-                                                    </form>
-                                                @else
-                                                    <form action="/unapprove-jenjang/{{ $jenjangs->id }}" method="POST"
-                                                        class="d-inline">
-                                                        @method('PUT')
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-light m-1 h3 text-danger"
-                                                            title="Draft">
-                                                            <i class="far fa-file-excel"></i>
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                            @endif
                                             <form action="/delete-jenjang/{{ $jenjangs->id }}" method="POST"
                                                 class="d-inline">
                                                 @method('delete')

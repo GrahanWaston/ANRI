@@ -96,6 +96,7 @@ Route::get('/hasil-pencarian-berita-artikel', [WebsiteController::class, 'search
 Route::get('/hasil-pencarian-infografis-artikel', [WebsiteController::class, 'search_infografis']);
 Route::get('/hasil-pencarian-artikel', [WebsiteController::class, 'search_artikel']);
 Route::get('/hasil-pencarian-pengumuman', [WebsiteController::class, 'search_pengumuman']);
+Route::get('/hasil-pencarian-program', [WebsiteController::class, 'search_program']);
 
 Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
     // dashboard

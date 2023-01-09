@@ -114,7 +114,7 @@ class WebsiteController extends Controller
         return view('website.diklat.program_diklat', [
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
-            'programs' => Program::latest()->paginate(),
+            'programs' => Program::latest()->paginate(3),
             'mainmenu' => Pages::get(),
             'menus' => Pages::get(),
             'website' => Website::find(1),
@@ -390,6 +390,29 @@ class WebsiteController extends Controller
             'menu' => MenuStatis::get(),
             'submenu' => SubMenu::get(),
             'pengumuman' => FileDownload::where('category_id', 4)->get(),
+            'mainmenu' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
+        ]);
+    }
+
+    public function search_program(Request $request)
+    {
+        $search = $request->get('keywords');
+        $jenis = $request->get('jenis');
+        $jenjang = $request->get('jenjang');
+        $program = Program::where('nama_diklat', 'like', '%' . $search . '%')
+                                  ->Where('jenis_id', 'like', '%' . $jenis . '%')
+                                  ->Where('jenjang_id', 'like', '%' . $jenjang . '%' )
+                                  ->paginate(3, ['*'], 'program')->withquerystring();
+
+        return view('website.diklat.program_diklat_search', [
+            'program' => $program,
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
+            'programss' => Program::get(),
             'mainmenu' => Pages::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),

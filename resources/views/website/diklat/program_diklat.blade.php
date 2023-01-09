@@ -20,24 +20,30 @@
     <section class="wrapper">
         <div class="container py-5">
             <div class="row align-items-start py-5">
-                <div class="col-md-10 mx-auto col-lg-4 d-flex flex-column justify-content-start">
-                    <h6 class="text-primary fw-bold h5 mb-3">Cari Program Diklat</h6>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                        <label for="name">Masukkan Kata Kunci</label>
+                
+                    <div class="col-md-10 mx-auto col-lg-4 d-flex flex-column justify-content-start">
+                        <h6 class="text-primary fw-bold h5 mb-3">Cari Program Diklat</h6>
+                        <form action="/hasil-pencarian-program">
+                        <div class="form-floating mb-3">
+                            <input name="keywords" type="text" class="form-control" id="name" placeholder="Your Name">
+                            <label for="name">Masukkan Kata Kunci</label>
+                        </div>
+                        <select name="jenis" class="form-select mb-3" aria-label="Default select example">
+                            <option disabled selected>Pilih Jenis Diklat</option>
+                            @foreach ($programs as $programm)
+                                <option value="{{ $programm->jenis_id }}">{{ $programm->jenis->nama_jenis }}</option>
+                            @endforeach
+                        </select>
+                        <select name="jenjang" class="form-select mb-3" aria-label="Default select example">
+                            <option disabled selected>Pilih Jenjang</option>
+                            @foreach ($programs as $programm)
+                            <option value="{{ $programm->jenjang_id }}">{{ $programm->jenjang->jenjang }}</option>
+                        @endforeach
+                        </select>
+                        <button class="btn btn-primary mb-3" type="submit">Cari</button>
+                    </form>
                     </div>
-                    <select class="form-select mb-3" aria-label="Default select example">
-                        <option disabled selected>Pilih Jenis Diklat</option>
-                        <option value="1">PNBP Fungsional</option>
-                        <option value="2">PNBP Teknis Kearsipan</option>
-                    </select>
-                    <select class="form-select mb-3" aria-label="Default select example">
-                        <option disabled selected>Pilih Jenjang</option>
-                        <option value="1">PNBP Fungsional</option>
-                        <option value="2">PNBP Teknis Kearsipan</option>
-                    </select>
-                    <a href="#" class="btn btn-primary mb-3">Download Dokumen</a>
-                </div>
+                
                 <div class="col-lg-8 text-center text-lg-start">
                     <h6 class="text-primary fw-bold h5 mb-3">Program Diklat Kearsipan ANRI</h6>
                     <div class="row">

@@ -54,8 +54,8 @@
                             <input name="status" type="hidden" value="draft">
                         </div>
                         <div class="permalink mb-3">
-                            <span class="text-dark">Permalink : </span>
-                            <a href="#">https://pusdiklat.anri.go.id/pages</a>
+                            {{-- <span class="text-dark">Permalink : </span>
+                            <a href="#">https://pusdiklat.anri.go.id/pages</a> --}}
                         </div>
                         <div class="card border-0 shadow-none mb-3">
                             <div class="form-group">
@@ -67,45 +67,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="card mb-3">
-                            <div class="card-header font-weight-bold">SEO</div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <div class="form-label">Seo Title</div>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <div class="form-label">Seo Keyword</div>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <div class="form-label">Seo Description</div>
-                                    <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-md-4">
-                        {{-- <div class="card mb-3">
-                            <div class="card-header font-weight-bold">Publish</div>
-                            <div class="card-body">
-
-                                <div class="mb-2">
-                                    <select name="status" id="status"
-                                        class="form-control @error('status') is-invalid @enderror">
-                                        <option selected disabled>Pilih status post</option>
-                                        <option value="published">Published</option>
-                                        <option value="draft">Draft</option>
-                                    </select>
-                                    @error('status')
-                                        <div class="invalid-feedback">
-                                            Kategori post harus di isi terlebih dahulu!
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div> --}}
                         <div class="card mb-3">
                             <div class="card-header font-weight-bold">Foto Utama</div>
                             <div class="card-body">
