@@ -100,9 +100,6 @@ class PublicationController extends Controller
             'title' => 'required',
             'category_id' => 'required',
             'body' => 'required',
-            // 'status' => 'required',
-            // 'image_main' => 'required|image|mimes:jpeg,png,jpg',
-            // 'image_album' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
         $validateData['slug'] = Str::slug($validateData['title']);

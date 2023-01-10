@@ -20,7 +20,6 @@
     <section class="wrapper">
         <div class="container py-5">
             <div class="row align-items-start py-5">
-
                 <div class="col-md-10 mx-auto col-lg-4 d-flex flex-column justify-content-start">
                     <h6 class="text-primary fw-bold h5 mb-3">Cari Program Diklat</h6>
                     <form action="/hasil-pencarian-program">
@@ -44,7 +43,6 @@
                         <button class="btn btn-primary mb-3" type="submit">Cari</button>
                     </form>
                 </div>
-
                 <div class="col-lg-8 text-center text-lg-start">
                     <h6 class="text-primary fw-bold h5 mb-3">Program Diklat Kearsipan ANRI</h6>
                     <div class="row">

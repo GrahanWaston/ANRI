@@ -89,6 +89,7 @@ Route::get('/sub-menu/{SubMenu:url}', [WebsiteController::class, 'view_submenu']
 
 // Calendar
 Route::get('/kalender-diklat', [ProgramController::class, 'getEvent'])->name('getevent');
+Route::get('/pencarian-kalender-diklat', [ProgramController::class, 'search_program'])->name('getevent');
 
 // Search
 Route::get('/hasil-pencarian', [WebsiteController::class, 'search']);

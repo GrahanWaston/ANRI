@@ -41,7 +41,11 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    // to debug please turn on this comment below
+    // 'debug' => (bool) env('APP_DEBUG', false),
+
+    // error handler 
+    'debug' => false,
 
     /*
     |--------------------------------------------------------------------------

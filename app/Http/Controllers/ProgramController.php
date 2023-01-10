@@ -51,7 +51,47 @@ class ProgramController extends Controller
             'submenu' => SubMenu::get(),
             'mainmenu' => Pages::get(),
             'events' => $events,
+            'jenis' => Jenis::get(),
+            'jenjang' => Jenjang::get(),
             'menus' => Pages::get(),
+            'website' => Website::find(1),
+            'link' => DB::table('link')->get(),
+            'menu_hyperlink' => MenuHyperlink::latest()->get(),
+            'submenu_hyperlink' => SubMenuHyperlink::latest()->get(),
+        ]);
+    }
+
+    public function search_program(Request $request)
+    {
+        $search = $request->get('keywords');
+        $jenis = $request->get('jenis');
+        $jenjang = $request->get('jenjang');
+        $events = array();
+        $bookings = Program::Where('nama_diklat', 'like', '%' . $search . '%')
+            ->Where('jenis_id', 'like', '%' . $jenis . '%')
+            ->Where('jenjang_id', 'like', '%' . $jenjang . '%')
+            ->get();
+
+        foreach ($bookings as $booking) {
+            # code...
+            if ($booking->status == 'published') {
+                # code...
+                $events[] = [
+                    'start' => $booking->start_date,
+                    'end' => $booking->end_date,
+                    'title' => $booking->kode_diklat,
+                ];
+            }
+        }
+
+        return view('website.diklat.kalender_diklat_search', [
+            'menu' => MenuStatis::get(),
+            'submenu' => SubMenu::get(),
+            'mainmenu' => Pages::get(),
+            'events' => $events,
+            'menus' => Pages::get(),
+            'jenis' => Jenis::get(),
+            'jenjang' => Jenjang::get(),
             'website' => Website::find(1),
             'link' => DB::table('link')->get(),
             'menu_hyperlink' => MenuHyperlink::latest()->get(),
