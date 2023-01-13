@@ -106,14 +106,16 @@
                                             <a href="#">Draft</a>
                                             <div class="vr mx-1"></div>
                                             {{-- <a href="#" class="text-danger btn-delete">Trash</a> --}}
-                                            <a style="color:black" href="{{ route('pages.destroy', $pages->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $pages->id }}').submit();">
+                                            <a style="color:black" href="{{ route('pages.destroy', $pages->id) }}"
+                                                onclick="event.preventDefault(); document.getElementById('delete-form-{{ $pages->id }}').submit();">
                                                 Trash
                                             </a>
-                                            <form id="delete-form-{{ $pages->id }}" action="{{ route('pages.destroy', $pages->id) }}"
-                                                method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $pages->id }}"
+                                                action="{{ route('pages.destroy', $pages->id) }}" method="POST"
+                                                style="display: none;">
                                                 @method('delete')
-                                               @csrf
-                                           </form>
+                                                @csrf
+                                            </form>
                                             <div class="vr mx-1"></div>
                                             <a href="#">View</a>
                                         </div>

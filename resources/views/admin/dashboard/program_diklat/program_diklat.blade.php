@@ -48,16 +48,16 @@
             <div class="row justify-content-between align-items-center mb-3">
                 <div class="col-auto mb-3 mb-md-0">
                     <div class="row gx-1">
-                        <div class="col">
-                            <select name="" id="" class="form-control">
-                                <option>Bulk Action</option>
-                                <option>Set As Draft</option>
-                                <option>Set As Publish</option>
-                                <option>Delete Selected</option>
-                            </select>
-                        </div>
                         <div class="col-auto">
-                            <button class="btn btn-primary">Apply</button>
+                            <button id="destroy" class="btn btn-danger d-none">
+                                <i class="bi bi-trash me-2"></i>Hapus
+                            </button>
+                            <button id="approve" class="btn btn-success d-none">
+                                <i class="bi bi-trash me-2"></i>Approve
+                            </button>
+                            <button id="unapprove" class="btn btn-warning d-none">
+                                <i class="bi bi-trash me-2"></i>Unapprove
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -83,141 +83,20 @@
                             </div>
                         </div>
                     @endif
-                    <table class="table card-table table-post" id="myTable">
+                    <table class="table card-table table-post" id="datatable">
                         <thead>
                             <tr>
-                                <th width="10"><input type="checkbox" class="checkall"></th>
+                                <th width="10"><input type="checkbox" class="all" name="all"></th>
                                 <th width="100">Aksi</th>
                                 <th>Kode Diklat</th>
-                                <th>Jenis Diklat</th>
                                 <th>Nama Diklat</th>
-                                <th>Rentang</th>
+                                <th>Tanggal Mulai</th>
+                                <th>Tanggal Selesai</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($program as $programs)
-                                <tr>
-                                    <td><input type="checkbox" ></td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a href="/program-diklat/{{ $programs->id }}/edit"
-                                                class="btn btn-light m-1 h3 text-primary"><i
-                                                    class="fas fa-file-signature"></i></a>
-                                            @if (auth()->user()->role == 'admin')
-                                                @if ($programs->status == 'draft' || $programs->status == '')
-                                                    <form action="/approve-program/{{ $programs->id }}" method="POST"
-                                                        class="d-inline">
-                                                        @method('PUT')
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-light m-1 h3 text-success"
-                                                            title="Publish">
-                                                            <i class="fas fa-file-signature"></i>
-                                                        </button>
-                                                    </form>
-                                                @else
-                                                    <form action="/unapprove-program/{{ $programs->id }}" method="POST"
-                                                        class="d-inline">
-                                                        @method('PUT')
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-light m-1 h3 text-danger"
-                                                            title="Draft">
-                                                            <i class="far fa-file-excel"></i>
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                            @endif
-                                            <form action="{{ route('program-diklat.destroy', $programs->id) }}"
-                                                method="POST" class="d-inline">
-                                                @method('delete')
-                                                @csrf
-                                                <button type="submit" class="btn btn-light m-1 h3 text-danger">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        {{ $programs->kode_diklat }}
-                                    </td>
-                                    <td>
-                                        {{ $programs->jenis->nama_jenis }}
-                                    </td>
-                                    <td>
-                                        {{ $programs->nama_diklat }}
-                                    </td>
-                                    <td>
-                                        {{ $programs->start_date }} - {{ $programs->end_date }}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
-            {{-- <div class="row justify-content-between align-items-center mt-3">
-                <div class="col-auto mb-3 mb-md-0">
-                    <div class="row gx-1">
-                        <div class="col">
-                            <select name="" id="" class="form-control">
-                                <option>Bulk Action</option>
-                                <option>Set As Draft</option>
-                                <option>Set As Publish</option>
-                                <option>Delete Selected</option>
-                            </select>
-                        </div>
-                        <div class="col-auto">
-                            <button class="btn btn-primary">Apply</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="row gx-2 align-items-center">
-                        <div class="col-auto">10 Items</div>
-                        <div class="col-auto">
-                            <button class="btn btn-icon btn-white" disabled>
-                                <!-- Download SVG icon from http://tabler-icons.io/i/chevrons-left -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <polyline points="11 7 6 12 11 17" />
-                                    <polyline points="17 7 12 12 17 17" />
-                                </svg>
-                            </button>
-                            <button class="btn btn-icon btn-white" disabled>
-                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <polyline points="15 6 9 12 15 18" />
-                                </svg>
-                            </button>
-                            <button class="btn btn-white">1</button>
-                            <span>of 3</span>
-                            <button class="btn btn-icon btn-white">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <polyline points="9 6 15 12 9 18" />
-                                </svg>
-                            </button>
-                            <button class="btn btn-icon btn-white">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/chevrons-right -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <polyline points="7 7 12 12 7 17" />
-                                    <polyline points="13 7 18 12 13 17" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
 
@@ -230,86 +109,390 @@
     </script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('.btn-delete').on('click', function() {
-                Swal.fire({
-                    title: 'Hapus Data?',
-                    text: "Apakah anda yakin?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            'Success!',
-                            'Data Berhasil dihapus',
-                            'success'
-                        )
-                    }
-                })
+    <script>
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        $(function () {
+            $("#datatable").DataTable({
+                processing: true,
+                serverSide: true,
+                paging: true,
+                lengthChange: true,
+                searching: true,
+                ordering: true,
+                info: true,
+                autoWidth: false,
+                responsive: true,
+                language: {
+                    search: "",
+                    searchPlaceholder: "Masukkan kata pencarian...",
+                },
+                fnDrawCallback: function () {
+                    $("input[type='search']").attr("id", "searchBox");
+                    $("#searchBox").css("width", "300px");
+                    $("#searchBox").css("height", "34px");
+                    $("#searchBox").css("margin-bottom", "8px");
+                },
+                ajax: `/program-diklat`,
+                columns: [
+                    {
+                        data: "checkbox",
+                        name: "checkbox",
+                        orderable: false,
+                        searchable: false,
+                    },
+                    {
+                        data: "action",
+                        name: "action",
+                        orderable: false,
+                        searchable: false,
+                    },
+                    {
+                        data: "kode_diklat",
+                        name: "kode_diklat",
+                    },
+                    {
+                        data: "nama_diklat",
+                        name: "nama_diklat",
+                    },
+                    {
+                        data: "start_date",
+                        name: "start_date",
+                    },
+                    {
+                        data: "end_date",
+                        name: "end_date",
+                    },
+                ],
             });
         });
-    </script>
-    <script type="text/javascript">
-        $(function() {
-            $('.btn-draft').on('click', function() {
+
+        $(document).on("click", 'input[name="all"]', function() {
+            if (this.checked) {
+                $('input[name="id"]').each(function() {
+                    this.checked = true;
+                });
+            } else {
+                $('input[name="id"]').each(function() {
+                    this.checked = false;
+                });
+            }
+
+            toggleApproveButton();
+            toggleUnapproveButton();
+            toggleDestroyButton();
+        });
+
+        $(document).on("change", 'input[name="id"]', function() {
+            if ($('input[name="id"]').length == $('input[name="id"]:checked').length) {
+                $('input[name="all"]').prop("checked", true);
+            } else {
+                $('input[name="all"]').prop("checked", false);
+            }
+
+            toggleApproveButton();
+            toggleUnapproveButton();
+            toggleDestroyButton();
+        });
+
+        function toggleDestroyButton() {
+            if ($('input[name="id"]:checked').length > 0) {
+                $("button#destroy")
+                    .text(
+                        "Delete (" + $('input[name="id"]:checked').length + ")"
+                    )
+                    .removeClass("d-none");
+            } else {
+                $("button#destroy").addClass("d-none");
+            }
+        }
+
+        function toggleApproveButton() {
+            if ($('input[name="id"]:checked').length > 0) {
+                $("button#approve")
+                    .text(
+                        "Approve (" + $('input[name="id"]:checked').length + ")"
+                    )
+                    .removeClass("d-none");
+            } else {
+                $("button#approve").addClass("d-none");
+            }
+        }
+
+        function toggleUnapproveButton() {
+            if ($('input[name="id"]:checked').length > 0) {
+                $("button#unapprove")
+                    .text(
+                        "Draft (" + $('input[name="id"]:checked').length + ")"
+                    )
+                    .removeClass("d-none");
+            } else {
+                $("button#unapprove").addClass("d-none");
+            }
+        }
+
+        $(document).on('click', 'button#destroy', function() {
+            var files = [];
+            $('input[name="id"]:checked').each(function() {
+                files.push($(this).data('id'));
+            });
+
+            if (files.length > 0) {
+                console.log(files);
                 Swal.fire({
-                    title: 'Arsipkan Data?',
-                    text: "Apakah anda yakin?",
-                    icon: 'warning',
+                    title: 'Konfirmasi',
+                    html: 'Apakah anda yakin akan menghapus <b>(' + files.length + ')</b> data',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
+                    showCloseButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                    confirmButtonColor: '#556ee6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            'Success!',
-                            'Data Berhasil diarsipkan',
-                            'success'
-                        )
+                    width: 400,
+                    allowOutsideClick: false
+                }).then(function(result) {
+                    if (result.value) {
+                        let url = '{{ route('program.delete') }}';
+                        $.ajax({
+                            url: url,
+                            type: "delete",
+                            data: {
+                                data: files
+                            },
+                            success: function(data) {
+                                $("#datatable").DataTable().ajax.reload(null, true);
+                                Swal.fire(
+                                    'Informasi!',
+                                    'Berhasil menghapus data',
+                                    'success'
+                                )
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                console.log("Gagal!", "Harap coba lagi");
+                            }
+                        });
+                        $("button#destroy").addClass("d-none");
+                        $("button#approve").addClass("d-none");
+                        $("button#unapprove").addClass("d-none");
                     }
                 })
-            });
+            }
         });
-    </script>
-    <script type="text/javascript">
-        $(function() {
-            $('.btn-copy').on('click', function() {
-                Swal.fire(
-                    'Success!',
-                    'Link Berhasil disalin',
-                    'success'
-                )
+
+        $(document).on('click', 'button#approve', function() {
+            var files = [];
+            $('input[name="id"]:checked').each(function() {
+                files.push($(this).data('id'));
             });
-        });
-    </script>
-    <script type="text/javascript">
-        $(function() {
-            $('.btn-publish').on('click', function() {
+
+            if (files.length > 0) {
+                console.log(files);
                 Swal.fire({
-                    title: 'Terbitkan Data?',
-                    text: "Apakah anda yakin?",
-                    icon: 'warning',
+                    title: 'Konfirmasi',
+                    html: 'Apakah anda yakin akan publish <b>(' + files.length + ')</b> data',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
+                    showCloseButton: true,
+                    confirmButtonText: 'publish',
+                    cancelButtonText: 'Batal',
+                    confirmButtonColor: '#556ee6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            'Success!',
-                            'Data Berhasil diterbitkan',
-                            'success'
-                        )
+                    width: 400,
+                    allowOutsideClick: false
+                }).then(function(result) {
+                    if (result.value) {
+                        let url = '{{ route('approve-program-mass') }}';
+                        $.ajax({
+                            url: url,
+                            type: "put",
+                            data: {
+                                data: files
+                            },
+                            success: function(data) {
+                                $("#datatable").DataTable().ajax.reload(null, true);
+                                Swal.fire(
+                                    'Informasi!',
+                                    'Berhasil publish data',
+                                    'success'
+                                )
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                console.log("Gagal!", "Harap coba lagi");
+                            }
+                        });
+                        $("button#destroy").addClass("d-none");
+                        $("button#approve").addClass("d-none");
+                        $("button#unapprove").addClass("d-none");
                     }
                 })
+            }
+        });
+
+        $(document).on('click', 'button#unapprove', function() {
+            var files = [];
+            $('input[name="id"]:checked').each(function() {
+                files.push($(this).data('id'));
+            });
+
+            if (files.length > 0) {
+                console.log(files);
+                Swal.fire({
+                    title: 'Konfirmasi',
+                    html: 'Apakah anda yakin akan menghapus <b>(' + files.length + ')</b> data',
+                    showCancelButton: true,
+                    showCloseButton: true,
+                    confirmButtonText: 'draft',
+                    cancelButtonText: 'Batal',
+                    confirmButtonColor: '#556ee6',
+                    cancelButtonColor: '#d33',
+                    width: 400,
+                    allowOutsideClick: false
+                }).then(function(result) {
+                    if (result.value) {
+                        let url = '{{ route('unapprove-program-mass') }}';
+                        $.ajax({
+                            url: url,
+                            type: "put",
+                            data: {
+                                data: files
+                            },
+                            success: function(data) {
+                                $("#datatable").DataTable().ajax.reload(null, true);
+                                Swal.fire(
+                                    'Informasi!',
+                                    'Berhasil draft data',
+                                    'success'
+                                )
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                console.log("Gagal!", "Harap coba lagi");
+                            }
+                        });
+                        $("button#unapprove").addClass("d-none");
+                        $("button#approve").addClass("d-none");
+                        $("button#destroy").addClass("d-none");
+                    }
+                })
+            }
+        });
+
+        $(document).on("click", '.approval', function() {
+            id = $(this).attr('id');
+
+            Swal.fire({
+                title: "Konfirmasi",
+                html: "Apakah anda yakin akan mempublish data ini?",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: "Publish",
+                cancelButtonText: "Batal",
+                confirmButtonColor: "#556ee6",
+                cancelButtonColor: "#d33",
+                width: 400,
+                allowOutsideClick: false,
+            }).then(function(result) {
+                if (result.value) {
+                    let url = '{{ route('approve-program', ':id') }}';
+                    url = url.replace(':id', id);
+                    console.log(url);
+                    $.ajax({
+                        url: url,
+                        type: "put",
+                        success: function(data) {
+                            console.log(data);
+                            $("#datatable").DataTable().ajax.reload(null, true);
+                            Swal.fire(
+                                'Informasi!',
+                                'Berhasil merubah data',
+                                'success'
+                            )
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("Gagal!", "Harap coba lagi");
+                        }
+                    });
+                }
+            });
+        });
+
+        $(document).on("click", '.unapproval', function() {
+            id = $(this).attr('id');
+
+            Swal.fire({
+                title: "Konfirmasi",
+                html: "Apakah anda yakin akan memasukan data ini ke draft?",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: "Draft",
+                cancelButtonText: "Batal",
+                confirmButtonColor: "#556ee6",
+                cancelButtonColor: "#d33",
+                width: 400,
+                allowOutsideClick: false,
+            }).then(function(result) {
+                if (result.value) {
+                    let url = '{{ route('unapprove-program', ':id') }}';
+                    url = url.replace(':id', id);
+                    console.log(url);
+                    $.ajax({
+                        url: url,
+                        type: "put",
+                        success: function(data) {
+                            console.log(data);
+                            $("#datatable").DataTable().ajax.reload(null, true);
+                            Swal.fire(
+                                'Informasi!',
+                                'Berhasil merubah data',
+                                'success'
+                            )
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("Gagal!", "Harap coba lagi");
+                        }
+                    });
+                }
+            });
+        });
+
+        $(document).on("click", '.delete', function() {
+            id = $(this).attr('id');
+
+            Swal.fire({
+                title: "Konfirmasi",
+                html: "Apakah anda yakin akan menghapus data ini?",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: "Hapus",
+                cancelButtonText: "Batal",
+                confirmButtonColor: "#556ee6",
+                cancelButtonColor: "#d33",
+                width: 400,
+                allowOutsideClick: false,
+            }).then(function(result) {
+                if (result.value) {
+                    let url = '{{ route('program-diklat.destroy', ':id') }}';
+                    url = url.replace(':id', id);
+                    console.log(url);
+                    $.ajax({
+                        url: url,
+                        type: "delete",
+                        success: function(data) {
+                            console.log(data);
+                            $("#datatable").DataTable().ajax.reload(null, true);
+                            Swal.fire(
+                                'Informasi!',
+                                'Berhasil menghapus data',
+                                'success'
+                            )
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("Gagal!", "Harap coba lagi");
+                        }
+                    });
+                }
             });
         });
     </script>

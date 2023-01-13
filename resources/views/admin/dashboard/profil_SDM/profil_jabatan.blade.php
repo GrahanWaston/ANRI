@@ -25,23 +25,16 @@
             <div class="row justify-content-between align-items-center mb-3">
                 <div class="col-auto mb-3 mb-md-0">
                     <div class="row gx-1">
-                        <div class="col">
-                            <select name="" id="" class="form-control">
-                                <option>Bulk Action</option>
-                                <option>Move to Trash</option>
-                            </select>
-                        </div>
                         <div class="col-auto">
-                            <button class="btn btn-white">Apply</button>
+                            <button id="destroy" class="btn btn-danger d-none">
+                                <i class="bi bi-trash me-2"></i>Hapus
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="col-auto">
                     <div class="row gx-2 align-items-center">
                         <div class="col-auto">10 Items</div>
-                        <div class="col-auto">
-                            {{ $jabatan->links() }}
-                        </div>
                     </div>
                 </div>
             </div>
@@ -58,78 +51,18 @@
                             </div>
                         </div>
                     @endif
-                    <table class="table card-table table-post" id="myTable">
+                    <table class="table card-table table-post" id="datatable">
                         <thead>
                             <tr>
-                                <th width="10"><input type="checkbox" class="checkall"></th>
+                                <th width="10"><input type="checkbox" class="all" name="all"></th>
                                 <th width="100">Aksi</th>
                                 <th>Nama Jabatan</th>
-                                <!-- <th>Jabatan</th> -->
-                                <!-- <th>Nama Diklat</th> -->
-                                <!-- <th>Rentang</th> -->
-                                <!-- <th width="10">Highlight</th> -->
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($jabatan as $jabatans)
-                                <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a href="/profil-pejabat/jabatan/{{ $jabatans->id }}/edit"
-                                                class="btn btn-light m-1 h3 text-primary" title="Edit"><i
-                                                    class="fas fa-file-signature"></i></a>
-                                            @if ($jabatans->status == 'published')
-                                                <a href="#" class="btn btn-light m-1 h3 text-success"
-                                                    title="Publish"><i class="fas fa-clipboard-check"></i></a>
-                                            @else
-                                                <a href="#" class="btn btn-light m-1 h3 text-danger" title="Draft"><i
-                                                        class="far fa-file-excel"></i></a>
-                                            @endif
-                                            <form action="{{ route('jabatan.destroy', $jabatans->id) }}" method="POST"
-                                                class="d-inline">
-                                                @method('delete')
-                                                @csrf
-                                                <button type="submit" class="btn btn-light m-1 h3 text-danger">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        {{ $jabatans->jabatan }}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
+                        
                     </table>
                 </div>
             </div>
-            {{-- <div class="row justify-content-between align-items-center mt-3">
-			<div class="col-auto mb-3 mb-md-0">
-				<div class="row gx-1">
-					<div class="col">
-						<select name="" id="" class="form-control">
-							<option>Bulk Action</option>
-							<option>Set As Draft</option>
-							<option>Set As Publish</option>
-							<option>Move to Trash</option>
-						</select>
-					</div>
-					<div class="col-auto">
-						<button class="btn btn-white">Apply</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-auto">
-				<div class="row gx-2 align-items-center">
-					<div class="col-auto">10 Items</div>
-					<div class="col-auto">
-                            {{ $testimoni->links() }}
-                        </div>
-				</div>
-			</div>
-		</div> --}}
         </div>
     </div>
     <hr>
@@ -143,27 +76,175 @@
     </script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.min.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('.btn-delete').on('click', function() {
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+        $(function () {
+            $("#datatable").DataTable({
+                processing: true,
+                serverSide: true,
+                paging: true,
+                lengthChange: true,
+                searching: true,
+                ordering: true,
+                info: true,
+                autoWidth: false,
+                responsive: true,
+                language: {
+                    search: "",
+                    searchPlaceholder: "Masukkan kata pencarian...",
+                },
+                fnDrawCallback: function () {
+                    $("input[type='search']").attr("id", "searchBox");
+                    $("#searchBox").css("width", "300px");
+                    $("#searchBox").css("height", "34px");
+                    $("#searchBox").css("margin-bottom", "8px");
+                },
+                ajax: `/profil-pejabat/jabatan`,
+                columns: [
+                    {
+                        data: "checkbox",
+                        name: "checkbox",
+                        orderable: false,
+                        searchable: false,
+                    },
+                    {
+                        data: "action",
+                        name: "action",
+                        orderable: false,
+                        searchable: false,
+                    },
+                    {
+                        data: "jabatan",
+                        name: "jabatan",
+                    },
+                ],
+            });
+        });
+
+        $(document).on("click", 'input[name="all"]', function() {
+            if (this.checked) {
+                $('input[name="id"]').each(function() {
+                    this.checked = true;
+                });
+            } else {
+                $('input[name="id"]').each(function() {
+                    this.checked = false;
+                });
+            }
+
+            toggleApproveButton();
+            toggleUnapproveButton();
+            toggleDestroyButton();
+        });
+
+        $(document).on("change", 'input[name="id"]', function() {
+            if ($('input[name="id"]').length == $('input[name="id"]:checked').length) {
+                $('input[name="all"]').prop("checked", true);
+            } else {
+                $('input[name="all"]').prop("checked", false);
+            }
+            toggleDestroyButton();
+        });
+
+        function toggleDestroyButton() {
+            if ($('input[name="id"]:checked').length > 0) {
+                $("button#destroy")
+                    .text(
+                        "Delete (" + $('input[name="id"]:checked').length + ")"
+                    )
+                    .removeClass("d-none");
+            } else {
+                $("button#destroy").addClass("d-none");
+            }
+        }
+
+        $(document).on('click', 'button#destroy', function() {
+            var files = [];
+            $('input[name="id"]:checked').each(function() {
+                files.push($(this).data('id'));
+            });
+
+            if (files.length > 0) {
+                console.log(files);
                 Swal.fire({
-                    title: 'Hapus Data?',
-                    text: "Apakah anda yakin?",
-                    icon: 'warning',
+                    title: 'Konfirmasi',
+                    html: 'Apakah anda yakin akan menghapus <b>(' + files.length + ')</b> data',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
+                    showCloseButton: true,
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal',
+                    confirmButtonColor: '#556ee6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            'Success!',
-                            'Data Berhasil dihapus',
-                            'success'
-                        )
+                    width: 400,
+                    allowOutsideClick: false
+                }).then(function(result) {
+                    if (result.value) {
+                        let url = '{{ route('jabatan.delete') }}';
+                        $.ajax({
+                            url: url,
+                            type: "delete",
+                            data: {
+                                data: files
+                            },
+                            success: function(data) {
+                                $("#datatable").DataTable().ajax.reload(null, true);
+                                Swal.fire(
+                                    'Informasi!',
+                                    'Berhasil menghapus data',
+                                    'success'
+                                )
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                console.log("Gagal!", "Harap coba lagi");
+                            }
+                        });
+                        $("button#destroy").addClass("d-none");
                     }
                 })
+            }
+        });
+
+        $(document).on("click", '.delete', function() {
+            id = $(this).attr('id');
+
+            Swal.fire({
+                title: "Konfirmasi",
+                html: "Apakah anda yakin akan menghapus data ini?",
+                showCancelButton: true,
+                showCloseButton: true,
+                confirmButtonText: "Hapus",
+                cancelButtonText: "Batal",
+                confirmButtonColor: "#556ee6",
+                cancelButtonColor: "#d33",
+                width: 400,
+                allowOutsideClick: false,
+            }).then(function(result) {
+                if (result.value) {
+                    let url = '{{ route('jabatan.destroy', ':id') }}';
+                    url = url.replace(':id', id);
+                    console.log(url);
+                    $.ajax({
+                        url: url,
+                        type: "delete",
+                        success: function(data) {
+                            console.log(data);
+                            $("#datatable").DataTable().ajax.reload(null, true);
+                            Swal.fire(
+                                'Informasi!',
+                                'Berhasil menghapus data',
+                                'success'
+                            )
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log("Gagal!", "Harap coba lagi");
+                        }
+                    });
+                }
             });
         });
     </script>

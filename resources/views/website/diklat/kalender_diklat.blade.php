@@ -67,7 +67,7 @@
         <script>
             $(document).ready(function() {
                 var booking = @json($events);
-                console.log(booking);
+                // console.log(booking);
                 $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next today',

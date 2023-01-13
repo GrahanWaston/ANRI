@@ -74,7 +74,7 @@
                             <div class="card-body">
                                 <div class="mb-3">
                                     <div class="form-label">Upload Image</div>
-                                    <input type="file" class="form-control @error('image_main') is-invalid @enderror"
+                                    <input type="file" class="form-control @error('image_main') is-invalid @enderror" accept=".jpeg, .jpg, .png,"
                                         id="image_main" name="image_main">
                                     @error('image_main')
                                         <div class="invalid-feedback">
@@ -92,7 +92,7 @@
                             <div class="card-body">
                                 <div class="mb-3">
                                     <div class="form-label">Upload Image</div>
-                                    <input type="file" class="form-control @error('image_album') is-invalid @enderror"
+                                    <input type="file" class="form-control @error('image_album') is-invalid @enderror" accept=".jpeg, .jpg, .png,"
                                         id="image_album" name="image_album" multiple>
                                     @error('image_album')
                                         <div class="invalid-feedback">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class JabatanController extends Controller
 {
@@ -12,12 +13,43 @@ class JabatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jabatan = Jabatan::latest()->paginate(10);
-
-        //passing posts to view
-        return view('admin.dashboard.profil_SDM.profil_jabatan', compact('jabatan'));
+        $jabatan = Jabatan::latest()->get();
+        if ($request->ajax()) {
+            return DataTables::of($jabatan)->addIndexColumn()
+                ->addColumn('checkbox', function ($job) {
+                    return '<input type="checkbox" name="id" data-id="' . $job->id . '">';
+                })
+                ->addColumn('action', function ($job) {
+                    if (auth()->user()->role == "admin") {
+                        if ($job->status == "draft") {
+                            return '
+                            <div class="btn-group">
+                                <a href="' . route('publikasi-file.edit', $job->id) . '" class="btn btn-light m-1 h3 text-primary"><i class="fas fa-file-signature" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"></i></a>
+                                <a id="' . $job->id . '" href="#!" class="btn btn-light m-1 h3 text-danger delete"><i class="far fa-trash-alt" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"></i></a>
+                            </div>
+                            ';
+                        } else {
+                            return '
+                            <div class="btn-group">
+                                <a href="' . route('publikasi-file.edit', $job->id) . '" class="btn btn-light m-1 h3 text-primary"><i class="fas fa-file-signature" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"></i></a>
+                                <a id="' . $job->id . '" href="#!" class="btn btn-light m-1 h3 text-danger delete"><i class="far fa-trash-alt" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"></i></a>
+                            </div>
+                            ';
+                        }
+                    } else {
+                        return '
+                        <div class="btn-group">
+                            <a href="' . route('publikasi-file.edit', $job->id) . '" class="btn btn-light m-1 h3 text-primary"><i class="fas fa-file-signature" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"></i></a>
+                            <a id="' . $job->id . '" href="#!" class="btn btn-light m-1 h3 text-danger delete"><i class="far fa-trash-alt" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"></i></a>
+                        </div>
+                        ';
+                    }
+                })
+                ->rawColumns(['checkbox', 'action'])->make(true);
+        }
+        return view('admin.dashboard.profil_SDM.profil_jabatan');
     }
 
     /**
@@ -97,11 +129,27 @@ class JabatanController extends Controller
      * @param  \App\Models\Jabatan  $jabatan
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $jabatan = Jabatan::find($id);
-        $jabatan->delete();
-        // User::destroy($user->id);
-        return redirect(route('jabatan.index'))->with('success', 'Jabatan berhasil dihapus!');
+        try {
+            if ($request->has('data')) {
+                Jabatan::whereIn('id', $request->data)->delete();
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Data Berhasil Dihapus'
+                ]);
+            }
+            $file = Jabatan::find($id);
+            $file->delete();
+            return response()->json([
+                'success'   => true,
+                'message'   => 'Berhasil Menghapus Data'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 }

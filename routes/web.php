@@ -110,8 +110,13 @@ Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
     Route::put('/unapprove-jenis/{Jenis:id}', [JenisJenjangController::class, 'unapprove_jenis'])->name('unapprove-jenis');
     Route::put('/approve-jenjang/{Jenjang:id}', [JenisJenjangController::class, 'approve_jenjang'])->name('approve-jenjang');
     Route::put('/unapprove-jenjang/{Jenjang:id}', [JenisJenjangController::class, 'unapprove_jenjang'])->name('unapprove-jenjang');
+    
+    // Approval program dan unapproval
     Route::put('/approve-program/{Program:id}', [ProgramController::class, 'approve_program'])->name('approve-program');
+    Route::put('/approve-program/approve', [ProgramController::class, 'approve_program'])->name('approve-program-mass');
     Route::put('/unapprove-program/{Program:id}', [ProgramController::class, 'unapprove_program'])->name('unapprove-program');
+    Route::put('/unapprove-program/unapprove', [ProgramController::class, 'unapprove_program'])->name('unapprove-program-mass');
+   
     Route::put('/approve-testimoni/{Testimoni:id}', [TestimoniController::class, 'approve_testimoni'])->name('approve-testimoni');
     Route::put('/unapprove-testimoni/{Testimoni:id}', [TestimoniController::class, 'unapprove_testimoni'])->name('unapprove-testimoni');
     Route::put('/approve-faq/{Faq:id}', [FaqController::class, 'approve_faq'])->name('approve-faq');
@@ -120,10 +125,18 @@ Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
     Route::put('/unapprove-faq/{Faq:id}', [FaqController::class, 'unapprove_faq'])->name('unapprove-faq');
     Route::put('/approve-slideshow/{Slideshow:id}', [SlideshowController::class, 'approve_slideshow'])->name('approve-slideshow');
     Route::put('/unapprove-slideshow/{Slideshow:id}', [SlideshowController::class, 'unapprove_slideshow'])->name('unapprove-slideshow');
+    
+    // Approve dan Unap
     Route::put('/approve-publikasi/{Publication:id}', [PublicationController::class, 'approve_publikasi'])->name('approve-publikasi');
+    Route::put('/approve-publikasi/aprrove', [PublicationController::class, 'approve_publikasi'])->name('approve-publikasi-mass');
     Route::put('/unapprove-publikasi/{Publication:id}', [PublicationController::class, 'unapprove_publikasi'])->name('unapprove-publikasi');
+    Route::put('/unapprove-publikasi/unapprove', [PublicationController::class, 'unapprove_publikasi'])->name('unapprove-publikasi-mass');
+    
+    // Approve dan Unapprove File Download
     Route::put('/approve-file/{FileDownload:id}', [FileDownloadController::class, 'approve_file'])->name('approve-file');
+    Route::put('/approve-file/aprrove', [FileDownloadController::class, 'approve_file'])->name('approve-file-mass');
     Route::put('/unapprove-file/{FileDownload:id}', [FileDownloadController::class, 'unapprove_file'])->name('unapprove-file');
+    Route::put('/unapprove-file/unapprove', [FileDownloadController::class, 'unapprove_file'])->name('unapprove-file-mass');
 
     // Manajemen User
     Route::resource('/manajemen-user', UserController::class);
@@ -144,6 +157,7 @@ Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
 
     // Program dan Jenis Jenjang
     Route::resource('/program-diklat', ProgramController::class);
+    Route::delete('/program-diklat/delete', [ProgramController::class, 'destroy'])->name('program.delete');
     Route::resource('/jenis-jenjang', JenisJenjangController::class);
 
     // Profil Instansi
@@ -152,10 +166,13 @@ Route::group(['middleware' => ['auth', 'role:admin', 'status']], function () {
     // Profil Pejabat - SDM
     Route::resource('/profil-pejabat/SDM', HumanResourceController::class);
     Route::resource('/profil-pejabat/jabatan', JabatanController::class);
+    Route::delete('/profil-pejabat/jabatan/delete', [JabatanController::class, 'destroy'])->name('jabatan.delete');
 
     // Publikasi File
     Route::resource('/publikasi', PublicationController::class);
+    Route::delete('/publikasi/delete', [PublicationController::class, 'destroy'])->name('publikasi.delete');
     Route::resource('/publikasi-file', FileDownloadController::class);
+    Route::delete('/publikasi-file/delete', [FileDownloadController::class, 'destroy'])->name('publikasi-file.delete');
 
     // Sarana Prasarana
     Route::resource('/sarana-prasarana', SarprasController::class);
@@ -208,9 +225,6 @@ Route::group(['middleware' => ['auth', 'role:operator,admin', 'status']], functi
     Route::get('/dashboard', function () {
         return view('admin.dashboard.dashboard_home');
     });
-
-    // Manajemen User
-    // Route::resource('/manajemen-user', UserController::class);
 
     // Jenis dan Jenjang
     Route::delete('/delete-jenis/{Jenis:id}', [JenisJenjangController::class, 'destroy_jenis'])->name('delete-jenis');
